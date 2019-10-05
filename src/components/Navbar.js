@@ -15,8 +15,13 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem } from 'reactstrap';
+import request from "../utils/request";
+import endpoints from "../endpoints";
+import { useAuth0 } from "../react-auth0-spa";
+import LoginButton from "./LoginButton";
 
 export default class CustomNavbar extends React.Component{
+
     constructor(props) {
         super(props);
 
@@ -30,7 +35,9 @@ export default class CustomNavbar extends React.Component{
             isOpen: !this.state.isOpen
         });
     }
+
     render() {
+
         return (
             <div>
                 <Navbar color="light" light expand="md">
@@ -49,6 +56,9 @@ export default class CustomNavbar extends React.Component{
                             </NavItem>
                             <NavItem>
                                 <NavLink href="https://www.hevs.ch/en/" target="_blank">HES-SO Valais//Wallis</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <LoginButton/>
                             </NavItem>
                         </Nav>
                     </Collapse>

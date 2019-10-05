@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css";
 import logo from '../assets/mapTest.PNG';
+import Map from "./Map";
 
 export default class HomePage extends React.Component{
     constructor(props){
@@ -17,8 +18,7 @@ export default class HomePage extends React.Component{
         return(
             <div className="home-div">
                 <div className="map-div">
-                    <h2>Map</h2>
-                    <img src={logo} className="map-image"/>
+                    <Map></Map>
                 </div>
                 <div className="poi-list-div">
                     <h2>Points of interests</h2>
