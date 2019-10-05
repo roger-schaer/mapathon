@@ -1,0 +1,60 @@
+/*
+* This code has been retrieved on oct. 5 2019
+* on Reactstrap.github.io
+* */
+import React from "react";
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem } from 'reactstrap';
+
+export default class CustomNavbar extends React.Component{
+    constructor(props) {
+        super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            isOpen: false
+        };
+    }
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+    render() {
+        return (
+            <div>
+                <Navbar color="light" light expand="md">
+                    <NavbarBrand href="/">Mapathon</NavbarBrand>
+                    <NavbarToggler onClick={this.toggle} />
+                    <Collapse isOpen={this.state.isOpen} navbar>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <NavLink href="/help">Help</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/about">About</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/starter">Teacher's starting code</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="https://www.hevs.ch/en/" target="_blank">HES-SO Valais//Wallis</NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Collapse>
+                </Navbar>
+            </div>
+        );
+    }
+
+}

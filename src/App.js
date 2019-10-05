@@ -5,18 +5,68 @@ import request from "./utils/request";
 import endpoints from "./endpoints";
 import Loading from "./components/Loading";
 import POI from "./components/POI";
+import CustomNavbar from "./components/Navbar";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import About from "./components/About";
+import HelpPage from "./components/Help";
+import Home from "./components/Home";
+import FooterSection from "./components/Footer";
 
 //app component main
 function App() {
+
+  let { loading } = useAuth0();
+
+
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  return (
+      <Router>
+        <div className="App">
+          <CustomNavbar/>
+
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/help">
+              <HelpPage />
+            </Route>
+            <Route path="/starter">
+              <TeachersCode/>
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+
+
+
+        </div>
+        <div>
+          <FooterSection/>
+        </div>
+      </Router>
+
+  );
+}
+
+export default App;
+
+function TeachersCode(props){
+
   let [pois, setPois] = useState([]);
-  let { loading, loginWithRedirect, getTokenSilently } = useAuth0();
+  let { loginWithRedirect, getTokenSilently } = useAuth0();
 
   let handlePOIsClick = async e => {
     e.preventDefault();
     let pois = await request(
-      `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}`,
-      getTokenSilently,
-      loginWithRedirect
+        `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}`,
+        getTokenSilently,
+        loginWithRedirect
     );
 
     if (pois && pois.length > 0) {
@@ -25,12 +75,7 @@ function App() {
     }
   };
 
-  if (loading) {
-    return <Loading />;
-  }
-
-  return (
-    <div className="App">
+  return(
       <header className="App-header">
         <h1>Mapathon</h1>
         <br />
@@ -38,17 +83,14 @@ function App() {
           Get POIs
         </a>
         {pois && pois.length > 0 && (
-          <ul className="POI-List">
-            {pois.map(poi => (
-              <li key={poi.id}>
-                <POI {...poi} />
-              </li>
-            ))}
-          </ul>
+            <ul className="POI-List">
+              {pois.map(poi => (
+                  <li key={poi.id}>
+                    <POI {...poi} />
+                  </li>
+              ))}
+            </ul>
         )}
       </header>
-    </div>
   );
 }
-
-export default App;
