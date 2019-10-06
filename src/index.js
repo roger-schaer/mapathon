@@ -26,7 +26,7 @@ ReactDOM.render(
     audience={auth_config.audience}
     onRedirectCallback={onRedirectCallback}
   >
-    <App />
+    <App/>
   </Auth0Provider>,
   document.getElementById("root")
 );
