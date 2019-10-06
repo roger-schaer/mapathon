@@ -2,11 +2,11 @@ import React from "react";
 import "./Home.css";
 import logo from '../assets/mapTest.PNG';
 import Map from "./Map";
+import POIList from "./POIList";
 
 export default class HomePage extends React.Component{
     constructor(props){
         super(props);
-
     }
     componentDidMount() {
     }
@@ -22,7 +22,9 @@ export default class HomePage extends React.Component{
                 </div>
                 <div className="poi-list-div">
                     <h2>Points of interests</h2>
-                    <ul className="poi-list">
+
+                    <POIList/>
+                    {/*<ul className="poi-list">
                         <li><a href="/">first point</a></li>
                         <li>second point</li>
                         <li>and all the others</li>
@@ -60,7 +62,7 @@ export default class HomePage extends React.Component{
                         <li>second point</li>
                         <li>and all the others</li>
 
-                    </ul>
+                    </ul>*/}
                 </div>
             </div>
         );
