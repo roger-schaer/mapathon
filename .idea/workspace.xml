@@ -1,24 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="">
+    <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="1) Install Leafleat (yarn add react-leafle)&#10;2) Create component MyMap for have a generic map (MyMap.js)&#10;  2.1) add 2 props (optional)&#10;    2.1.1) latlng for coordinate of the POI and center of the map&#10;    2.1.2) text for the text of the POI&#10;  2.2) add event on click for self-location">
+      <change afterPath="$PROJECT_DIR$/src/components/MyMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/POI.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/POI.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/POI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/POI.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Loan Buffet" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
-    <annotation-enable>false</annotation-enable>
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
@@ -30,9 +47,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IMAGINE/imagine-web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../react-leaflet-master" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -72,12 +90,15 @@
       </list>
     </option>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
+  <component name="RunManager">
+    <configuration name="App.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/App.js" working-dir="$PROJECT_DIR$/src">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
       <list>
-        <serviceView />
+        <item itemvalue="Node.js.App.js" />
       </list>
-    </option>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -104,6 +125,11 @@
       <workItem from="1569564207589" duration="772000" />
       <workItem from="1569588978842" duration="1901000" />
       <workItem from="1569840102716" duration="1271000" />
+      <workItem from="1570094560009" duration="676000" />
+      <workItem from="1570095403740" duration="133000" />
+      <workItem from="1570431399248" duration="775000" />
+      <workItem from="1570432407849" duration="2732000" />
+      <workItem from="1570479697229" duration="10354000" />
     </task>
     <servers />
   </component>
@@ -132,6 +158,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1) Install Leafleat (yarn add react-leafle)&#10;2) Create component MyMap for have a generic map (MyMap.js)&#10;  2.1) add 2 props (optional)&#10;    2.1.1) latlng for coordinate of the POI and center of the map&#10;    2.1.2) text for the text of the POI&#10;  2.2) add event on click for self-location" />
+    <option name="LAST_COMMIT_MESSAGE" value="1) Install Leafleat (yarn add react-leafle)&#10;2) Create component MyMap for have a generic map (MyMap.js)&#10;  2.1) add 2 props (optional)&#10;    2.1.1) latlng for coordinate of the POI and center of the map&#10;    2.1.2) text for the text of the POI&#10;  2.2) add event on click for self-location" />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="286" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1569391972949">

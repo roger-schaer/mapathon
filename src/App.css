@@ -1,3 +1,6 @@
+@import url("http://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+@import url("http://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css");
+
 .App {
   text-align: center;
 }
@@ -54,4 +57,8 @@ hr{
   background: white;
   height: 1px;
   border: 0;
+}
+.leaflet-container {
+  height: 420px;
+  width: 30%;
 }

@@ -42,3 +42,8 @@
 .status{
     border-radius: 10px;
 }
+
+.leaflet-container {
+    height: 420px;
+    width: 100%;
+}

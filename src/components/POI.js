@@ -1,5 +1,6 @@
 import React from "react";
 import "./POI.css";
+import MyMap from "./MyMap";
 
 export default function POI(props) {
   const { name, description, lat, lng, image, url } = props;
@@ -21,6 +22,9 @@ export default function POI(props) {
   }
 
   return (
+    /*test pour une map après l'authenthofocation*/
+    //https://codepen.io/PaulLeCam/pen/gzVmGw
+    /*fait par le prof 3 poi */
     <div className="poi" style={{ borderColor: statusColor }}>
       {Status && (
         <span className="status" style={{ color: statusColor }}>
@@ -63,12 +67,14 @@ export default function POI(props) {
                 {tag.image && (
                   <img className="category-image" src={tag.image} />
                 )}
-                <small> {tag.name}</small>
+                <small> {tag.name} : je suis un texte en dur</small>
               </span>
             ))}
           </div>
         </>
       )}
+      {/*loan : component create for the map*/}
+      <MyMap latlng={{ lat: lat, lng: lng }} textPopUp={name} />
     </div>
   );
 }
