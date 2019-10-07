@@ -27,19 +27,7 @@ export default function POI(props) {
           <small>{Status.name}</small>
         </span>
       )}
-      {Categories && Categories.length > 0 && (
-        <div className="categories">
-          {Categories.map(category => (
-            <span className="category" key={category.id}>
-              {category.image && (
-                <img className="category-image" src={category.image} />
-              )}
-              <small> {category.name}</small>
-            </span>
-          ))}
-        </div>
-      )}
-      <h2>
+      <h4>
         {url ? (
           <a href={url} target="_blank" className="App-link">
             {name}
@@ -47,28 +35,7 @@ export default function POI(props) {
         ) : (
           <span>{name}</span>
         )}
-      </h2>
-      {image && <img className="poi-image" alt={name} src={image} />}
-      <section>{description}</section>
-      {Tags && Tags.length > 0 && (
-        <>
-          <hr />
-          <div className="categories">
-            {Tags.map(tag => (
-              <span
-                className="category tag"
-                style={{ backgroundColor: tag.color }}
-                key={tag.id}
-              >
-                {tag.image && (
-                  <img className="category-image" src={tag.image} />
-                )}
-                <small> {tag.name}</small>
-              </span>
-            ))}
-          </div>
-        </>
-      )}
+      </h4>
     </div>
   );
 }
