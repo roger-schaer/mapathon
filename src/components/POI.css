@@ -42,8 +42,8 @@
 .status{
     border-radius: 10px;
 }
-
+/*chnage the size of the map*/
 .leaflet-container {
-    height: 420px;
-    width: 100%;
+    height: 50em;
+    width: 70em;
 }

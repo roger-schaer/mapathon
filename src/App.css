@@ -24,6 +24,7 @@
 
 .App-link {
   color: #61dafb;
+  margin-bottom: 10px;
 }
 
 @keyframes App-logo-spin {
@@ -60,5 +61,5 @@ hr{
 }
 .leaflet-container {
   height: 420px;
-  width: 30%;
+  width: 100%;
 }

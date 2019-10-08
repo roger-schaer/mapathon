@@ -1,39 +1,46 @@
-import React, { createRef, Component } from "react";
+import React, { Component, createRef, Fragment } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 
+type Position = [number, number];
+type Props = {|
+  content: string,
+  position: Position
+|};
+
+type MarkerData = {| ...Props, key: string |};
+
+//what we must have to have a marker
+const MyPopupMarker = ({ content, position }: Props) => (
+  <Marker position={position}>
+    <Popup>
+      {content.title} <br />
+      <small>{content.description}</small>
+    </Popup>
+  </Marker>
+);
+//all the pin of the bdd (make a loop).
+const MyMarkersList = ({ markers }: { markers: Array<MarkerData> }) => {
+  const items = markers
+    ? markers.map(({ key, ...props }) => <MyPopupMarker key={key} {...props} />)
+    : null;
+  return <Fragment>{items}</Fragment>;
+};
+
 type State = {
-  hasLocation: boolean,
-  latlng: {
-    lat: number,
-    lng: number
-  }
+  markers: Array<MarkerData>
 };
 
 export default class MyMap extends Component<{}, State> {
   state = {
     hasLocation: false,
-    latlng: this.props.latlng || {
-      lat: 46.282807,
-      lng: 7.538748
-    },
-    marker: (
-      //create a marker(pin) with a default value if none is set
-      <Marker
-        position={
-          this.props.latlng || {
-            lat: 46.282807,
-            lng: 7.538748
-          }
-        }
-      >
-        <Popup>{this.props.textPopUp || "Default is on Techno-pôle"}</Popup>
-      </Marker>
-    )
+    latlng: {
+      lat: 51.505,
+      lng: -0.09
+    }
   };
 
-  mapRef = createRef<Map>();
+  mapRef = createRef();
 
-  //on click on the map , require one autorisation to have my location
   handleClick = () => {
     const map = this.mapRef.current;
     if (map != null) {
@@ -41,7 +48,6 @@ export default class MyMap extends Component<{}, State> {
     }
   };
 
-  //the app found You ;)
   handleLocationFound = (e: Object) => {
     this.setState({
       hasLocation: true,
@@ -52,25 +58,27 @@ export default class MyMap extends Component<{}, State> {
   render() {
     const marker = this.state.hasLocation ? (
       <Marker position={this.state.latlng}>
-        <Popup>You are here</Popup>
+        <Popup>{this.props.meText || "You are here"}</Popup>
       </Marker>
     ) : null;
-
     return (
       <Map
-        center={this.state.latlng}
-        length={4}
-        onClick={this.handleClick}
+        center={
+          this.props.markers && this.props.markers[0]
+            ? this.props.markers[0].position
+            : [46.310473, 7.6397229] //leuk
+        }
         onLocationfound={this.handleLocationFound}
+        zoom={13}
         ref={this.mapRef}
-        zoom={16}
+        onClick={this.handleClick}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {this.state.marker}
         {marker}
+        <MyMarkersList markers={this.props.markers} />
       </Map>
     );
   }

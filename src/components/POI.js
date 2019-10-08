@@ -1,6 +1,5 @@
 import React from "react";
 import "./POI.css";
-import MyMap from "./MyMap";
 
 export default function POI(props) {
   const { name, description, lat, lng, image, url } = props;
@@ -73,8 +72,6 @@ export default function POI(props) {
           </div>
         </>
       )}
-      {/*loan : component create for the map*/}
-      <MyMap latlng={{ lat: lat, lng: lng }} textPopUp={name} />
     </div>
   );
 }

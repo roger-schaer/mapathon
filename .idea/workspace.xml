@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="1) Install Leafleat (yarn add react-leafle)&#10;2) Create component MyMap for have a generic map (MyMap.js)&#10;  2.1) add 2 props (optional)&#10;    2.1.1) latlng for coordinate of the POI and center of the map&#10;    2.1.2) text for the text of the POI&#10;  2.2) add event on click for self-location">
-      <change afterPath="$PROJECT_DIR$/src/components/MyMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="1) Modification of MyMap for accept a list of marker (for POI) &#10;2) Add some texte to be more clear and comment.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MyMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MyMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/POI.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/POI.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/POI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/POI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +48,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../react-leaflet-master" />
+    <property name="last_opened_file_path" value="D:/Buffet/Bureau/react-leaflet-master" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -64,7 +62,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="/usr/local/lib/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -130,6 +128,9 @@
       <workItem from="1570431399248" duration="775000" />
       <workItem from="1570432407849" duration="2732000" />
       <workItem from="1570479697229" duration="10354000" />
+      <workItem from="1570548299139" duration="871000" />
+      <workItem from="1570549280329" duration="121000" />
+      <workItem from="1570549732676" duration="6508000" />
     </task>
     <servers />
   </component>
@@ -161,7 +162,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1) Install Leafleat (yarn add react-leafle)&#10;2) Create component MyMap for have a generic map (MyMap.js)&#10;  2.1) add 2 props (optional)&#10;    2.1.1) latlng for coordinate of the POI and center of the map&#10;    2.1.2) text for the text of the POI&#10;  2.2) add event on click for self-location" />
-    <option name="LAST_COMMIT_MESSAGE" value="1) Install Leafleat (yarn add react-leafle)&#10;2) Create component MyMap for have a generic map (MyMap.js)&#10;  2.1) add 2 props (optional)&#10;    2.1.1) latlng for coordinate of the POI and center of the map&#10;    2.1.2) text for the text of the POI&#10;  2.2) add event on click for self-location" />
+    <MESSAGE value="1) Modification of MyMap for accept a list of marker (for POI) &#10;2) Add some texte to be more clear and comment." />
+    <option name="LAST_COMMIT_MESSAGE" value="1) Modification of MyMap for accept a list of marker (for POI) &#10;2) Add some texte to be more clear and comment." />
   </component>
   <component name="WindowStateProjectService">
     <state x="601" y="286" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1569391972949">
