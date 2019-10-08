@@ -5,6 +5,7 @@
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.2.3",
     "bootstrap": "^4.3.1",
+    "formik": "^1.5.8",
     "history": "^4.10.1",
     "leaflet": "^1.5.1",
     "react": "^16.10.2",

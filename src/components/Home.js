@@ -29,7 +29,7 @@ export default function HomePage(props){
     return(
         <div className="home-div">
             <div className="map-div">
-                <ReactMap></ReactMap>
+                <ReactMap pois={pois}></ReactMap>
             </div>
             <div className="poi-list-div">
                 <h2>Points of interests</h2>
