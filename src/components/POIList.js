@@ -7,6 +7,19 @@ import POI from "./POI";
 
 export default function POIList(props){
     let usr = useAuth0();
+    let [filter, setFilter] = useState(false);
+
+    let handleLikedOnlyClick = e => {
+        setFilter(!filter);
+    };
+
+    let poisnew;
+    if (filter) {
+        poisnew = props.pois.filter(poi => poi.group == 0);
+    } else {
+        poisnew = props.pois;
+    }
+
 
     // Check if the user is authenticated
     if(!usr.isAuthenticated){
@@ -16,12 +29,23 @@ export default function POIList(props){
         <header className="poi-list">
 
             <a className="App-link" href="#" onClick={props.poisClick}>
-                Get POIs
+                Get POI's
             </a>
 
-            {props.pois && props.pois.length > 0 && (
+            <p>
+            <input
+                type="checkbox"
+                checked={filter}
+                id="liked-only"
+                onChange={handleLikedOnlyClick}
+            />
+                Show only your POI's
+            </p>
+
+
+            {poisnew && poisnew.length > 0 && (
                 <ul className="POI-List">
-                    {props.pois.map(poi => (
+                    {poisnew.map(poi => (
                         <li key={poi.id}>
                             <POI {...poi} />
                         </li>

@@ -38,45 +38,7 @@ export default function HomePage(props){
                 <h2>Points of interests</h2>
                 {/*Give the POI list*/}
                 <POIList pois={pois} poisClick={handlePOIsClick}/>
-                {/*<ul className="poi-list">
-                    <li><a href="/">first point</a></li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
-                    <li>first point</li>
-                    <li>second point</li>
-                    <li>and all the others</li>
 
-                </ul>*/}
             </div>
         </div>
     );
