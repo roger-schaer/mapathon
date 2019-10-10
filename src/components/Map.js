@@ -16,9 +16,11 @@ export default class ReactMap extends Component<{}, State> {
         zoom: 12,
     }
 
+
     render() {
         const position = [this.state.lat, this.state.lng]
         return (
+          // here we create the map --> fix the height, define the center, the zoom, POIS
                 <Map  style={{height: '100%'}} center={position} zoom={this.state.zoom} pois={this.props.pois}>
                     <TileLayer
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -29,6 +31,7 @@ export default class ReactMap extends Component<{}, State> {
                             A pretty CSS3 popup. <br /> Easily customizable.
                         </Popup>
                     </Marker>
+                  {/*List of the markers define by props*/}
                     <MarkerList pois={this.props.pois}/>
                 </Map>
 

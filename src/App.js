@@ -18,11 +18,13 @@ function App() {
   let { loading } = useAuth0();
 
 
-
   if (loading) {
     return <Loading />;
   }
 
+  // if the user is loged in
+
+  // DON'T ADD PAGE AFTER <Route path="/">
   return (
       <Router>
         <div className="App">

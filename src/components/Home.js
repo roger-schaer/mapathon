@@ -9,9 +9,11 @@ import {useAuth0} from "../react-auth0-spa";
 
 export default function HomePage(props){
 
-    let { loginWithRedirect, getTokenSilently } = useAuth0();
-    let [pois, setPois] = useState([]);
 
+    let { loginWithRedirect, getTokenSilently } = useAuth0();
+    let [pois, setPois] = useState([]); //Only one POI list (for the state)
+
+    // get all the POI informations
     let handlePOIsClick = async e => {
         e.preventDefault();
         let poiList = await request(
@@ -26,6 +28,7 @@ export default function HomePage(props){
         }
     };
 
+    // main div
     return(
         <div className="home-div">
             <div className="map-div">
@@ -33,7 +36,7 @@ export default function HomePage(props){
             </div>
             <div className="poi-list-div">
                 <h2>Points of interests</h2>
-
+                {/*Give the POI list*/}
                 <POIList pois={pois} poisClick={handlePOIsClick}/>
                 {/*<ul className="poi-list">
                     <li><a href="/">first point</a></li>

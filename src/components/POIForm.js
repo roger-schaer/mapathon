@@ -10,6 +10,7 @@ const POIForm = (props) => (
             initialValues={{ name: props.poi.name, description: props.poi.description, image: props.poi.image, url: props.poi.url}}
             validate={values => {
                 let errors = {};
+              {/*Check required name*/}
                 if (!values.name) {
                     errors.name = 'Required';
                 }
@@ -35,7 +36,7 @@ const POIForm = (props) => (
                 <form onSubmit={handleSubmit}>
                     <span><b>Name: </b></span>
                     <input
-                        disabled={props.isDisplayOnly}
+                        disabled={props.isDisplayOnly} /*ReadOnly mod or not*/
                         type="text"
                         name="name"
                         onChange={handleChange}

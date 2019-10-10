@@ -8,7 +8,7 @@ import POI from "./POI";
 export default function POIList(props){
     let usr = useAuth0();
 
-
+    // Check if the user is authenticated
     if(!usr.isAuthenticated){
         return <a href="#" onClick={usr.loginWithRedirect}>You need to login to see the points of interests</a>
     }
