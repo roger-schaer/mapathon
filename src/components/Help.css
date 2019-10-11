@@ -1,0 +1,45 @@
+.help-div {
+text-align: justify;
+    margin-left: 20%;
+    margin-right :20%;
+}
+
+.help-text{
+    font-size: 25px;
+    vertical-align: top;
+}
+
+.help-img-left, .help-img-right
+{
+    width: 500px;
+    height: 340px;
+    display:inline-flex;
+    vertical-align:center;
+
+}
+
+.help-img-right{
+   float: right;
+    margin: 10px 20px 20px 10px;
+}
+
+.help-img-left{
+    float: left;
+    margin: 10px 10px 20px 20px;
+}
+
+.help-question{
+    margin-top: 50px;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    table-layout: fixed;
+    background-color: #f2e1ba;
+}
+
+/*.help-question:nth-child(even)*/
+/*{*/
+    /*background-color: #dcf2b5;*/
+/*}*/
