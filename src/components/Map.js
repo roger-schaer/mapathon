@@ -1,5 +1,5 @@
-import React, { Component, useEffect } from 'react'
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { Component } from 'react'
+import { Map, TileLayer} from 'react-leaflet';
 import "./Map.css";
 import MarkerList from "./MarkerList";
 
@@ -15,9 +15,6 @@ export default class ReactMap extends Component<{}, State> {
         lng: 6.49857,
         zoom: 12,
     }
-    constructor(props){
-        super(props);
-    };
     recenterMap(newPosition){
         this.leafletMap.leafletElement.setView([newPosition.lat, newPosition.lng]);
     }
@@ -33,12 +30,7 @@ export default class ReactMap extends Component<{}, State> {
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    <Marker position={position} >
-                        <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
-                    </Marker>
-                  {/*List of the markers define by props*/}
+                  {/*List of the markers defined by props*/}
                     <MarkerList lastPoi={this.props.lastPoi} pois={this.props.pois} />
                 </Map>
 

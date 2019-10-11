@@ -61,10 +61,10 @@ const POIForm = (props) => (
                         name="image"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.image}
+                        value={values.image || ''}
                     />
                     {errors.image && touched.image && errors.image}<br/>
-                    <img style={{maxwidth: '50%'}} src={props.poi.image} alt="POI image"/><br/>
+                    <img style={{maxHeight: "13vh", maxWidth: "100%"}} src={props.poi.image} alt="POI image"/><br/>
                     <span><b>Website: </b></span>
                     <input
                         disabled={props.isDisplayOnly}

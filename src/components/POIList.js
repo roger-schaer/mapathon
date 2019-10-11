@@ -14,7 +14,7 @@ export default function POIList(props){
 
     let poisnew;
     if (filter) {
-        poisnew = props.pois.filter(poi => poi.group == 0);
+        poisnew = props.pois.filter(poi => poi.group == 3);
     } else {
         poisnew = props.pois;
     }

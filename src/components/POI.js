@@ -32,7 +32,7 @@ export default function POI(props) {
         </span>
       )}
       <h4>
-          <a href="=#" className="App-link" onClick={singlePoiClick}>
+          <a href="#" className="App-link" onClick={singlePoiClick}>
             {name}
           </a>
       </h4>

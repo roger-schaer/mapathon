@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import "./Home.css";
-import logo from '../assets/mapTest.PNG';
 import ReactMap from "./Map";
 import POIList from "./POIList";
 import request from "../utils/request";

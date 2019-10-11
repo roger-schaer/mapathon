@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Marker, Popup} from "react-leaflet";
 import POIForm from "./POIForm";
 
@@ -13,14 +13,9 @@ export default function MarkerList(props){
                 <>
                     {pois.map(poi => (
                         <MyMarker
+                            key={poi.id}
                             lastPoiId={props.lastPoi} poi={poi}></MyMarker>
-                        /*<Marker
-                            lastPoiClicked={props.lastPoi}
-                            position={[poi.lat, poi.lng]}>
-                            {/!*Popup for each marker with the POI datas*!/}
-                            <Popup><div><POIForm isDisplayOnly="true" poi={poi}/></div></Popup>
-                        </Marker>*/
-                            ))}
+                    ))}
                 </>
 
             )}
@@ -43,7 +38,7 @@ class MyMarker extends React.Component{
     return (
         <>
             <Marker ref={m => { this.leafletPopup = m; }} position={[this.props.poi.lat, this.props.poi.lng]}>
-                <Popup><div><POIForm isDisplayOnly="true" poi={this.props.poi}/></div></Popup>
+                <Popup><div><POIForm isDisplayOnly={true} poi={this.props.poi}/></div></Popup>
             </Marker>
         </>
 
