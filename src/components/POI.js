@@ -2,7 +2,7 @@ import React from "react";
 import "./POI.css";
 
 export default function POI(props) {
-  const { name, description, lat, lng, image, url } = props;
+  const { id, name, description, lat, lng, image, url } = props;
   const { Categories, Tags, User, Status } = props;
 
   let statusColor;
@@ -20,6 +20,10 @@ export default function POI(props) {
     }
   }
 
+  let singlePoiClick = () =>{
+    props.singlePoiClick(id);
+  }
+
   return (
     <div className="poi" style={{ borderColor: statusColor }}>
       {Status && (
@@ -28,13 +32,9 @@ export default function POI(props) {
         </span>
       )}
       <h4>
-        {url ? (
-          <a href={url} target="_blank" className="App-link">
+          <a href="=#" className="App-link" onClick={singlePoiClick}>
             {name}
           </a>
-        ) : (
-          <span>{name}</span>
-        )}
       </h4>
     </div>
   );

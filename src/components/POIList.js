@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./Home.css";
 import {useAuth0} from "../react-auth0-spa";
 import request from "../utils/request";
@@ -8,7 +8,6 @@ import POI from "./POI";
 export default function POIList(props){
     let usr = useAuth0();
     let [filter, setFilter] = useState(false);
-
     let handleLikedOnlyClick = e => {
         setFilter(!filter);
     };
@@ -18,6 +17,10 @@ export default function POIList(props){
         poisnew = props.pois.filter(poi => poi.group == 0);
     } else {
         poisnew = props.pois;
+    }
+
+    let singlePoiClick = (id) => {
+        props.singlePoiClick(id);
     }
 
 
@@ -47,7 +50,7 @@ export default function POIList(props){
                 <ul className="POI-List">
                     {poisnew.map(poi => (
                         <li key={poi.id}>
-                            <POI {...poi} />
+                            <POI {...poi} singlePoiClick={singlePoiClick} />
                         </li>
                     ))}
                 </ul>
