@@ -1,4 +1,4 @@
-export default async function(url, getTokenSilently, loginWithRedirect) {
+export default async function(url, getTokenSilently, loginWithPopup) {
   try {
     let token = await getTokenSilently();
 
@@ -13,6 +13,6 @@ export default async function(url, getTokenSilently, loginWithRedirect) {
     return data;
   } catch (e) {
     console.error(e);
-    await loginWithRedirect();
+    await loginWithPopup();
   }
 }
