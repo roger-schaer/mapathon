@@ -44,6 +44,6 @@
 }
 /*chnage the size of the map*/
 .leaflet-container {
-    height: 50em;
-    width: 70em;
+    height: 100vh;
+    width: 100vw;
 }
