@@ -66,7 +66,7 @@ export default class MyMap extends Component<{}, State> {
         center={
           this.props.markers && this.props.markers[0]
             ? this.props.markers[0].position
-            : [46.310473, 7.6397229] //leuk
+            : [46.310473, 7.6397229] //leukkkk
         }
         onLocationfound={this.handleLocationFound}
         zoom={13}
