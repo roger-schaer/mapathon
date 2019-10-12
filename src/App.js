@@ -7,7 +7,6 @@ import Loading from "./components/Loading";
 import POI from "./components/POI";
 import MyMap from "./components/MyMap";
 import NavigationBar from "./components/NavigationBar";
-import MenuSlide from "./components/MenuSlide";
 
 function App() {
   let [pois, setPois] = useState([]);
@@ -75,10 +74,16 @@ function App() {
         handleGetPOI={handleGetPOI}
         isAuthenticated={isAuthenticated}
       />
-      <MenuSlide isOpen={menuState} />
       <header className="App-header">
-        <MyMap markers={markers} meText={"coucou"} />
-        {pois && pois.length > 0 && (
+        <MyMap
+          markers={markers}
+          meText={"coucou"}
+          menuState={menuState}
+          isAuthenticated={isAuthenticated}
+          handleMenu={handleMenu}
+        />
+
+        {/* {pois && pois.length > 0 && (
           <div>
             <p> below we can see all the list of POI from BDD</p>
             <ul className="POI-List">
@@ -89,7 +94,7 @@ function App() {
               ))}
             </ul>
           </div>
-        )}
+        )} */}
       </header>
     </div>
   );
