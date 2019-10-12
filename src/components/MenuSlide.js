@@ -2,9 +2,17 @@ import React, { Component } from "react";
 import { slide as Menu } from "react-burger-menu";
 class MenuSlide extends Component {
   state = {};
+  handleMenuChange = state => {
+    this.props.handleMenuChange(state.isOpen);
+  };
   render() {
     return (
-      <Menu styles={burgerStyles} right isOpen={this.props.isOpen}>
+      <Menu
+        styles={burgerStyles}
+        right
+        isOpen={this.props.isOpen}
+        onStateChange={this.handleMenuChange}
+      >
         <a id="home" className="menu-item" href="/">
           Home
         </a>

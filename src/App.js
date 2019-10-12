@@ -36,6 +36,9 @@ function App() {
   let handleMenu = () => {
     setMenuState(!menuState);
   };
+  let handleMenuChange = isOpen => {
+    setMenuState(isOpen);
+  };
   let handleGetPOI = async e => {
     e.preventDefault();
     let pois = await request(
@@ -81,6 +84,7 @@ function App() {
           menuState={menuState}
           isAuthenticated={isAuthenticated}
           handleMenu={handleMenu}
+          handleMenuChange={handleMenuChange}
         />
 
         {/* {pois && pois.length > 0 && (

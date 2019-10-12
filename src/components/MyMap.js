@@ -42,7 +42,9 @@ export default class MyMap extends Component<{}, State> {
   };
 
   mapRef = createRef();
-
+  handleMenuChange = isOpen => {
+    this.props.handleMenuChange(isOpen);
+  };
   handleClick = e => {
     if (this.props.isAuthenticated) {
       this.setState(prevState => ({
@@ -96,7 +98,11 @@ export default class MyMap extends Component<{}, State> {
 
     return (
       <div>
-        <MenuSlide isOpen={this.props.menuState} menuMode={2} />
+        <MenuSlide
+          isOpen={this.props.menuState}
+          menuMode={2}
+          handleMenuChange={this.handleMenuChange}
+        />
         <Map
           center={
             // this.props.markers && this.props.markers[0]
