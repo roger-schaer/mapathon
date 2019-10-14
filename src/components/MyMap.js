@@ -1,4 +1,5 @@
 import React, { Component, createRef, Fragment } from "react";
+import MENU_MODES from "../MenuModes";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { Button } from "react-bootstrap";
 import MenuSlide from "./MenuSlide";
@@ -66,6 +67,9 @@ export default class MyMap extends Component<{}, State> {
       center: e.latlng
     });
   };
+  handleForm = newPOI => {
+    this.props.handleForm(newPOI);
+  };
   // recenter = () => {
   //   if (this.state.hasLocation) {
   //     this.setState(prevState => ({
@@ -100,8 +104,12 @@ export default class MyMap extends Component<{}, State> {
       <div>
         <MenuSlide
           isOpen={this.props.menuState}
-          menuMode={2}
+          menuMode={
+            this.state.currentPointer ? MENU_MODES.ADD_POI : MENU_MODES.DEFAULT
+          }
           handleMenuChange={this.handleMenuChange}
+          currentPointer={this.state.currentPointer}
+          handleForm={this.handleForm}
         />
         <Map
           center={

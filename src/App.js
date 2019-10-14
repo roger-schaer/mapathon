@@ -39,8 +39,8 @@ function App() {
   let handleMenuChange = isOpen => {
     setMenuState(isOpen);
   };
-  let handleGetPOI = async e => {
-    e.preventDefault();
+  let handleGetPOI = async () => {
+    // e.preventDefault();
     let pois = await request(
       `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}`,
       getTokenSilently,
@@ -64,6 +64,33 @@ function App() {
     // update all the marker in state
     setMarkers(markers);
   };
+  let handleForm = async newPOI => {
+    let tokenForm = await getTokenSilently();
+    try {
+      let response = await fetch(
+        "https://backend.mapathon.ehealth.hevs.ch/poi",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${tokenForm}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: newPOI.name,
+            description: newPOI.description,
+            lat: newPOI.lat,
+            lng: newPOI.lng,
+            group: newPOI.group,
+            image: newPOI.image
+          })
+        }
+      );
+      let data = await response.json();
+      console.log(data);
+    } catch (error) {}
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -85,6 +112,7 @@ function App() {
           isAuthenticated={isAuthenticated}
           handleMenu={handleMenu}
           handleMenuChange={handleMenuChange}
+          handleForm={handleForm}
         />
 
         {/* {pois && pois.length > 0 && (

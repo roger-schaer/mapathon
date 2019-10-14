@@ -16,3 +16,7 @@ export default async function(url, getTokenSilently, loginWithPopup) {
     await loginWithPopup();
   }
 }
+
+function postPOI(url, ) {
+
+}

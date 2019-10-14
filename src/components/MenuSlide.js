@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { slide as Menu } from "react-burger-menu";
+import AddForm from "./AddForm";
+import MENU_MODES from "../MenuModes";
 class MenuSlide extends Component {
   state = {};
   handleMenuChange = state => {
     this.props.handleMenuChange(state.isOpen);
+  };
+  handleForm = newPOI => {
+    this.props.handleForm(newPOI);
   };
   render() {
     return (
@@ -13,15 +18,16 @@ class MenuSlide extends Component {
         isOpen={this.props.isOpen}
         onStateChange={this.handleMenuChange}
       >
-        <a id="home" className="menu-item" href="/">
-          Home
-        </a>
-        <a id="about" className="menu-item" href="/about">
-          About
-        </a>
-        <a id="contact" className="menu-item" href="/contact">
-          Contact
-        </a>
+        <div>
+          {this.props.menuMode == MENU_MODES.DEFAULT ? (
+            "Default"
+          ) : (
+            <AddForm
+              currentPointer={this.props.currentPointer}
+              handleForm={this.handleForm}
+            />
+          )}
+        </div>
       </Menu>
     );
   }
