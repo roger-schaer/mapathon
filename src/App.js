@@ -11,6 +11,7 @@ import About from "./components/About";
 import HelpPage from "./components/Help";
 import Home from "./components/Home";
 import FooterSection from "./components/Footer";
+import Details from "./components/Details";
 
 //app component main
 function App() {
@@ -40,9 +41,12 @@ function App() {
             <Route path="/starter">
               <TeachersCode/>
             </Route>
-            <Route path="/">
+              <Route path="/details">
+                  <Details/>
+              </Route>
+              <Route path="/">
               <Home />
-            </Route>
+              </Route>
           </Switch>
 
 

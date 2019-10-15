@@ -1,0 +1,28 @@
+.detail-content{
+    text-align: left;
+    padding: 1vw;
+    width: 49vw;
+}
+
+.img-div{
+    float: right;
+    width: 49vw;
+    height: 80vh;
+    border: 1px solid #61dafb;
+}
+
+h4{
+    padding-top: 5px;
+}
+
+form{
+    width: 95%;
+}
+
+textarea{
+    width: 100%;
+}
+
+input{
+    width: 100%;
+}
