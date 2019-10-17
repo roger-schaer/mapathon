@@ -47,6 +47,16 @@ export default class ReactMap extends Component<{}, State> {
 
     render() {
         const position = [this.state.lat, this.state.lng]
+
+        const myIcon = L.icon({
+            iconUrl: require('../userMarker.svg'),
+            iconSize: [58,58],
+            iconAnchor: [58, 58],
+            popupAnchor: null,
+            shadowUrl: null,
+            shadowSize: null,
+            shadowAnchor: null});
+
         return (
           // here we create the map --> fix the height, define the center, the zoom, POIS
                 <Map
@@ -61,7 +71,7 @@ export default class ReactMap extends Component<{}, State> {
                     />
                   {/*List of the markers defined by props*/}
                     <MarkerList lastPoi={this.props.lastPoi} pois={this.props.pois} />
-                    <Marker position={this.state.currentLatLng}>
+                    <Marker position={this.state.currentLatLng} icon={myIcon}>
                         <Popup>You are here.</Popup>
                     </Marker>
                 </Map>
