@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { useAuth0 } from "./react-auth0-spa";
 import request from "./utils/request";
+import requestPOI from "./utils/requestPOI";
 import endpoints from "./endpoints";
 import Loading from "./components/Loading";
 import POI from "./components/POI";
@@ -104,6 +105,7 @@ function App() {
         handleGetPOI={handleGetPOI}
         isAuthenticated={isAuthenticated}
       />
+
       <header className="App-header">
         <MyMap
           markers={markers}
