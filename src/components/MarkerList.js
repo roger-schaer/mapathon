@@ -44,6 +44,4 @@ class MyMarker extends React.Component{
 
     )
 }
-
-
 };

@@ -7,17 +7,6 @@ import POI from "./POI";
 
 export default function POIList(props){
     let usr = useAuth0();
-    let [filter, setFilter] = useState(false);
-    let handleLikedOnlyClick = e => {
-        setFilter(!filter);
-    };
-
-    let poisnew;
-    if (filter) {
-        poisnew = props.pois.filter(poi => poi.group == 3);
-    } else {
-        poisnew = props.pois;
-    }
 
     let singlePoiClick = (id) => {
         props.singlePoiClick(id);
@@ -31,31 +20,22 @@ export default function POIList(props){
     return (
         <header className="poi-list">
 
+            <div>
             <a className="App-link" href="#" onClick={props.poisClick}>
                 Get POI's
             </a>
-
-            <p>
-            <input
-                type="checkbox"
-                checked={filter}
-                id="liked-only"
-                onChange={handleLikedOnlyClick}
-            />
-                Show only your POI's
-            </p>
+            </div>
 
 
-            {poisnew && poisnew.length > 0 && (
+            {props.pois && props.pois.length > 0 && (
                 <ul className="POI-List">
-                    {poisnew.map(poi => (
+                    {props.pois.map(poi => (
                         <li key={poi.id}>
                             <POI {...poi} singlePoiClick={singlePoiClick} />
                         </li>
                     ))}
                 </ul>
             )}
-            <p></p>
         </header>
     );
 }

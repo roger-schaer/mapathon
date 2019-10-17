@@ -14,6 +14,23 @@ export default function HomePage(props){
     let [lastPoiId, setLastPoi] = useState(0);
     let mapRef = React.createRef();
 
+    //New Damian
+    let [filter, setFilter] = useState(false);
+    let [groupnr, setGroupnr] = useState(3);
+
+    let handleLikedOnlyClick = e => {
+        setFilter(!filter);
+    };
+
+    let poisnew;
+    if (filter) {
+        poisnew = pois.filter(poi => poi.group == [groupnr]);
+    } else {
+        poisnew = pois;
+    }
+
+    //End Damian
+
     // get all the POI informations
     let handlePOIsClick = async e => {
         e.preventDefault();
@@ -48,13 +65,24 @@ export default function HomePage(props){
     // main div
     return(
         <div className="home-div">
+            <div className="filter-div">
+                <p>
+                    Show only the POI's of the group: {groupnr}
+                    <input
+                        type="checkbox"
+                        checked={filter}
+                        id="liked-only"
+                        onChange={handleLikedOnlyClick}
+                    />
+                </p>
+            </div>
             <div className="map-div">
-                <ReactMap pois={pois} lastPoi={lastPoiId} ref={mapRef}></ReactMap>
+                <ReactMap pois={poisnew} lastPoi={lastPoiId} ref={mapRef}></ReactMap>
             </div>
             <div className="poi-list-div">
                 <h2>Points of interests</h2>
                 {/*Give the POI list*/}
-                <POIList pois={pois} poisClick={handlePOIsClick} singlePoiClick={singlePoiClick}/>
+                <POIList pois={poisnew} poisClick={handlePOIsClick} singlePoiClick={singlePoiClick}/>
 
             </div>
         </div>
