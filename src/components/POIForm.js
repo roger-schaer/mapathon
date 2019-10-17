@@ -40,6 +40,16 @@ const POIForm = (props) => (
                       /* and other goodies */
                   }) => (
                     <form onSubmit={handleSubmit}>
+                        <span><h4>Longitude : </h4></span>
+                            <input
+                                type="text"
+                                name="longitude"
+                            />
+                        <span><h4>Latitude : </h4></span>
+                            <input
+                                type="text"
+                                name="latitude"
+                            />
                         <span><h4>Name: </h4></span>
                         <input
                             //disabled={props.isDisplayOnly} /*ReadOnly mod or not*/
