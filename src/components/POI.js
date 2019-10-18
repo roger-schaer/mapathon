@@ -31,11 +31,11 @@ export default function POI(props) {
           <small>{Status.name}</small>
         </span>
       )}
-      <h4>
+      <h5>
           <a href="#" className="App-link" onClick={singlePoiClick}>
             {name}
           </a>
-      </h4>
+      </h5>
     </div>
   );
 }

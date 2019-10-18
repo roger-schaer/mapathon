@@ -17,21 +17,16 @@ export default function POIList(props){
     if(!usr.isAuthenticated){
         return <a href="#" onClick={usr.loginWithRedirect}>You need to login to see the points of interests</a>
     }
+    //Call the function to receive all poi's
+    props.poisClick();
     return (
         <header className="poi-list">
-
-            <div>
-            <a className="App-link" href="#" onClick={props.poisClick}>
-                Get POI's
-            </a>
-            </div>
-
-
-            {props.pois && props.pois.length > 0 && (
+             {props.pois && props.pois.length > 0 && (
                 <ul className="POI-List">
                     {props.pois.map(poi => (
                         <li key={poi.id}>
-                            <POI {...poi} singlePoiClick={singlePoiClick} />
+                            {poi.name.length > 0 &&(
+                            <POI {...poi} singlePoiClick={singlePoiClick} />)}
                         </li>
                     ))}
                 </ul>

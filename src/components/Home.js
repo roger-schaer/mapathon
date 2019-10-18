@@ -6,7 +6,7 @@ import request from "../utils/request";
 import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import Switch from "react-switch";
 
 export default function HomePage(props){
 
@@ -17,38 +17,25 @@ export default function HomePage(props){
     let mapRef = React.createRef();
     let [latToPass, lngToPass] = useState(0);
 
-    //New Damian
     let [filter, setFilter] = useState(false);
     let [groupnr, setGroupnr] = useState(3);
+
+    //to save the filtered list of poi's
+    let poisnew;
 
     let handleLikedOnlyClick = e => {
         setFilter(!filter);
     };
 
-    let poisnew;
+    //Customizing the list of POIs
     if (filter) {
         poisnew = pois.filter(poi => poi.group == [groupnr]);
     } else {
         poisnew = pois;
     }
 
-    //End Damian
-
-    //Callback function to get lat and lng Jonas
-    let handleNewPoiClicking = (lat, lng) => {
-        latToPass = lat;
-        lngToPass = lng;
-        sendDataLatLng(latToPass, lngToPass);
-    }
-
-    //Send data to App Jonas
-    let sendDataLatLng = (lat, lng) => {
-        props.callbackHandleNewPoiClicking(lat, lng);
-    }
-
     // get all the POI informations
     let handlePOIsClick = async e => {
-        e.preventDefault();
 
         let poiList = await request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}`,
@@ -60,6 +47,18 @@ export default function HomePage(props){
             console.log(poiList);
             setPois(poiList);
         }
+    }
+
+    //Callback function to get lat and lng Jonas
+    let handleNewPoiClicking = (lat, lng) => {
+        latToPass = lat;
+        lngToPass = lng;
+        sendDataLatLng(latToPass, lngToPass);
+    }
+
+    //Send data to App Jonas
+    let sendDataLatLng = (lat, lng) => {
+        props.callbackHandleNewPoiClicking(lat, lng);
     }
 
     let singlePoiClick = (id) =>{
@@ -99,26 +98,27 @@ export default function HomePage(props){
     return(
         <div className="home-div">
             <div className="filter-div">
-                <p>
-                    Show only the POI's of the group: {groupnr}
-                    <input
-                        type="checkbox"
-                        checked={filter}
-                        id="liked-only"
+                <label htmlFor="normal-switch">
+                    <Switch
                         onChange={handleLikedOnlyClick}
+                        checked={filter}
+                        id="normal-switch"
                     />
-                </p>
-                <Button onClick={toggle} className="Button-addPoi">{buttonLabel}</Button>
+                    <p>Show only the POI's of the group: {groupnr}</p>
+                </label>
             </div>
-            <Modal isOpen={modal} toggle={toggle} className={className}>
-                <ModalHeader toggle={toggle}>Add POI</ModalHeader>
-                <ModalBody>Add a new POI manually (enter longitude and latitude) or add it by clicking on the map</ModalBody>
-                <ModalFooter>
-                    <Button className="Button-manually" onClick={addNewPoiManually}>Manually</Button>
-                    <Button className="Button-clicking" onClick={addNewPoiClicking}>Clicking</Button>
-                    <Button className="Button-cancel" onClick={toggle}>Cancel</Button>
-                </ModalFooter>
-            </Modal>
+            <div className="filter-div">
+                <Button onClick={toggle} className="Button-addPoi">{buttonLabel}</Button>
+                <Modal isOpen={modal} toggle={toggle} className={className}>
+                    <ModalHeader toggle={toggle}>Add POI</ModalHeader>
+                    <ModalBody>Add a new POI manually (enter longitude and latitude) or add it by clicking on the map</ModalBody>
+                    <ModalFooter>
+                        <Button className="Button-manually" onClick={addNewPoiManually}>Manually</Button>
+                        <Button className="Button-clicking" onClick={addNewPoiClicking}>Clicking</Button>
+                        <Button className="Button-cancel" onClick={toggle}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
             <div className="map-div">
                 <ReactMap pois={poisnew} lastPoi={lastPoiId} ref={mapRef} callbackHandleNewPoiClicking={handleNewPoiClicking}></ReactMap>
             </div>
