@@ -12,6 +12,7 @@ type State = {
 
 export default class ReactMap extends Component<{}, State> {
     state = {
+        isAdding: false,
         zoom: 12,
         currentLatLng: {
             lat: 0,
@@ -45,6 +46,27 @@ export default class ReactMap extends Component<{}, State> {
         this.getGeoLocation();
     }
 
+    //HandleClick on the map when adding a new POI jonas
+    handleClick = (e) => {
+        if(this.state.isAdding){
+            const { lat, lng } = e.latlng;
+            console.log(lat, lng);
+            this.sendDataLatLng(lat, lng);
+
+            this.setState(state => ({isAdding: !state.isAdding}));
+        }
+    }
+
+    //Send data to home jonas
+    sendDataLatLng = (lat, lng) => {
+        this.props.callbackHandleNewPoiClicking(lat, lng);
+    }
+
+    //Toggle the add click jonas
+    toggleAdding = () => {
+        this.setState(state => ({isAdding: !state.isAdding}));
+    }
+
     render() {
         const position = [this.state.lat, this.state.lng]
 
@@ -64,7 +86,9 @@ export default class ReactMap extends Component<{}, State> {
                     style={{height: '100%'}}
                     center={this.state.currentLatLng}
                     zoom={this.state.zoom}
-                    pois={this.props.pois}>
+                    pois={this.props.pois}
+                    isAdding={this.state.isAdding}
+                    onClick={this.handleClick}>
                     <TileLayer
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

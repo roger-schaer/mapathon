@@ -16,12 +16,20 @@ import Details from "./components/Details";
 //app component main
 function App() {
 
-  let { loading } = useAuth0();
+    let [latToPass, lngToPass] = useState(0);
+    let { loading } = useAuth0();
 
 
   if (loading) {
     return <Loading />;
   }
+
+    //Get data from home Jonas
+    let handleNewPoiClicking = (lat, lng) => {
+        latToPass = lat ;
+        lngToPass = lng ;
+        alert(latToPass.toString() + lngToPass.toString())
+    }
 
   // if the user is loged in
 
@@ -42,10 +50,10 @@ function App() {
               <TeachersCode/>
             </Route>
               <Route path="/details">
-                  <Details/>
+                  <Details DataNewPoiClicking = {[latToPass, lngToPass]}/>
               </Route>
               <Route path="/">
-              <Home />
+                  <Home callbackHandleNewPoiClicking = {handleNewPoiClicking}/>
               </Route>
           </Switch>
 
