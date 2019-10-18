@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,13 +71,6 @@
       </list>
     </option>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView />
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -102,7 +96,12 @@
       <workItem from="1569564207589" duration="772000" />
       <workItem from="1569588978842" duration="1901000" />
       <workItem from="1569840102716" duration="2672000" />
-      <workItem from="1570087353375" duration="21000" />
+      <workItem from="1570087353375" duration="836000" />
+      <workItem from="1570095584426" duration="531000" />
+      <workItem from="1570096140092" duration="519000" />
+      <workItem from="1570786655962" duration="2554000" />
+      <workItem from="1570796390873" duration="261000" />
+      <workItem from="1571390025456" duration="1007000" />
     </task>
     <servers />
   </component>
@@ -172,6 +171,10 @@
     <state x="175" y="150" width="1434" height="807" key="find.popup/1680.1050/1680.1050" timestamp="1569391944488" />
     <state x="175" y="150" width="1434" height="807" key="find.popup/57.27.1623.1023/1680.0.1680.1050@57.27.1623.1023" timestamp="1569563433524" />
     <state x="175" y="150" width="1434" height="807" key="find.popup/57.27.1623.1023@57.27.1623.1023" timestamp="1570087363592" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1570095684846">
+      <screen x="1680" y="0" width="1680" height="1050" />
+    </state>
+    <state width="600" height="424" key="javadoc.popup/57.27.1623.1023/1680.0.1680.1050@1680.0.1680.1050" timestamp="1570095684846" />
     <state x="531" y="250" width="672" height="678" key="search.everywhere.popup" timestamp="1569391944488" />
     <state x="531" y="250" width="672" height="678" key="search.everywhere.popup/1680.1050/1680.1050" timestamp="1569391944488" />
   </component>
