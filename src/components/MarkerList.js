@@ -25,6 +25,7 @@ export default function MarkerList(props){
 }
 
 class MyMarker extends React.Component{
+
     constructor(props){
         super(props);
         this.hRef = React.createRef();
@@ -32,13 +33,15 @@ class MyMarker extends React.Component{
     componentDidUpdate(): void {
         if (this.props.poi.id === this.props.lastPoiId) {
             this.leafletPopup.leafletElement.openPopup();
+
         }
+
     }
     render(){
     return (
         <>
             <Marker ref={m => { this.leafletPopup = m; }} position={[this.props.poi.lat, this.props.poi.lng]}>
-                <Popup><div><POIForm isDisplayOnly={true} poi={this.props.poi}/></div></Popup>
+                <Popup><h3>{this.props.poi.name}</h3></Popup>
             </Marker>
         </>
 
