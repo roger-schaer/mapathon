@@ -42,20 +42,20 @@ export default class CustomNavbar extends React.Component{
     render() {
 
         return (
-            <div>
-                <Navbar color="light" light expand="md">
+            <div >
+                <Navbar color="light" light expand="md" style={{maxHeight: '7vh', minHeight: '35pt', paddingTop: '1px'}}>
                     <NavbarBrand href="/">Mapathon</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
+                                <NavLink href="/manage">Manage Categories/Tags</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink href="/help">Help</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/about">About</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/starter">Teacher's starting code</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="https://www.hevs.ch/en/" target="_blank">HES-SO Valais//Wallis</NavLink>

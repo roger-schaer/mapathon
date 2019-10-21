@@ -1,3 +1,5 @@
 {
-  "pois": "/poi"
+  "pois": "/poi",
+  "categories": "/category",
+  "tags": "/tag"
 }

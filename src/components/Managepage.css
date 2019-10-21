@@ -1,0 +1,10 @@
+.div-manage{
+    text-align: left;
+    padding: 10px;
+    max-height: 85vh;
+    overflow: auto;
+}
+.div-tab{
+    box-sizing: border-box;
+    padding: 5px;
+}

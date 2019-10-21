@@ -1,0 +1,9 @@
+.categories-box{
+    width: 44vw;
+    height: 150px;
+    border: 2px solid black;
+    text-align: left;
+    padding: 7px;
+    margin: 5px;
+    overflow: auto;
+}

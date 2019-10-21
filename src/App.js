@@ -12,6 +12,7 @@ import HelpPage from "./components/Help";
 import Home from "./components/Home";
 import FooterSection from "./components/Footer";
 import Details from "./components/Details";
+import ManagePage from "./components/ManagePage";
 
 //app component main
 function App() {
@@ -46,8 +47,8 @@ function App() {
             <Route path="/help">
               <HelpPage />
             </Route>
-            <Route path="/starter">
-              <TeachersCode/>
+            <Route path="/manage">
+              <ManagePage/>
             </Route>
               <Route path="/details">
                   <Details DataNewPoiClicking = {[latToPass, lngToPass]}/>
