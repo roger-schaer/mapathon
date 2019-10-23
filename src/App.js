@@ -20,7 +20,6 @@ function App() {
     let [latToPass, lngToPass] = useState(0);
     let { loading } = useAuth0();
 
-
   if (loading) {
     return <Loading />;
   }
@@ -60,9 +59,6 @@ function App() {
                   <Home callbackHandleNewPoiClicking = {handleNewPoiClicking}/>
               </Route>
           </Switch>
-
-
-
         </div>
         <div>
           <FooterSection/>
