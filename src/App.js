@@ -53,6 +53,9 @@ function App() {
               <Route path="/details">
                   <Details DataNewPoiClicking = {[latToPass, lngToPass]}/>
               </Route>
+              <Route path="/details/:idPoi">
+                  <Details/>
+              </Route>
               <Route path="/">
                   <Home callbackHandleNewPoiClicking = {handleNewPoiClicking}/>
               </Route>
@@ -79,7 +82,7 @@ function TeachersCode(props){
   let handlePOIsClick = async e => {
     e.preventDefault();
     let pois = await request(
-        `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}`,
+        `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${this.props.idPoi}`,
         getTokenSilently,
         loginWithRedirect
     );
