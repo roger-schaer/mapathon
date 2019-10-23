@@ -1,6 +1,7 @@
 import React from "react";
 import {Marker, Popup} from "react-leaflet";
 import POIForm from "./POIForm";
+import Button from "reactstrap/es/Button";
 
 export default function MarkerList(props){
 
@@ -33,15 +34,18 @@ class MyMarker extends React.Component{
     componentDidUpdate(): void {
         if (this.props.poi.id === this.props.lastPoiId) {
             this.leafletPopup.leafletElement.openPopup();
-
         }
-
     }
+
     render(){
     return (
         <>
             <Marker ref={m => { this.leafletPopup = m; }} position={[this.props.poi.lat, this.props.poi.lng]}>
-                <Popup><h3>{this.props.poi.name}</h3></Popup>
+                <Popup>
+                    <h3>
+                        <a href={"details/"+this.props.poi.id}>{this.props.poi.name}</a>
+                    </h3>
+                </Popup>
             </Marker>
         </>
 
