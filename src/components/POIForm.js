@@ -6,12 +6,7 @@ import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
 
 
-/*let handlePOIsClick = async e => {
-    e.preventDefault();
-    let myPoi = await request(
-        `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}`
-    );
-};*/
+
 const POIForm = (props) => (
     <div className='detail-div'>
         <div className='img-div'>

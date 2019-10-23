@@ -6,14 +6,13 @@ import {Argv as queryString} from "yargs";
 
 export default function Details(props){
 
-    /*let url = window.location.href;
-    let param = url.substring(30)
-    let [setPoiId, poiId] = useState(0);
-    setPoiId(param);*/
+    let url = window.location.href;
+    let positionLastSlash = url.lastIndexOf('/');
+    let param = url.substring(positionLastSlash+1);
 
     return(
         <div>
-            <POIForm/>
+            <POIForm idPoi={param}/>
             <br/>
             <BoxCategories/>
             <BoxTags/>
