@@ -188,21 +188,15 @@ export default function EditCategory(props) {
                                 deleteClicked={deleteCategory}
                             />
                             }
-
                         </form>
                     )}
-
                 </Formik>}
-
             </div>
             {newCategory &&
             <div className='div-image'>
                 <img src={newCategory.image} style={{maxWidth: '100%'}}/>
             </div>
             }
-
         </div>
-
-
     );
 }

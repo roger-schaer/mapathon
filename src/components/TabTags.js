@@ -20,7 +20,7 @@ const TabTags = (props) => {
                 <>
                     {tags.map(tag => (
                         <tr key={tag.id}>
-                            <th scope="row">{tag.id}</th>
+                            <th scope="row"><a href={'/manage/tag/' + tag.id}>{tag.id}</a></th>
                             <td>{tag.name}</td>
                             <td><img
                                 src={tag.image}

@@ -82,7 +82,7 @@ const ManagePage = (props) => {
                 <TabPane tabId="2">
                     <div className='div-tab'>
                         <h4 style={{display: "inline-block"}}>Tags</h4><span> </span>
-                        <a href="/manage/tag"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></a>
+                        <a href="/manage/tag/"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></a>
                         <TabTags tags={tags}/>
                     </div>
                 </TabPane>
