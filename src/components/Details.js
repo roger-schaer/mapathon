@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import POIForm from "./POIForm";
 import BoxCategories from "./BoxCategories";
 import BoxTags from "./BoxTags";
@@ -13,21 +13,26 @@ export default function Details(props){
     let positionLastSlash = url.lastIndexOf('/');
     let param = url.substring(positionLastSlash+1);
 
-    let [poi, setPoi] = useState(0);
+    let [poi, setPoi] = useState(0)
     let { loginWithRedirect, getTokenSilently } = useAuth0();
 
-    let myPoi = request(
-        `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${'/'+param}`,
-        getTokenSilently,
-        loginWithRedirect,
-    ).then(token => {setPoi(token)} );
+    useEffect(() => {
+        let myPoi = request(
+            `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${'/'+param}`,
+            getTokenSilently,
+            loginWithRedirect,
+        ).then(token => {setPoi(token)} );
+    }, []);
 
-    return(
-        <div>
-            <POIForm thisPoi={poi}/>
-            <br/>
-            <BoxCategories/>
-            <BoxTags/>
-        </div>
-    );
+        return(
+            <div>
+                <POIForm thisPoi={poi}/>
+                <br/>
+                <BoxCategories/>
+                <BoxTags/>
+            </div>
+        );
+
+
+
 }

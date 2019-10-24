@@ -4,6 +4,8 @@ import './POIForm.css';
 
 function POIForm(props){
 
+    console.log(props.thisPoi.Creator)
+
     return(
         <div className='detail-div'>
             <div className='img-div'>
@@ -93,7 +95,7 @@ function POIForm(props){
                             />
                             {errors.image && touched.image && errors.image}
                             <div>
-                                Created at <b>{props.thisPoi.createdAt}</b> by <b>PB ICI</b> (Group {props.thisPoi.group})
+                                Created at <b>{props.thisPoi.createdAt}</b> by {props.thisPoi.Creator && <b>{props.thisPoi.Creator.name}</b>} (Group {props.thisPoi.group})
                             </div>
                             {true && (
                                 <div>Updated at <b>{props.thisPoi.updatedAt}</b></div>
