@@ -149,7 +149,6 @@ export default class HelpPage extends React.Component{
           </tr>
         </table>
       </div>
-
     );
   }
 }

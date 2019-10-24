@@ -1,0 +1,85 @@
+/*#region computer*/
+@media screen and (min-width: 768px) {
+
+    .about-div{
+        text-align: justify;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+
+    .about-text {
+        font-size: 20px;
+        vertical-align: top;
+        text-overflow: ellipsis;
+        text-align: justify;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .groupPicture {
+        width: 540px;
+        height: 400px;
+        display: inline-flex;
+        vertical-align: center;
+
+    }
+
+    .help-question {
+        table-layout: revert;
+        width: 80%;
+        margin-top: 50px;
+        word-wrap: break-word;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+        background-color: #f2e1ba;
+    }
+}
+/*#endregion computer*/
+
+/*#region mobile*/
+@media screen and (max-width: 768px)
+{
+    .about-div{
+        text-align: justify;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .help-text {
+        float: left;
+        font-size: 17px;
+        vertical-align: top;
+        text-overflow: ellipsis;
+        text-align: justify;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .groupPicture {
+        width: 270px;
+        height: 170px;
+        display: inline-flex;
+        vertical-align: center;
+    }
+
+
+    .help-question{
+        width: 90%;
+        alignment: center;
+        position: center;
+        margin-top: 50px;
+        word-wrap: break-word;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+        table-layout: auto;
+        background-color: #f2e1ba;
+    }
+
+}
+
+/*#endregion mobile*/
+
