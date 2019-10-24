@@ -19,11 +19,11 @@ const TabCategories = (props) => {
                     {categories.map(category => (
 
                         <tr key={category.id}>
-                            <th scope="row">{category.id}</th>
+                            <th scope="row"><a href={'/manage/category/' + category.id}>{category.id}</a></th>
                             <td>{category.name}</td>
                             <td><img
                                 src={category.image}
-                                style={{maxWidth: '100%', maxHeight: '10vh'}}
+                                style={{maxWidth: '100%', maxHeight: '5vh'}}
                             /></td>
                             <td>{category.Creator.name}</td>
                         </tr>

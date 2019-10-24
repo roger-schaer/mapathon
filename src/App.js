@@ -13,6 +13,8 @@ import Home from "./components/Home";
 import FooterSection from "./components/Footer";
 import Details from "./components/Details";
 import ManagePage from "./components/ManagePage";
+import EditCategory from "./layouts/EditCategory";
+import EditTag from "./layouts/EditTag";
 
 //app component main
 function App() {
@@ -39,26 +41,29 @@ function App() {
         <div className="App">
           <CustomNavbar/>
 
-          <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/help">
-              <HelpPage />
-            </Route>
-            <Route path="/manage">
-              <ManagePage/>
-            </Route>
-              <Route path="/details">
-                  <Details DataNewPoiClicking = {[latToPass, lngToPass]}/>
-              </Route>
-              <Route path="/details">
-                  <Details/>
-              </Route>
-              <Route path="/">
-                  <Home callbackHandleNewPoiClicking = {handleNewPoiClicking}/>
-              </Route>
-          </Switch>
+            <Switch>
+                <Route path="/about">
+                    <About />
+                </Route>
+                <Route path="/help">
+                    <HelpPage />
+                </Route>
+                <Route path={"/manage/category"}>
+                    <EditCategory/>
+                </Route>
+                <Route path={"/manage/tag"}>
+                    <EditTag/>
+                </Route>
+                <Route path="/manage">
+                    <ManagePage/>
+                </Route>
+                <Route path="/details">
+                    <Details DataNewPoiClicking = {[latToPass, lngToPass]}/>
+                </Route>
+                <Route path="/">
+                    <Home callbackHandleNewPoiClicking = {handleNewPoiClicking}/>
+                </Route>
+            </Switch>
         </div>
         <div>
           <FooterSection/>

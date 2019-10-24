@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from "reactstrap";
+import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import classnames from 'classnames'; //useful for reactstrap tab
 import TabCategories from "./TabCategories";
 import TabTags from "./TabTags";
@@ -20,7 +20,7 @@ const ManagePage = (props) => {
     }, []);
 
     // get all the POI informations
-    let fetchCategoriesAndTags = async e => {
+    let fetchCategoriesAndTags = async () => {
 
         let responseCat = await request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.categories}`,
@@ -42,6 +42,7 @@ const ManagePage = (props) => {
             console.log(responseTag);
             setTags(responseTag);
         }
+        return;
     }
 
     //reactstrap part
@@ -73,13 +74,15 @@ const ManagePage = (props) => {
             <TabContent activeTab={activeTab} className='div-tab'>
                 <TabPane tabId="1">
                     <div >
-                        <h4 style={{display: "inline-block"}}>Categories</h4> <button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button>
+                        <h4 style={{display: "inline-block"}}>Categories</h4><span> </span>
+                        <a href="/manage/category/"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></a>
                         <TabCategories categories={categories}/>
                     </div>
                 </TabPane>
                 <TabPane tabId="2">
                     <div className='div-tab'>
-                        <h4 style={{display: "inline-block"}}>Tags</h4> <button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button>
+                        <h4 style={{display: "inline-block"}}>Tags</h4><span> </span>
+                        <a href="/manage/tag"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></a>
                         <TabTags tags={tags}/>
                     </div>
                 </TabPane>

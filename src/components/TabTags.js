@@ -24,7 +24,7 @@ const TabTags = (props) => {
                             <td>{tag.name}</td>
                             <td><img
                                 src={tag.image}
-                                style={{maxWidth: '100%', maxHeight: '10vh'}}
+                                style={{maxWidth: '100%', maxHeight: '5vh'}}
                             /></td>
                             <td><div className='div-color-tag' style={{backgroundColor: tag.color}}> </div></td>
                             <td>{tag.Creator.name}</td>

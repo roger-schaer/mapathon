@@ -1,0 +1,12 @@
+.div-edit{
+    padding: 10px;
+    text-align: left;
+    max-width: 50vw;
+    float: left;
+
+}
+.div-image{
+    display: inline-block;
+    float: left;
+    padding: 10px;
+}
