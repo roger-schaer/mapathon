@@ -1,0 +1,15 @@
+.popup{
+    width: 50vh;
+}
+
+.informations-popup{
+    margin-bottom: 10px;
+}
+
+.button-popup{
+    margin: 10px 10px 0 0;
+}
+
+.link-popup{
+    color: white !important;
+}
