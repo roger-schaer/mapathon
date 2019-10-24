@@ -22,8 +22,6 @@ export default function Details(props){
         loginWithRedirect,
     ).then(token => {setPoi(token)} );
 
-    console.log(poi);
-
     return(
         <div>
             <POIForm thisPoi={poi}/>
