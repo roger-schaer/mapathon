@@ -14,14 +14,20 @@ import DeleteModal from "../components/DeleteModal";
 
 export default function EditCategory(props) {
 
-    let { loginWithRedirect, getTokenSilently } = useAuth0();
+    let { user, loginWithRedirect, getTokenSilently } = useAuth0();
     let url = window.location.href;
     let history = useHistory();
     let[category, setCategory] = useState(null);
-    let[newCategory, setNewCategory] = useState(null)
+    let[newCategory, setNewCategory] = useState(null);
     let currentId = url.substring(url.lastIndexOf("/")+1);
 
     let [isNew, setIsNew] = useState(true);
+    let defaultCategory = {
+        name: '',
+        image: '',
+        group: 3,
+        Creator: null
+    }
 
 
 
@@ -30,31 +36,38 @@ export default function EditCategory(props) {
         if(currentId === "") { //If no ID, then the object is new
             console.log("we got new one");
             setIsNew(true);
-            setNewCategory({name: '', image: '', group: '3'});
+            setNewCategory(defaultCategory);
+            setCategory(defaultCategory);
         }else if(isNaN(currentId)){ //If not a number, ID is invalid, so create new
             console.log("is nan returned true");
             setIsNew(true);
-            setNewCategory({name: '', image: '', group: '3'});
+            setNewCategory(defaultCategory);
+            setCategory(defaultCategory);
         }else{ //If ID exist, time to fetch it on the DB
             console.log("This poi Exists");
             setIsNew(false);
             //here comes the fetch of the category
-            let resp = fetchCategory();
+            let resp = fetchAndSetCategory();
         }
 
     }, [currentId]);
 
-    let fetchCategory = async () => {
+    let fetchAndSetCategory = async () => {
         let response = await request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.categories}${currentId}`,
             getTokenSilently,
             loginWithRedirect
         );
 
-        if (response) {
+        if (response && !response.error) {
             console.log(response);
             setCategory(response);
             setNewCategory(response);
+        }else{
+            console.log("the missing id has been caught, thus putting isNew to true");
+            setIsNew(true);
+            setCategory(defaultCategory);
+            setNewCategory(defaultCategory);
         }
     };
 
@@ -68,6 +81,8 @@ export default function EditCategory(props) {
             loginWithRedirect
         );
         console.log(response);
+        currentId = 0;
+        history.push("/manage/");
     }
     return(
         <div className='edit-wrapper'>
@@ -148,22 +163,32 @@ export default function EditCategory(props) {
                                 value={values.image}
                             />
                             {errors.image && touched.image && errors.image}
-
+                            {newCategory.Creator &&
                             <div>
-                                Created at <b>props.poi.createdAt</b> by <b>props.poi.Creator.name</b> (Group props.poi.group)
+                                <div>
+                                    Created at <b>{newCategory.createdAt} </b>
+                                    by <b>{newCategory.Creator.name}</b> (Group {newCategory.group})
+                                </div>
+                                <div>Updated at <b>{newCategory.updatedAt}</b></div>
                             </div>
-                            {true && (
-                                <div>Updated at <b>props.poi.updatedAt</b></div>
-                            )}
-                            <Button style={{backgroundColor: 'darkgreen', display: "inline-block"}} type="submit" disabled={isSubmitting}>
+                            }
+                            {(isNew || (newCategory.Creator && user && user.sub === newCategory.Creator.id)) &&
+                            <Button style={{backgroundColor: 'darkgreen', display: "inline-block", marginTop: '10px'}}
+                                    type="submit" disabled={isSubmitting}
+                            >
                                 Save changes
-                            </Button><span>  </span>
+                            </Button>
+                            }<span>  </span>
+                            {!isNew && newCategory.Creator &&
+                            (user.sub === newCategory.Creator.id) &&
                             <DeleteModal
                                 buttonLabel={"category"}
                                 currentName={newCategory.name}
                                 className='delete-modal'
                                 deleteClicked={deleteCategory}
                             />
+                            }
+
                         </form>
                     )}
 

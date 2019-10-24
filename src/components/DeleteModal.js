@@ -24,7 +24,11 @@ const DeleteModal = (props) => {
 
     return (
         <div style={{display: "inline-block"}}>
-            <Button color="danger" onClick={toggle}>Delete {buttonLabel}</Button>
+            <Button
+                color="danger"
+                onClick={toggle}
+                style={{marginTop: '10px'}}
+            >Delete {buttonLabel}</Button>
             <Modal isOpen={modal} toggle={toggle} className={className}>
                 <ModalHeader toggle={toggle}>Delete {buttonLabel}</ModalHeader>
                 <ModalBody>
