@@ -2,6 +2,7 @@ import React from "react";
 import {Marker, Popup} from "react-leaflet";
 import Button from "reactstrap/es/Button";
 import './Popup.css';
+import { useHistory } from "react-router-dom";
 
 export default function MarkerList(props){
 
@@ -38,6 +39,8 @@ class MyMarker extends React.Component{
         }
     }
 
+
+    //Design the Popup, above the selected Marker
     render(){
     return (
         <>
@@ -61,7 +64,6 @@ class MyMarker extends React.Component{
                 </Popup>
             </Marker>
         </>
-
     )
 }
 };

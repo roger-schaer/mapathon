@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from "react";
 import "./Home.css";
 import {useAuth0} from "../react-auth0-spa";
-import request from "../utils/request";
-import endpoints from "../endpoints";
 import POI from "./POI";
-import createAuth0Client from "@auth0/auth0-spa-js";
+
 
 export default function POIList(props){
     let usr = useAuth0();

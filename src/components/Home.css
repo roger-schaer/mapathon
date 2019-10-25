@@ -18,6 +18,7 @@
 }
 .poi-list-div {
     border: 1px solid #ffffff;
+    background-color: white;
     padding: 1px;
     float:right;
     width: 28%;
@@ -32,5 +33,4 @@
 .map-image{
     max-width: 100%;
 }
-
 

@@ -20,6 +20,7 @@ import endpoints from "../endpoints";
 import { useAuth0 } from "../react-auth0-spa";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
+import './Popup.css';
 
 export default class CustomNavbar extends React.Component{
 
@@ -39,11 +40,12 @@ export default class CustomNavbar extends React.Component{
         });
     }
 
+    //Dsign the Navbar
     render() {
 
         return (
             <div >
-                <Navbar color="light" light expand="md" style={{maxHeight: '7vh', minHeight: '35pt', paddingTop: '1px'}}>
+                <Navbar className="navbar" color="dark" dark expand="md">
                     <NavbarBrand href="/">Mapathon</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
@@ -72,5 +74,4 @@ export default class CustomNavbar extends React.Component{
             </div>
         );
     }
-
 }

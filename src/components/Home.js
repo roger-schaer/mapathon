@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./Home.css";
 import ReactMap from "./Map";
 import POIList from "./POIList";
+import Footer from "./Footer";
 import request from "../utils/request";
 import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
@@ -9,29 +10,35 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Switch from "react-switch";
 
 export default function HomePage(props){
-
-
     let { loginWithRedirect, getTokenSilently } = useAuth0();
     let [pois, setPois] = useState([]); //Only one POI list (for the state)
     let [lastPoiId, setLastPoi] = useState(0);
     let mapRef = React.createRef();
     let [latToPass, lngToPass] = useState(0);
+    let usr = useAuth0();
 
-    let [filter, setFilter] = useState(false);
+    let [filtergroupe, setFilterGroupe] = useState(false);
+    let [filterusr, setFilterUsr] = useState(false);
     let [groupnr, setGroupnr] = useState(3);
 
     //to save the filtered list of poi's
-    let poisnew;
+    let poisnew = pois;
 
-    let handleLikedOnlyClick = e => {
-        setFilter(!filter);
+    let handleFilterGroupe = e => {
+        setFilterGroupe(!filtergroupe);
+    };
+
+    let handleFilterUser = e => {
+        setFilterUsr(!filterusr);
     };
 
     //Customizing the list of POIs
-    if (filter) {
+    if (filtergroupe) {
         poisnew = pois.filter(poi => poi.group == [groupnr]);
-    } else {
-        poisnew = pois;
+    }
+
+    if (filterusr) {
+        poisnew = pois.filter(poi => poi.Creator.name == [usr.user.name]);
     }
 
     // get all the POI informations
@@ -99,12 +106,21 @@ export default function HomePage(props){
         <div className="home-div">
             <div className="filter-div">
                 <label htmlFor="normal-switch">
+                    POI's of the group ({groupnr}): &ensp;
                     <Switch
-                        onChange={handleLikedOnlyClick}
-                        checked={filter}
+                        onChange={handleFilterGroupe}
+                        checked={filtergroupe}
                         id="normal-switch"
                     />
-                    <p>Show only the POI's of the group: {groupnr}</p>
+                </label>
+                <br/>
+                <label htmlFor="normal-switch">
+                    POI's of the user: &ensp;
+                    <Switch
+                        onChange={handleFilterUser}
+                        checked={filterusr}
+                        id="normal-switch"
+                    />
                 </label>
             </div>
             <div className="filter-div">
@@ -126,7 +142,9 @@ export default function HomePage(props){
                 <h2>Points of interests</h2>
                 {/*Give the POI list*/}
                 <POIList pois={poisnew} poisClick={handlePOIsClick} singlePoiClick={singlePoiClick}/>
-
+            </div>
+            <div>
+                <Footer/>
             </div>
         </div>
     );
