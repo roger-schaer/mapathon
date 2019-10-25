@@ -74,6 +74,7 @@ export default function EditCategory(props) {
     function refreshPage() {
         history.push("/manage/category/" + currentId)
     }
+
     let deleteCategory = async () => {
         let response = await requestDelete(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.categories}${currentId}`,

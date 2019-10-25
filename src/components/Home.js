@@ -8,6 +8,7 @@ import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Switch from "react-switch";
+import { useHistory } from "react-router-dom";
 
 export default function HomePage(props){
     let { loginWithRedirect, getTokenSilently } = useAuth0();
@@ -16,6 +17,7 @@ export default function HomePage(props){
     let mapRef = React.createRef();
     let [latToPass, lngToPass] = useState(0);
     let usr = useAuth0();
+    let history = useHistory();
 
     let [filtergroupe, setFilterGroupe] = useState(false);
     let [filterusr, setFilterUsr] = useState(false);
@@ -61,6 +63,7 @@ export default function HomePage(props){
         latToPass = lat;
         lngToPass = lng;
         sendDataLatLng(latToPass, lngToPass);
+        history.push("/details/");
     }
 
     //Send data to App Jonas

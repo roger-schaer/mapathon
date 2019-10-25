@@ -16,12 +16,15 @@ export default function Details(props){
     let [poi, setPoi] = useState(0)
     let { loginWithRedirect, getTokenSilently } = useAuth0();
 
+    console.log(props.posClicked);
+
     useEffect(() => {
         let myPoi = request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${'/'+param}`,
             getTokenSilently,
             loginWithRedirect,
         ).then(token => {setPoi(token)} );
+        console.log(poi);
     }, []);
 
         return(

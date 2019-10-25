@@ -17,9 +17,9 @@ import EditCategory from "./layouts/EditCategory";
 import EditTag from "./layouts/EditTag";
 
 //app component main
-function App() {
+function App(props) {
 
-    let [latToPass, lngToPass] = useState(0);
+    let [posClicked, setPosClicked] = useState(null);
     let { loading } = useAuth0();
 
   if (loading) {
@@ -28,9 +28,10 @@ function App() {
 
     //Get data from home Jonas
     let handleNewPoiClicking = (lat, lng) => {
-        latToPass = lat ;
+        /*latToPass = lat ;
         lngToPass = lng ;
-        alert(latToPass.toString() + lngToPass.toString())
+        alert(latToPass.toString() + lngToPass.toString())*/
+        setPosClicked({lat: lat, lng: lng});
     }
 
   // if the user is loged in
@@ -58,7 +59,7 @@ function App() {
                     <ManagePage/>
                 </Route>
                 <Route path="/details">
-                    <Details DataNewPoiClicking = {[latToPass, lngToPass]}/>
+                    <Details posClicked = {posClicked}/>
                 </Route>
                 <Route path="/">
                     <Home callbackHandleNewPoiClicking = {handleNewPoiClicking}/>
