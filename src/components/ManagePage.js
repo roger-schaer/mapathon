@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import classnames from 'classnames'; //useful for reactstrap tab
+import Switch from "react-switch";
 import TabCategories from "./TabCategories";
 import TabTags from "./TabTags";
 import './Managepage.css';
@@ -15,9 +16,35 @@ const ManagePage = (props) => {
     let [categories, setCategories] = useState([]);
     let [tags, setTags] = useState([]);
 
+    //Filtering
+    let usr = useAuth0();
+    let [filtergroupe, setFilterGroupe] = useState(false);
+    let [filterusr, setFilterUsr] = useState(false);
+    let [groupnr, setGroupnr] = useState(3);
+    let categoriesnew = categories;
+    let tagsnew = tags;
+
     useEffect(() => {
         fetchCategoriesAndTags();
     }, []);
+
+    let handleFilterGroupe = e => {
+        setFilterGroupe(!filtergroupe);
+    };
+
+    let handleFilterUser = e => {
+        setFilterUsr(!filterusr);
+    };
+
+    if (filtergroupe) {
+        categoriesnew = categories.filter(categorie => categorie.group == [groupnr]);
+        tagsnew = tags.filter(tag => tag.group == [groupnr]);
+    }
+
+    if (filterusr) {
+        categoriesnew = categories.filter(categorie => categorie.Creator.name == [usr.user.name]);
+        tagsnew = tags.filter(tag => tag.Creator.name == [usr.user.name]);
+    }
 
     // get all the POI informations
     let fetchCategoriesAndTags = async () => {
@@ -53,6 +80,25 @@ const ManagePage = (props) => {
 
     return(
         <div className='div-manage'>
+            <div className="filter-div">
+                <label htmlFor="normal-switch">
+                    POI's of the group ({groupnr}): &ensp;
+                    <Switch
+                        onChange={handleFilterGroupe}
+                        checked={filtergroupe}
+                        id="normal-switch"
+                    />
+                </label>
+                <br/>
+                <label htmlFor="normal-switch">
+                    POI's of the user: &ensp;
+                    <Switch
+                        onChange={handleFilterUser}
+                        checked={filterusr}
+                        id="normal-switch"
+                    />
+                </label>
+            </div>
             <Nav tabs>
                 <NavItem>
                     <NavLink
@@ -76,14 +122,14 @@ const ManagePage = (props) => {
                     <div >
                         <h4 style={{display: "inline-block"}}>Categories</h4><span> </span>
                         <a href="/manage/category/"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></a>
-                        <TabCategories categories={categories}/>
+                        <TabCategories categories={categoriesnew}/>
                     </div>
                 </TabPane>
                 <TabPane tabId="2">
                     <div className='div-tab'>
                         <h4 style={{display: "inline-block"}}>Tags</h4><span> </span>
                         <a href="/manage/tag/"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></a>
-                        <TabTags tags={tags}/>
+                        <TabTags tags={tagsnew}/>
                     </div>
                 </TabPane>
             </TabContent>
