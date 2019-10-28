@@ -15,6 +15,14 @@ function POIForm(props){
     let currentUser = props.currentUser;
     let poiCreator = props.thisPoi.Creator;
 
+    let newOrEditable = () => {
+        if(props.isNew){
+            return false;
+        }else{
+            return !(props.isEdit);
+        }
+    }
+
     return(
         <div className='detail-div'>
             <div className='img-div'>
@@ -75,7 +83,7 @@ function POIForm(props){
                         <form onSubmit={handleSubmit}>
                             <span><h4>Latitude : </h4></span>
                             <input
-                                disabled={!(props.isEdit)}
+                                disabled={newOrEditable()}
                                 type="text"
                                 name="lat"
                                 onChange={handleChange}
@@ -84,7 +92,7 @@ function POIForm(props){
                             />
                             <span><h4>Longitude : </h4></span>
                             <input
-                                disabled={!(props.isEdit)}
+                                disabled={newOrEditable()}
                                 type="text"
                                 name="lng"
                                 onChange={handleChange}
@@ -93,7 +101,7 @@ function POIForm(props){
                             />
                             <span><h4>Name: </h4></span>
                             <input
-                                disabled={!(props.isEdit)} /*ReadOnly mod or not*/
+                                disabled={newOrEditable()} /*ReadOnly mod or not*/
                                 type="text"
                                 name="name"
                                 onChange={handleChange}
@@ -103,7 +111,7 @@ function POIForm(props){
                             {errors.name && touched.name && errors.name}
                             <span><h4>Description: </h4></span>
                             <textarea
-                                disabled={!(props.isEdit)}
+                                disabled={newOrEditable()}
                                 type="text"
                                 name="description"
                                 onChange={handleChange}
@@ -113,7 +121,7 @@ function POIForm(props){
                             {errors.description && touched.description && errors.description}
                             <span><h4>Website: </h4></span>
                             <input
-                                disabled={!(props.isEdit)}
+                                disabled={newOrEditable()}
                                 type="url"
                                 name="url"
                                 onChange={handleChange}
@@ -123,7 +131,7 @@ function POIForm(props){
                             {errors.url && touched.url && errors.url}
                             <span><h4>Image: </h4></span>
                             <input
-                                disabled={!(props.isEdit)}
+                                disabled={newOrEditable()}
                                 type="url"
                                 name="image"
                                 onChange={handleChange}
@@ -138,7 +146,7 @@ function POIForm(props){
                                 <div>Updated at <b>{props.thisPoi.updatedAt}</b></div>
                             </div>
                             }
-                            {props.isEdit &&
+                            {(props.isEdit || props.isNew) &&
                                 <button type="submit" disabled={isSubmitting}>
                                 Submit
                                 </button>
