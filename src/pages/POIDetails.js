@@ -26,7 +26,7 @@ export default function POIDetails({ match }) {
     }
 
     getPOI();
-  });
+  }, [poiID, getTokenSilently, loginWithRedirect]);
 
   return (
     <div>
