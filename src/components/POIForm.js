@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import './POIForm.css';
 import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
+import {Button} from "reactstrap";
 
 function POIForm(props){
 
@@ -149,9 +150,11 @@ function POIForm(props){
                             </div>
                             }
                             {(props.isEdit || props.isNew) &&
-                                <button type="submit" disabled={isSubmitting}>
+                            <Button style={{backgroundColor: 'darkgreen', display: "inline-block", marginTop: '10px'}}
+                                    type="submit" disabled={isSubmitting}
+                            >
                                 Submit
-                                </button>
+                            </Button>
                             }
 
                         </form>

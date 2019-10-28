@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Dialog} from "react";
 import POIForm from "./POIForm";
 import BoxCategories from "./BoxCategories";
 import BoxTags from "./BoxTags";
@@ -6,6 +6,8 @@ import {Argv as queryString} from "yargs";
 import {useAuth0} from "../react-auth0-spa";
 import request from "../utils/request";
 import endpoints from "../endpoints";
+import requestDelete from "../utils/requestDelete";
+import DeleteModal from "./DeleteModal";
 
 export default function Details(props){
 
@@ -27,6 +29,8 @@ export default function Details(props){
     let [newPOI, setNewPOI] = useState(null);
     let [isNew, setIsNew] = useState(true);
     let currentId = url.substring(url.lastIndexOf("/")+1);
+
+    let[isPopupOpen, setIsPopupOpen] = useState(false);
 
     console.log(props.posClicked);
 
@@ -83,12 +87,29 @@ export default function Details(props){
         }
     }
 
+    let deletePoi = async () => {
+        let response = await requestDelete(
+            `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${currentId}`,
+            getTokenSilently,
+            loginWithRedirect
+        );
+        console.log(response);
+        currentId = 0;
+    }
+
         return(
             <div>
                 {(poiCreator && currentUser.sub === poiCreator.id) &&
                 <div>
                     <button onClick={onClickEditButton}>{valueButtonEdit}</button>
-                    <button>Delete</button>
+                    {!isNew && poi.Creator &&
+                    (currentUser.sub === poi.Creator.id) &&
+                    <DeleteModal
+                        buttonLabel={"POI"}
+                        currentName={poi.name}
+                        className='delete-modal'
+                        deleteClicked={deletePoi}/>
+                    }
                 </div>}
                 <POIForm thisPoi={poi} isEdit={isEdit} newPoi={newPOI} currentId={currentId} isNew={isNew}/>
                 <br/>
@@ -97,7 +118,6 @@ export default function Details(props){
                     <BoxCategories/>
                     <BoxTags/>
                 </div>}
-
 
             </div>
         );
