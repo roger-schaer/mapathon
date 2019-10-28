@@ -15,6 +15,8 @@ function POIForm(props){
     let currentUser = props.currentUser;
     let poiCreator = props.thisPoi.Creator;
 
+    let currentId = url.substring(url.lastIndexOf("/")+1);
+
     let newOrEditable = () => {
         if(props.isNew){
             return false;
@@ -62,7 +64,7 @@ function POIForm(props){
                                 alert(response);
                                 console.log(response);
                                 console.log(response.id);
-                                props.currentId = response.id ;
+                                currentId = response.id ;
                             }else {
 
                             }
