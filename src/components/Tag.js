@@ -2,13 +2,16 @@ import React from 'react';
 import {Button} from "reactstrap";
 
 export default function Tag(props){
+
+    let tag = props.tagToDisplay;
+    let colorTag = tag.color;
+
     return(
       <Button
-          style={{display: "inline-block", backgroundColor: "green", padding: '1px'}}
-          onClick={e => alert('lol')}
+          style={{display: "inline-block", backgroundColor: {colorTag}, padding: '1px'}}
       >
-          THETag <img
-          src='https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/tag-512.png'
+          {tag.name} <img
+          src={tag.image}
           style={{maxWidth: '12pt'}}
       />
       </Button>

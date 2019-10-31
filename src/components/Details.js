@@ -128,8 +128,8 @@ export default function Details(props){
                 <br/>
                 {!isEdit && !isNew &&
                 <div>
-                    <BoxCategories/>
-                    <BoxTags/>
+                    <BoxCategories thisPoi={poi}/>
+                    <BoxTags thisPoi={poi}/>
                 </div>}
 
             </div>

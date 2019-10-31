@@ -4,18 +4,27 @@ import "./Box.css"
 import addLogo from "../assets/add-sign.png"
 
 export default function BoxCategories(props){
+
+    let poiCategories = props.thisPoi.Categories;
+
     return(
         <div className="categories-box">
             <div><h3 style={{display: "inline-block"}}>Categories</h3>
-                <span> </span><button className="button-add-category"><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></div>
-            <ModalCategories
-                categoryTitle='Category1'
-                categoryContent="this is the description of the category blablka blablab lablablablablab lablabla blabla. bhjiasdfjhjfds"
-            /><span>  </span>
-            <ModalCategories
-                categoryTitle='Category2'
-                categoryContent='An other Description lol. Dont forget that the cake is a lie.'
-            />
+                <span> </span>{ poiCategories &&
+                <button className="button-add-category"><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button>}
+            </div>
+
+            {
+                poiCategories && poiCategories.map(function(item, i){
+                    return <ModalCategories
+                        imageCategorie = {item.image}
+                        key={i}
+                        categoryTitle={item.name}
+                        categoryContent='An other Description lol. Dont forget that the cake is a lie.'
+                    />
+                })
+            }
+
         </div>
 
     );
