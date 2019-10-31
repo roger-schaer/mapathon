@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import L from 'leaflet';
 import "./Map.css";
@@ -11,6 +11,7 @@ type State = {
 }
 
 export default class ReactMap extends Component<{}, State> {
+
     state = {
         isAdding: false,
         zoom: 12,
@@ -64,6 +65,7 @@ export default class ReactMap extends Component<{}, State> {
 
     //Toggle the add click jonas
     toggleAdding = () => {
+        L.DomUtil.addClass(this.leafletMap.leafletElement._container,'crosshair-cursor-enabled');
         this.setState(state => ({isAdding: !state.isAdding}));
     }
 
@@ -99,7 +101,6 @@ export default class ReactMap extends Component<{}, State> {
                         <Popup>You are here.</Popup>
                     </Marker>
                 </Map>
-
         )
     }
 }
