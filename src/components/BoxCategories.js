@@ -20,7 +20,6 @@ export default function BoxCategories(props){
                         imageCategorie = {item.image}
                         key={i}
                         categoryTitle={item.name}
-                        categoryContent='An other Description lol. Dont forget that the cake is a lie.'
                     />
                 })
             }
