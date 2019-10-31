@@ -139,7 +139,7 @@ export default function HomePage(props){
                 </Modal>
             </div>
             <div className="map-div">
-                <ReactMap pois={poisnew} lastPoi={lastPoiId} ref={mapRef} callbackHandleNewPoiClicking={handleNewPoiClicking}></ReactMap>
+                <ReactMap pois={poisnew} lastPoi={lastPoiId} ref={mapRef} callbackHandleNewPoiClicking={handleNewPoiClicking} usr={usr}></ReactMap>
             </div>
             <div className="poi-list-div">
                 <h2>Points of interests</h2>

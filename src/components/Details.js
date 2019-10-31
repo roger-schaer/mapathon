@@ -8,12 +8,14 @@ import request from "../utils/request";
 import endpoints from "../endpoints";
 import requestDelete from "../utils/requestDelete";
 import DeleteModal from "./DeleteModal";
+import { useHistory } from "react-router-dom";
 
 export default function Details(props){
 
     let url = window.location.href;
     let positionLastSlash = url.lastIndexOf('/');
     let param = url.substring(positionLastSlash+1);
+    let history = useHistory();
 
     let [poi, setPoi] = useState(0)
     let { loginWithRedirect, getTokenSilently } = useAuth0();
@@ -105,6 +107,7 @@ export default function Details(props){
         );
         console.log(response);
         currentId = 0;
+        history.push("/home");
     }
 
         return(

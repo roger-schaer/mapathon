@@ -15,6 +15,7 @@ export default function MarkerList(props){
                 <>
                     {pois.map(poi => (
                         <MyMarker
+                            usr={props.user}
                             key={poi.id}
                             lastPoiId={props.lastPoi} poi={poi}></MyMarker>
                     ))}
@@ -24,9 +25,11 @@ export default function MarkerList(props){
         </>
 
     );
+
 }
 
 class MyMarker extends React.Component{
+
 
     constructor(props){
         super(props);
@@ -40,9 +43,19 @@ class MyMarker extends React.Component{
     }
 
 
+
     //Design the Popup, above the selected Marker
     render(){
-    return (
+
+        let isHisPoi = () => {
+            if(this.props.usr.user.sub === this.props.poi.Creator.id){
+                return true
+            }else{
+                return false
+            }
+        }
+
+        return (
         <>
             <Marker ref={m => { this.leafletPopup = m; }} position={[this.props.poi.lat, this.props.poi.lng]}>
                 <Popup className="popup">
@@ -60,7 +73,10 @@ class MyMarker extends React.Component{
                             Details
                         </a>
                     </Button>
+                    {isHisPoi() &&
                     <Button className="button-popup">Edit</Button>
+                    }
+
                 </Popup>
             </Marker>
         </>

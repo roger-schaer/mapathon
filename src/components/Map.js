@@ -88,6 +88,7 @@ export default class ReactMap extends Component<{}, State> {
                     style={{height: '100%'}}
                     center={this.state.currentLatLng}
                     zoom={this.state.zoom}
+                    maxZoom={19}
                     pois={this.props.pois}
                     isAdding={this.state.isAdding}
                     onClick={this.handleClick}>
@@ -96,7 +97,7 @@ export default class ReactMap extends Component<{}, State> {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                   {/*List of the markers defined by props*/}
-                    <MarkerList lastPoi={this.props.lastPoi} pois={this.props.pois} />
+                    <MarkerList lastPoi={this.props.lastPoi} pois={this.props.pois} user={this.props.usr} />
                     <Marker position={this.state.currentLatLng} icon={myIcon}>
                         <Popup>You are here.</Popup>
                     </Marker>

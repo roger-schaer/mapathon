@@ -1,15 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import RequestPost from "../utils/requestPost"
 import { Formik } from 'formik';
 import './POIForm.css';
 import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
 import {Button} from "reactstrap";
+import { useHistory } from "react-router-dom";
 
 function POIForm(props){
 
     let { loginWithRedirect, getTokenSilently } = useAuth0();
     let url = window.location.href;
+    let history = useHistory();
 
     let [isClicked, setIsClicked] = useState(false);
 
@@ -66,8 +68,8 @@ function POIForm(props){
                                 console.log(response);
                                 console.log(response.id);
                                 currentId = response.id ;
-                            }else {
-
+                                history.push("/details/"+currentId);
+                                window.location.reload();
                             }
 
                         }, 400);
