@@ -29,6 +29,7 @@ export default function Details(props){
     let [newPOI, setNewPOI] = useState(null);
     let [isNew, setIsNew] = useState(true);
     let currentId = url.substring(url.lastIndexOf("/")+1);
+    let [isClicked, setIsClicked] = useState(false);
 
     let[isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -44,6 +45,15 @@ export default function Details(props){
     }, []);
 
     useEffect( () => {
+
+        if(props.posClicked != null){
+            setIsClicked(true);
+            defaultPOI.lat = props.posClicked.lat;
+            defaultPOI.lng = props.posClicked.lng;
+        }else{
+            setIsClicked(false);
+        }
+
         console.log(currentId);
         if(currentId === ""){
             console.log("New POI");
@@ -111,7 +121,7 @@ export default function Details(props){
                         deleteClicked={deletePoi}/>
                     }
                 </div>}
-                <POIForm thisPoi={poi} isEdit={isEdit} newPoi={newPOI} currentId={currentId} isNew={isNew}/>
+                <POIForm thisPoi={poi} isEdit={isEdit} newPoi={newPOI} currentId={currentId} isNew={isNew} isClicked={isClicked}/>
                 <br/>
                 {!isEdit && !isNew &&
                 <div>

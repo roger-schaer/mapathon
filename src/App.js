@@ -31,7 +31,7 @@ function App(props) {
         /*latToPass = lat ;
         lngToPass = lng ;
         alert(latToPass.toString() + lngToPass.toString())*/
-        setPosClicked({lat: lat, lng: lng});
+        setPosClicked({lng: lng, lat: lat});
     }
 
   // if the user is loged in

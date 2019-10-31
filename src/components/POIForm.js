@@ -86,7 +86,7 @@ function POIForm(props){
                         <form onSubmit={handleSubmit}>
                             <span><h4>Latitude : </h4></span>
                             <input
-                                disabled={newOrEditable()}
+                                disabled={newOrEditable() || props.isClicked}
                                 type="text"
                                 name="lat"
                                 onChange={handleChange}
@@ -95,7 +95,7 @@ function POIForm(props){
                             />
                             <span><h4>Longitude : </h4></span>
                             <input
-                                disabled={newOrEditable()}
+                                disabled={newOrEditable() || props.isClicked}
                                 type="text"
                                 name="lng"
                                 onChange={handleChange}
