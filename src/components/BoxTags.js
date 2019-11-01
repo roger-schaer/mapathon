@@ -7,6 +7,7 @@ export default function BoxTags(props) {
 
     let poiTags = props.thisPoi.Tags;
 
+    //returns a box With an add button and all tags
     return(
         <div className="categories-box">
             <div><h3 style={{display: "inline-block"}}>Tags</h3>

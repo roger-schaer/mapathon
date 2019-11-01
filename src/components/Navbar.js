@@ -20,13 +20,14 @@ import endpoints from "../endpoints";
 import { useAuth0 } from "../react-auth0-spa";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
-import './Popup.css';
+import "./Navbar.css";
+import {Link} from "react-router-dom";
 
+//retrieved from Reactstrap webside
 export default class CustomNavbar extends React.Component{
 
     constructor(props) {
         super(props);
-
 
         this.toggle = this.toggle.bind(this);
         this.state = {
@@ -40,27 +41,28 @@ export default class CustomNavbar extends React.Component{
         });
     }
 
-    //Dsign the Navbar
+    //Design the Navbar
     render() {
 
+        //returns the navbar of the application
         return (
             <div >
                 <Navbar className="navbar" color="dark" dark expand="md">
-                    <NavbarBrand href="/">Mapathon</NavbarBrand>
+                    <Link className='navbar-brand' to="/">Mapathon</Link>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/manage">Manage Categories/Tags</NavLink>
+                                <Link className='navbar-nav' className='nav-link' to="/manage">Manage Categories/Tags </Link>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/help">Help</NavLink>
+                                <Link className='navbar-nav' className='nav-link' to="/help" activeClassName="active">Help </Link>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/about">About</NavLink>
+                                <Link className='navbar-nav' className='nav-link' to="/about">About </Link>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="https://www.hevs.ch/en/" target="_blank">HES-SO Valais//Wallis</NavLink>
+                                <NavLink href="https://www.hevs.ch/en/" target="_blank">HES-SO Valais//Wallis </NavLink>
                             </NavItem>
                             <NavItem>
                                 <b><LoginButton/></b>

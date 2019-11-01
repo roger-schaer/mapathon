@@ -9,7 +9,7 @@ type State = {
     lng: number,
     zoom: number,
 }
-
+//Dynamic map using leaflet
 export default class ReactMap extends Component<{}, State> {
 
     state = {
@@ -21,10 +21,12 @@ export default class ReactMap extends Component<{}, State> {
         }
     }
 
+    //Recenter the position of the map
     recenterMap(newPosition){
         this.leafletMap.leafletElement.setView([newPosition.lat, newPosition.lng]);
     }
 
+    //Gets the geolocation of the user
     getGeoLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -69,6 +71,7 @@ export default class ReactMap extends Component<{}, State> {
         this.setState(state => ({isAdding: !state.isAdding}));
     }
 
+    //returns a leaflet map with all markers
     render() {
         const position = [this.state.lat, this.state.lng]
 

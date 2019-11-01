@@ -4,7 +4,7 @@ import {useAuth0} from "../react-auth0-spa";
 import {Formik} from "formik";
 import requestPost from "../utils/requestPost";
 import endpoints from "../endpoints";
-import { useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import request from "../utils/request";
 import requestDelete from "../utils/requestDelete";
 import requestPatch from "../utils/requestPatch";
@@ -45,17 +45,18 @@ export default function EditTag(props){
         }
     }, [currentId]);
 
+    //fetch the tag and assign it to the state of the component
     let fetchAndSetTags = async () => {
         let response = await request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.tags}${currentId}`,
             getTokenSilently,
             loginWithRedirect
         );
-
         if (response && !response.error) {
             console.log(response);
             setTag(response);
         }else{
+            //if the server returns an error, we set isNew to true and default tag.
             console.log("the missing id has been caught, thus putting isNew to true");
             setIsNew(true);
             setTag(defaultTag);
@@ -65,6 +66,8 @@ export default function EditTag(props){
     function refreshPage() {
         history.push("/manage/tag/" + currentId)
     }
+
+    //delete the current tag
     let deleteTag = async () => {
         let response = await requestDelete(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.tags}${currentId}`,
@@ -76,6 +79,7 @@ export default function EditTag(props){
         history.push("/manage/");
     }
 
+    //Returns a form to edit/save/display tags
     return(
         <div className='edit-wrapper'>
             <div className='div-edit'>
@@ -196,6 +200,8 @@ export default function EditTag(props){
                         </form>
                     )}
                 </Formik>}
+                <br/>
+                <Link className='back-button' to='/manage'>Back</Link>
             </div>
             {tag &&
             <div className='div-image'>

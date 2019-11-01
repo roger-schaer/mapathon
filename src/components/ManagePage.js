@@ -9,6 +9,7 @@ import request from "../utils/request";
 import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
 import addLogo from "../assets/add-sign.png";
+import {Link} from "react-router-dom";
 
 const ManagePage = (props) => {
 
@@ -49,6 +50,7 @@ const ManagePage = (props) => {
     // get all the POI informations
     let fetchCategoriesAndTags = async () => {
 
+        //category part
         let responseCat = await request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.categories}`,
             getTokenSilently,
@@ -59,6 +61,8 @@ const ManagePage = (props) => {
             console.log(responseCat);
             setCategories(responseCat);
         }
+
+        //tags part
         let responseTag = await request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.tags}`,
             getTokenSilently,
@@ -70,14 +74,15 @@ const ManagePage = (props) => {
             setTags(responseTag);
         }
         return;
-    }
+    };
 
     //reactstrap part
     const [activeTab, setActiveTab] = useState('1');
     const toggle = tab => {
         if(activeTab !== tab) setActiveTab(tab);
-    }
+    };
 
+    //returns the manage page with a Category tab and a tag tab.
     return(
         <div className='div-manage'>
             <div className="filter-div">
@@ -121,14 +126,14 @@ const ManagePage = (props) => {
                 <TabPane tabId="1">
                     <div >
                         <h4 style={{display: "inline-block"}}>Categories</h4><span> </span>
-                        <a href="/manage/category/"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></a>
+                        <Link to="/manage/category/"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></Link>
                         <TabCategories categories={categoriesnew}/>
                     </div>
                 </TabPane>
                 <TabPane tabId="2">
                     <div className='div-tab'>
                         <h4 style={{display: "inline-block"}}>Tags</h4><span> </span>
-                        <a href="/manage/tag/"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></a>
+                        <Link to="/manage/tag/"><button><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></Link>
                         <TabTags tags={tagsnew}/>
                     </div>
                 </TabPane>
@@ -136,5 +141,5 @@ const ManagePage = (props) => {
         </div>
 
     );
-}
+};
 export default ManagePage;

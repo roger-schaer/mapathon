@@ -5,7 +5,7 @@ import requestPost from "../utils/requestPost";
 import {useAuth0} from "../react-auth0-spa";
 import endpoints from "../endpoints";
 import request from "../utils/request";
-import { useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import requestPatch from "../utils/requestPatch";
 import requestDelete from "../utils/requestDelete";
 import {Button} from "reactstrap";
@@ -29,8 +29,7 @@ export default function EditCategory(props) {
         Creator: null
     }
 
-
-
+    //checks if new/editable
     useEffect( () => {
         console.log(currentId);
         if(currentId === "") { //If no ID, then the object is new
@@ -49,9 +48,9 @@ export default function EditCategory(props) {
             //here comes the fetch of the category
             let resp = fetchAndSetCategory();
         }
-
     }, [currentId]);
 
+    //get category from the server
     let fetchAndSetCategory = async () => {
         let response = await request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.categories}${currentId}`,
@@ -64,6 +63,7 @@ export default function EditCategory(props) {
             setCategory(response);
             setNewCategory(response);
         }else{
+            //if there's an error, we correct it by setting the state to new and default category
             console.log("the missing id has been caught, thus putting isNew to true");
             setIsNew(true);
             setCategory(defaultCategory);
@@ -75,6 +75,7 @@ export default function EditCategory(props) {
         history.push("/manage/category/" + currentId)
     }
 
+    //delete the current category
     let deleteCategory = async () => {
         let response = await requestDelete(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.categories}${currentId}`,
@@ -85,6 +86,7 @@ export default function EditCategory(props) {
         currentId = 0;
         history.push("/manage/");
     }
+    //returns a form for category edition/creation/visualisation
     return(
         <div className='edit-wrapper'>
             <div className='div-edit'>
@@ -189,9 +191,12 @@ export default function EditCategory(props) {
                                 deleteClicked={deleteCategory}
                             />
                             }
+                            <span> </span>
                         </form>
                     )}
                 </Formik>}
+                <br/>
+                <Link className='back-button' to='/manage'>Back</Link>
             </div>
             {newCategory &&
             <div className='div-image'>

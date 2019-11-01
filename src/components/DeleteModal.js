@@ -3,25 +3,30 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
+//Customizable delete modal
 const DeleteModal = (props) => {
     const {
-        buttonLabel,
-        currentName,
+        buttonLabel, //the name of the object you may delete
+        currentName, //the exact name of the object you may delete
         className,
-        deleteClicked
+        deleteClicked //function to tell if the delete button has been pressed
     } = props;
 
     const [modal, setModal] = useState(false);
 
+    //Toggles the modal and check if the delete button has been pressed
     const toggle = (e) => {
         e.preventDefault();
         setModal(!modal);
         console.log(e.target.id === 'delete-button');
         if(e.target.id === 'delete-button'){
+            //we use callback on delete if the 'delete-button' has been pressed
             deleteClicked();
         }
     };
 
+    //Returns a button with a delete modal.
+    //The user can confirm the deletion
     return (
         <div style={{display: "inline-block"}}>
             <Button

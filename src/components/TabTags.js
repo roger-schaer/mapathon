@@ -1,9 +1,11 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 import './TabTags.css';
+import {Link} from "react-router-dom";
 
 const TabTags = (props) => {
     let tags = props.tags;
+    //returns a table with all tags and their infos. the id is clickable to get the infos
     return (
         <Table>
             <thead>
@@ -20,7 +22,7 @@ const TabTags = (props) => {
                 <>
                     {tags.map(tag => (
                         <tr key={tag.id}>
-                            <th scope="row"><a href={'/manage/tag/' + tag.id}>{tag.id}</a></th>
+                            <th scope="row"><Link to={'/manage/tag/' + tag.id}>{tag.id}</Link></th>
                             <td>{tag.name}</td>
                             <td><img
                                 src={tag.image}

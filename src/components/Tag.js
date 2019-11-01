@@ -6,6 +6,7 @@ export default function Tag(props){
     let tag = props.tagToDisplay;
     let colorTag = tag.color;
 
+    //a tag button to add on boxTag
     return(
       <Button
           style={{display: "inline-block", backgroundColor: {colorTag}, padding: '1px'}}

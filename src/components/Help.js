@@ -2,16 +2,8 @@ import React from "react";
 import "./Help.css";
 
 export default class HelpPage extends React.Component{
-  constructor(props){
-    super(props);
 
-  }
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
+  //returns the help page of the application
   render(){
     return(
       <div className="help-div">

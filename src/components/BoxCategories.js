@@ -9,8 +9,10 @@ export default function BoxCategories(props){
     let poiCategories = props.thisPoi.Categories;
     const [modal, setModal] = useState(false);
 
+    //function to toggle modals
     const toggle = () => setModal(!modal);
 
+    //returns a box With an add button and all categories
     return(
         <div className="categories-box">
             <div><h3 style={{display: "inline-block"}}>Categories</h3>

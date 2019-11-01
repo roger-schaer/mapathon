@@ -6,7 +6,7 @@ import endpoints from "./endpoints";
 import Loading from "./components/Loading";
 import POI from "./components/POI";
 import CustomNavbar from "./components/Navbar";
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import About from "./components/About";
 import HelpPage from "./components/Help";
 import Home from "./components/Home";

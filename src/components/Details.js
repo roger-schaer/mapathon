@@ -8,7 +8,7 @@ import request from "../utils/request";
 import endpoints from "../endpoints";
 import requestDelete from "../utils/requestDelete";
 import DeleteModal from "./DeleteModal";
-import { useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 export default function Details(props){
 
@@ -58,17 +58,21 @@ export default function Details(props){
 
         console.log(currentId);
         if(currentId === ""){
+            //No id means new Poi
             console.log("New POI");
             setIsNew(true);
             setNewPOI(defaultPOI);
         }else if(isNaN(currentId)){
+            //if not a number, it means new poi
             console.log("NaN is returned")
             setIsNew(true);
             setNewPOI(defaultPOI);
         }else{
+            //The poi should exist and will be fetched (if error, then we catch it below)
             setIsNew(false);
             setNewPOI(props.poi);
             if(poi.error){
+                //The server responds with an error, thus set isNew and default poi
                 setIsNew(true);
                 setNewPOI(defaultPOI)
             }else{
@@ -77,6 +81,7 @@ export default function Details(props){
         }
     }, [currentId, poi]);
 
+    //default values for new poi
     let defaultPOI = {
         name: '',
         description:'',
@@ -99,6 +104,7 @@ export default function Details(props){
         }
     }
 
+    //Delete the current poi (only avaliable if the user is the creator)
     let deletePoi = async () => {
         let response = await requestDelete(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${currentId}`,

@@ -7,10 +7,12 @@ import POI from "./POI";
 export default function POIList(props){
     let usr = useAuth0();
 
+    //handles the click on one poi by the user
     let singlePoiClick = (id) => {
         props.singlePoiClick(id);
     }
 
+    //We run the fetch to the server (called poisClick) only one time
     useEffect(() => {
         props.poisClick();
     }, []);
@@ -19,8 +21,7 @@ export default function POIList(props){
         return <a href="#" onClick={usr.loginWithRedirect}>You need to login to see the points of interests</a>
     };
 
-    //Call the function to receive all poi's
-    //props.poisClick();
+    //returns the list of all POIs
     return (
         <header className="poi-list">
              {props.pois && props.pois.length > 0 && (

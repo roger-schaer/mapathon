@@ -5,6 +5,7 @@ import "./LoginButton.css";
 
 export default function LoginButton(){
 
+    //returns the login button according to the user's state
     let usr = useAuth0();
     if(usr.isAuthenticated){
         return (

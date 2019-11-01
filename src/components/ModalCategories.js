@@ -17,6 +17,7 @@ const ModalCategories  = (props) => {
 
     const toggle = () => setModal(!modal);
 
+    //returns a modal with the name of the category and its image
     return (
         <>
             <Button color="primary" onClick={toggle}>{categoryTitle}</Button>

@@ -5,7 +5,7 @@ import './POIForm.css';
 import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
 import {Button} from "reactstrap";
-import { useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 function POIForm(props){
 
@@ -20,6 +20,7 @@ function POIForm(props){
 
     let currentId = url.substring(url.lastIndexOf("/")+1);
 
+    //Checks if poi is new or editable
     let newOrEditable = () => {
         if(props.isNew){
             return false;
@@ -35,6 +36,7 @@ function POIForm(props){
             </div>
 
             <div className='detail-content'>
+                <Link to='/' className='back-button'>Back</Link>
                 <h1>{props.thisPoi.name}</h1>
                 {props.newPoi &&
                 <Formik
@@ -69,7 +71,6 @@ function POIForm(props){
                                 console.log(response.id);
                                 currentId = response.id ;
                                 history.push("/details/"+currentId);
-                                window.location.reload();
                             }
 
                         }, 400);

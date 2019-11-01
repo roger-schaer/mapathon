@@ -8,7 +8,7 @@ import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Switch from "react-switch";
-import { useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 export default function HomePage(props){
     let { loginWithRedirect, getTokenSilently } = useAuth0();
@@ -71,6 +71,8 @@ export default function HomePage(props){
         props.callbackHandleNewPoiClicking(lat, lng);
     }
 
+    //Handles clicks on a poi from the list
+    //updates the view of the map accordingly
     let singlePoiClick = (id) =>{
         let poi = getPoiById(id);
 
@@ -78,10 +80,12 @@ export default function HomePage(props){
             lat: poi.lat,
             lng: poi.lng,
         };
+        //use the map ref to recenter the map
         mapRef.current.recenterMap(newPosition);
         setLastPoi(id);
     }
 
+    //gets the poi from the specified id
     let getPoiById = (id) =>{
         return pois.find(poi => poi.id === id);
     }
@@ -96,7 +100,6 @@ export default function HomePage(props){
 
     //Modal button method
     const toggle = () => setModal(!modal);
-    const addNewPoiManually = () => window.location = '/details';
     const addNewPoiClicking = () => {
         mapRef.current.toggleAdding();
         setModal(!modal);
@@ -104,7 +107,7 @@ export default function HomePage(props){
 
     //End new modal
 
-    // main div
+    // Returns the main div of the application containing the map and the poi list
     return(
         <div className="home-div">
             <div className="filter-div">
@@ -132,7 +135,10 @@ export default function HomePage(props){
                     <ModalHeader toggle={toggle}>Add POI</ModalHeader>
                     <ModalBody>Add a new POI manually (enter longitude and latitude) or add it by clicking on the map</ModalBody>
                     <ModalFooter>
-                        <Button className="Button-manually" onClick={addNewPoiManually}>Manually</Button>
+                        <Link to='/details'>
+                            <Button className="Button-manually">Manually</Button>
+                        </Link>
+
                         <Button className="Button-clicking" onClick={addNewPoiClicking}>Clicking</Button>
                         <Button className="Button-cancel" onClick={toggle}>Cancel</Button>
                     </ModalFooter>
