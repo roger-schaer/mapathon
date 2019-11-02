@@ -1,11 +1,10 @@
 .home-div{
-    max-height: 90vh;
+    max-height: 88vh;
     border-top: 1px solid black;
 }
 
 .filter-div{
     padding-top: 10px;
-    background-color: aliceblue;
     border-bottom: 1px solid black;
 }
 
@@ -13,8 +12,8 @@
     /*border: 1px solid blue;*/
     width: 71.8%;
     float:left;
-    height: 90vh;
-    max-height: 90vh;
+    height: 88vh;
+    max-height: 88vh;
 }
 .poi-list-div {
     border: 1px solid #ffffff;
@@ -22,7 +21,7 @@
     padding: 1px;
     float:right;
     width: 28%;
-    max-height: 90vh;
+    max-height: 88vh;
     overflow: auto;
 }
 .poi-list{
@@ -38,3 +37,6 @@
     cursor:crosshair;
 }
 
+.Button-addPoi{
+    background-color: #318ffb !important;
+}

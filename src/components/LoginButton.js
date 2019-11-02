@@ -9,7 +9,7 @@ export default function LoginButton(){
     let usr = useAuth0();
     if(usr.isAuthenticated){
         return (
-            <NavLink>Welcome {usr.user.name} <img id="avatar-image" src={usr.user.picture}/></NavLink>
+            <NavLink>Welcome {usr.user.name} <img id="avatar-image"/></NavLink>
         );
     }
     else{

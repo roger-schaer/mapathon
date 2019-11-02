@@ -110,45 +110,45 @@ export default function HomePage(props){
     // Returns the main div of the application containing the map and the poi list
     return(
         <div className="home-div">
-            <div className="filter-div">
-                <label htmlFor="normal-switch">
-                    POI's of the group ({groupnr}): &ensp;
-                    <Switch
-                        onChange={handleFilterGroupe}
-                        checked={filtergroupe}
-                        id="normal-switch"
-                    />
-                </label>
-                <br/>
-                <label htmlFor="normal-switch">
-                    POI's of the user: &ensp;
-                    <Switch
-                        onChange={handleFilterUser}
-                        checked={filterusr}
-                        id="normal-switch"
-                    />
-                </label>
-            </div>
-            <div className="filter-div">
-                <Button onClick={toggle} className="Button-addPoi">{buttonLabel}</Button>
-                <Modal isOpen={modal} toggle={toggle} className={className}>
-                    <ModalHeader toggle={toggle}>Add POI</ModalHeader>
-                    <ModalBody>Add a new POI manually (enter longitude and latitude) or add it by clicking on the map</ModalBody>
-                    <ModalFooter>
-                        <Link to='/details'>
-                            <Button className="Button-manually">Manually</Button>
-                        </Link>
-
-                        <Button className="Button-clicking" onClick={addNewPoiClicking}>Clicking</Button>
-                        <Button className="Button-cancel" onClick={toggle}>Cancel</Button>
-                    </ModalFooter>
-                </Modal>
-            </div>
             <div className="map-div">
                 <ReactMap pois={poisnew} lastPoi={lastPoiId} ref={mapRef} callbackHandleNewPoiClicking={handleNewPoiClicking} usr={usr}></ReactMap>
             </div>
             <div className="poi-list-div">
                 <h2>Points of interests</h2>
+                <div className="add-div">
+                    <Button onClick={toggle} className="Button-addPoi">{buttonLabel}</Button>
+                    <Modal isOpen={modal} toggle={toggle} className={className}>
+                        <ModalHeader toggle={toggle}>Add POI</ModalHeader>
+                        <ModalBody>Add a new POI manually (enter longitude and latitude) or add it by clicking on the map</ModalBody>
+                        <ModalFooter>
+                            <Link to='/details'>
+                                <Button className="Button-manually">Manually</Button>
+                            </Link>
+
+                            <Button className="Button-clicking" onClick={addNewPoiClicking}>Clicking</Button>
+                            <Button className="Button-cancel" onClick={toggle}>Cancel</Button>
+                        </ModalFooter>
+                    </Modal>
+                </div>
+                <div className="filter-div">
+                    <label htmlFor="normal-switch">
+                        POI's of the group ({groupnr}): &ensp;
+                        <Switch
+                            onChange={handleFilterGroupe}
+                            checked={filtergroupe}
+                            id="normal-switch"
+                        />
+                    </label>
+                    <br/>
+                    <label htmlFor="normal-switch">
+                        POI's of the user: &ensp;
+                        <Switch
+                            onChange={handleFilterUser}
+                            checked={filterusr}
+                            id="normal-switch"
+                        />
+                    </label>
+                </div>
                 {/*Give the POI list*/}
                 <POIList pois={poisnew} poisClick={handlePOIsClick} singlePoiClick={singlePoiClick}/>
             </div>

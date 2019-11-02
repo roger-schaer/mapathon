@@ -91,7 +91,7 @@ export default class ReactMap extends Component<{}, State> {
                     style={{height: '100%'}}
                     center={this.state.currentLatLng}
                     zoom={this.state.zoom}
-                    maxZoom={19}
+                    maxZoom={15}
                     pois={this.props.pois}
                     isAdding={this.state.isAdding}
                     onClick={this.handleClick}>
