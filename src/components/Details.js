@@ -9,6 +9,7 @@ import endpoints from "../endpoints";
 import requestDelete from "../utils/requestDelete";
 import DeleteModal from "./DeleteModal";
 import {Link, useHistory} from "react-router-dom";
+import requestPatch from "../utils/requestPatch";
 
 export default function Details(props){
 
@@ -92,7 +93,6 @@ export default function Details(props){
         group: 3,
         Creator: null
     }
-
 
     let onClickEditButton = () => {
         if(isEdit){

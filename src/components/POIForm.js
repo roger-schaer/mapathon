@@ -6,6 +6,7 @@ import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
 import {Button} from "reactstrap";
 import {Link, useHistory} from "react-router-dom";
+import requestPatch from "../utils/requestPatch";
 
 function POIForm(props){
 
@@ -19,6 +20,10 @@ function POIForm(props){
     let poiCreator = props.thisPoi.Creator;
 
     let currentId = url.substring(url.lastIndexOf("/")+1);
+
+    function refreshPage() {
+        history.push("/details/" + currentId)
+    }
 
     //Checks if poi is new or editable
     let newOrEditable = () => {
@@ -37,7 +42,6 @@ function POIForm(props){
 
             <div className='detail-content'>
                 <Link to='/' className='back-button'>Back</Link>
-                <h1>{props.thisPoi.name}</h1>
                 {props.newPoi &&
                 <Formik
                         initialValues={{    name: props.newPoi.name,
@@ -71,7 +75,15 @@ function POIForm(props){
                                 console.log(response.id);
                                 currentId = response.id ;
                                 history.push("/details/"+currentId);
+                            }else{
+                                let response = await requestPatch(
+                                    `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${currentId}`,
+                                    getTokenSilently,
+                                    loginWithRedirect,
+                                    values
+                                );
                             }
+                            refreshPage();
 
                         }, 400);
                     }}
@@ -87,6 +99,15 @@ function POIForm(props){
                           /* and other goodies */
                       }) => (
                         <form onSubmit={handleSubmit}>
+                            <span><h4>Name : </h4></span>
+                            <input
+                                disabled={newOrEditable() || props.isClicked}
+                                type="text"
+                                name="name"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.name}
+                            />
                             <span><h4>Latitude : </h4></span>
                             <input
                                 disabled={newOrEditable() || props.isClicked}
@@ -104,15 +125,6 @@ function POIForm(props){
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.lng}
-                            />
-                            <span><h4>Name: </h4></span>
-                            <input
-                                disabled={newOrEditable()} /*ReadOnly mod or not*/
-                                type="text"
-                                name="name"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.name}
                             />
                             {errors.name && touched.name && errors.name}
                             <span><h4>Description: </h4></span>
