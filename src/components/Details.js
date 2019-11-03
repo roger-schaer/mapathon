@@ -34,6 +34,9 @@ export default function Details(props){
     let currentId = url.substring(url.lastIndexOf("/")+1);
     let [isClicked, setIsClicked] = useState(false);
 
+    let [categories, setCategories] = useState([]);
+    let [tags, setTags] = useState([]);
+
     let[isPopupOpen, setIsPopupOpen] = useState(false);
 
     console.log(props.posClicked);
@@ -116,6 +119,37 @@ export default function Details(props){
         history.push("/home");
     }
 
+    useEffect(() => {
+        fetchCategoriesAndTags();
+    }, []);
+
+    // get all the POI informations
+    let fetchCategoriesAndTags = async () => {
+
+        //category part
+        let responseCat = await request(
+            `${process.env.REACT_APP_SERVER_URL}${endpoints.categories}`,
+            getTokenSilently,
+            loginWithRedirect
+        );
+
+        if (responseCat && responseCat.length > 0) {
+            setCategories(responseCat);
+        }
+
+        //tags part
+        let responseTag = await request(
+            `${process.env.REACT_APP_SERVER_URL}${endpoints.tags}`,
+            getTokenSilently,
+            loginWithRedirect
+        );
+
+        if (responseTag && responseTag.length > 0) {
+            setTags(responseTag);
+        }
+        return;
+    };
+
         return(
             <div>
                 {(poiCreator && currentUser.sub === poiCreator.id) &&
@@ -134,7 +168,7 @@ export default function Details(props){
                 <br/>
                 {!isEdit && !isNew &&
                 <div>
-                    <BoxCategories thisPoi={poi} currentId={currentId} currentUser={currentUser}/>
+                    <BoxCategories thisPoi={poi} currentId={currentId} currentUser={currentUser} allCategories={categories}/>
                     <BoxTags thisPoi={poi} currentUser={currentUser}/>
                 </div>}
 

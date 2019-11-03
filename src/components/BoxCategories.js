@@ -1,16 +1,52 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ModalCategories from "./ModalCategories";
 import "./Box.css"
 import addLogo from "../assets/add-sign.png"
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {CheckBoxElement} from "./CheckBoxElement";
+import requestPatch from "../utils/requestPatch";
+import endpoints from "../endpoints";
+import {useAuth0} from "../react-auth0-spa";
+import {useHistory} from "react-router-dom";
 
 export default function BoxCategories(props){
 
     let poiCategories = props.thisPoi.Categories;
     const [modal, setModal] = useState(false);
+    let [arrayCategories, setArrayCategories] = useState([]);
+    let { loginWithRedirect, getTokenSilently } = useAuth0();
+    let history = useHistory();
 
     //function to toggle modals
     const toggle = () => setModal(!modal);
+
+    function refreshPage() {
+        history.push("/details/" + props.thisPoi.id)
+    }
+
+    //Control which checkbox are checked and create an array to send to the server.
+    let toggleSubmit = () => {
+        props.allCategories.map((categorie, i) => {
+            let cb = document.getElementById(i);
+            if (cb != null) {
+                if (cb.checked === true) {
+                    setArrayCategories(arrayCategories.push(categorie.id))
+                }
+            }
+        })
+        saveChangeCategories();
+        toggle();
+        refreshPage();
+    }
+
+    let saveChangeCategories = async () => {
+        let response = requestPatch(
+            `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${props.thisPoi.id}${endpoints.categories}`,
+            getTokenSilently,
+            loginWithRedirect,
+            arrayCategories
+        );
+    }
 
     //returns a box With an add button and all categories
     return(
@@ -32,20 +68,35 @@ export default function BoxCategories(props){
             }
 
             <>
+                {props.thisPoi &&
                 <Modal
                     isOpen={modal}
                     toggle={toggle}
                 >
-                    <ModalHeader toggle={toggle}>Audrey 1</ModalHeader>
+                    <ModalHeader toggle={toggle}>Add categories to {props.thisPoi.name}</ModalHeader>
                     <ModalBody>
-                        Audrey 2<br/>
-                        <img style={{maxHeight: "30vh", maxWidth: "100%"}} src={props.imageCategorie} alt="POI image"/>
+                        {props.allCategories && poiCategories && props.thisPoi &&
+                            props.allCategories.map((categorie, i) => {
+                                for(var j=0; j < poiCategories.length; j++){
+                                    if(poiCategories[j].id === categorie.id){
+                                        return(
+                                            <CheckBoxElement id={categorie.id} nameElement={categorie.name} isChecked={true}/>
+                                        )
+                                    }
+                                }
+                                return(
+                                    <CheckBoxElement id={i} nameElement={categorie.name} isChecked={false}/>
+                                )
+                            })
+                        }
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={toggle}>Audrey 3</Button>{' '}
+                        <Button color="primary" onClick={toggleSubmit}>Audrey 3</Button>{' '}
                         <Button color="secondary" onClick={toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
+                }
+
             </>
 
         </div>
