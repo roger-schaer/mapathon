@@ -11,8 +11,12 @@ export default function BoxTags(props) {
     return(
         <div className="categories-box">
             <div><h3 style={{display: "inline-block"}}>Tags</h3>
-                <span> </span><button className="button-add-category"><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button></div>
+                <span> </span>
+                { poiTags && props.thisPoi && (props.currentUser.sub === props.thisPoi.Creator.id) &&
+                <button className="button-add-category"><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button>
+                }
             <span> </span>
+            </div>
 
             {
                 poiTags && poiTags.map(function(item, i){

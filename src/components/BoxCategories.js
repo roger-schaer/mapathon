@@ -16,8 +16,9 @@ export default function BoxCategories(props){
     return(
         <div className="categories-box">
             <div><h3 style={{display: "inline-block"}}>Categories</h3>
-                <span> </span>{ poiCategories &&
-                <button className="button-add-category" onClick={toggle}><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button>}
+                <span> </span>{ poiCategories && props.thisPoi && (props.currentUser.sub === props.thisPoi.Creator.id) &&
+                <button className="button-add-category" onClick={toggle}><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button>
+            }
             </div>
 
             {

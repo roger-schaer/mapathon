@@ -134,8 +134,8 @@ export default function Details(props){
                 <br/>
                 {!isEdit && !isNew &&
                 <div>
-                    <BoxCategories thisPoi={poi}/>
-                    <BoxTags thisPoi={poi}/>
+                    <BoxCategories thisPoi={poi} currentId={currentId} currentUser={currentUser}/>
+                    <BoxTags thisPoi={poi} currentUser={currentUser}/>
                 </div>}
 
             </div>
