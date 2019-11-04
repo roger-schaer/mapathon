@@ -72,7 +72,6 @@ function POIForm(props){
                                 console.log(response);
                                 console.log(response.id);
                                 currentId = response.id ;
-                                history.push("/details/"+currentId);
                             }else{
                                 let response = await requestPatch(
                                     `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${currentId}`,
@@ -80,7 +79,9 @@ function POIForm(props){
                                     loginWithRedirect,
                                     values
                                 );
-                            }
+                                props.setIsEdit(false);
+                                props.setValueButtonEdit("Edit");
+                           }
                             refreshPage();
 
                         }, 400);
@@ -180,4 +181,4 @@ function POIForm(props){
 
 
 
-export default POIForm;
+export default POIForm

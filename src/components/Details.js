@@ -164,7 +164,8 @@ export default function Details(props){
                         deleteClicked={deletePoi}/>
                     }
                 </div>}
-                <POIForm thisPoi={poi} isEdit={isEdit} newPoi={newPOI} currentId={currentId} isNew={isNew} isClicked={isClicked}/>
+                <POIForm thisPoi={poi} isEdit={isEdit} setIsEdit={setIsEdit} newPoi={newPOI} currentId={currentId} isNew={isNew} isClicked={isClicked}
+                         setValueButtonEdit={setValueButtonEdit}/>
                 <br/>
                 {!isEdit && !isNew &&
                 <div>
