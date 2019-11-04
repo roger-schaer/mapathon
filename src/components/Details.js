@@ -170,7 +170,7 @@ export default function Details(props){
                 {!isEdit && !isNew &&
                 <div>
                     <BoxCategories thisPoi={poi} currentId={currentId} currentUser={currentUser} allCategories={categories}/>
-                    <BoxTags thisPoi={poi} currentUser={currentUser}/>
+                    <BoxTags thisPoi={poi} currentUser={currentUser} currentUser={currentUser} allTags={tags} />
                 </div>}
 
             </div>
