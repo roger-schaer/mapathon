@@ -46,10 +46,12 @@ class MyMarker extends React.Component{
     //Design the Popup, above the selected Marker
     render(){
         let isHisPoi = () => {
-            if(this.props.usr.user.sub === this.props.poi.Creator.id){
-                return true
-            }else{
-                return false
+            if(this.props.usr.user.sub != null){
+                if(this.props.usr.user.sub === this.props.poi.Creator.id){
+                    return true
+                }else{
+                    return false
+                }
             }
         }
 

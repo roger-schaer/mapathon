@@ -14,8 +14,6 @@ function POIForm(props){
     let url = window.location.href;
     let history = useHistory();
 
-    let [isClicked, setIsClicked] = useState(false);
-
     let currentUser = props.currentUser;
     let poiCreator = props.thisPoi.Creator;
 
@@ -101,7 +99,7 @@ function POIForm(props){
                         <form onSubmit={handleSubmit}>
                             <span><h4>Name : </h4></span>
                             <input
-                                disabled={newOrEditable() || props.isClicked}
+                                disabled={newOrEditable()}
                                 type="text"
                                 name="name"
                                 onChange={handleChange}
