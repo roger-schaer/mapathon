@@ -35,8 +35,8 @@ export default function BoxCategories(props){
             }
         })
         saveChangeCategories();
-        toggle();
         refreshPage();
+        toggle();
     }
 
     let saveChangeCategories = async () => {
@@ -53,7 +53,7 @@ export default function BoxCategories(props){
         <div className="categories-box">
             <div><h3 style={{display: "inline-block"}}>Categories</h3>
                 <span> </span>{ poiCategories && props.thisPoi && (props.currentUser.sub === props.thisPoi.Creator.id) &&
-                <button className="button-add-category" onClick={toggle}><img style={{maxWidth: '15px'}} src={addLogo}/> Add</button>
+                <button className="button-add-category" onClick={toggle}><img style={{maxWidth: '15px'}} src={addLogo}/>Manage categories</button>
             }
             </div>
 
@@ -91,7 +91,7 @@ export default function BoxCategories(props){
                         }
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={toggleSubmit}>Audrey 3</Button>{' '}
+                        <Button color="primary" onClick={toggleSubmit}>Submit</Button>{' '}
                         <Button color="secondary" onClick={toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
