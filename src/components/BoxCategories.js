@@ -26,10 +26,14 @@ export default function BoxCategories(props){
 
     //Control which checkbox are checked and create an array to send to the server.
     let toggleSubmit = () => {
+        setArrayCategories([]);
         props.allCategories.map((categorie, i) => {
-            let cb = document.getElementById(i);
+            let cb = document.getElementById(categorie.id);
             if (cb != null) {
                 if (cb.checked === true) {
+                    console.log("PART 2 : " + categorie.id)
+                    console.log(categorie.name)
+                    console.log(cb);
                     setArrayCategories(arrayCategories.push(categorie.id))
                 }
             }
@@ -85,7 +89,7 @@ export default function BoxCategories(props){
                                     }
                                 }
                                 return(
-                                    <CheckBoxElement id={i} nameElement={categorie.name} isChecked={false}/>
+                                    <CheckBoxElement id={categorie.id} nameElement={categorie.name} isChecked={false}/>
                                 )
                             })
                         }

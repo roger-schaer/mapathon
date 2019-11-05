@@ -27,7 +27,7 @@ export default function BoxTags(props) {
     //Control which checkbox are checked and create an array to send to the server.
     let toggleSubmit = () => {
         props.allTags.map((tag, i) => {
-            let cb = document.getElementById(i);
+            let cb = document.getElementById(tag.id);
             if (cb != null) {
                 if (cb.checked === true) {
                     setArrayTags(arrayTags.push(tag.id))
@@ -87,7 +87,7 @@ export default function BoxTags(props) {
                                 }
                             }
                             return(
-                                <CheckBoxElement id={i} nameElement={tag.name} isChecked={false}/>
+                                <CheckBoxElement id={tag.id} nameElement={tag.name} isChecked={false}/>
                             )
                         })
                         }
