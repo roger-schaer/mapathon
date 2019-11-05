@@ -15,14 +15,9 @@ export default function BoxTags(props) {
     const [modal, setModal] = useState(false);
     let [arrayTags, setArrayTags] = useState([]);
     let { loginWithRedirect, getTokenSilently } = useAuth0();
-    let history = useHistory();
 
     //function to toggle modals
     const toggle = () => setModal(!modal);
-
-    function refreshPage() {
-        history.push("/details/" + props.thisPoi.id)
-    }
 
     //Control which checkbox are checked and create an array to send to the server.
     let toggleSubmit = () => {
@@ -34,8 +29,8 @@ export default function BoxTags(props) {
                 }
             }
         })
+        props.onChangeT(true);
         saveChangeTags();
-        refreshPage();
         toggle();
     }
 
@@ -46,6 +41,7 @@ export default function BoxTags(props) {
             loginWithRedirect,
             arrayTags
         );
+        setArrayTags([]);
     }
 
     //returns a box With an add button and all tags

@@ -15,32 +15,25 @@ export default function BoxCategories(props){
     const [modal, setModal] = useState(false);
     let [arrayCategories, setArrayCategories] = useState([]);
     let { loginWithRedirect, getTokenSilently } = useAuth0();
-    let history = useHistory();
 
     //function to toggle modals
     const toggle = () => setModal(!modal);
 
-    function refreshPage() {
-        history.push("/details/" + props.thisPoi.id)
-    }
-
     //Control which checkbox are checked and create an array to send to the server.
     let toggleSubmit = () => {
-        setArrayCategories([]);
-        props.allCategories.map((categorie, i) => {
-            let cb = document.getElementById(categorie.id);
-            if (cb != null) {
-                if (cb.checked === true) {
-                    console.log("PART 2 : " + categorie.id)
-                    console.log(categorie.name)
-                    console.log(cb);
-                    setArrayCategories(arrayCategories.push(categorie.id))
+        { props.allCategories &&
+            props.allCategories.map((categorie, i) => {
+                let cb = document.getElementById(categorie.id);
+                if (cb != null) {
+                    if (cb.checked === true) {
+                        setArrayCategories(arrayCategories.push(categorie.id))
+                    }
                 }
-            }
-        })
-        saveChangeCategories();
-        refreshPage();
-        toggle();
+            })
+            props.onChangeC(true);
+            saveChangeCategories();
+            toggle();
+        }
     }
 
     let saveChangeCategories = async () => {
@@ -50,6 +43,7 @@ export default function BoxCategories(props){
             loginWithRedirect,
             arrayCategories
         );
+        setArrayCategories([]);
     }
 
     //returns a box With an add button and all categories

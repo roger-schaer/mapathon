@@ -8,8 +8,7 @@ import request from "../utils/request";
 import endpoints from "../endpoints";
 import requestDelete from "../utils/requestDelete";
 import DeleteModal from "./DeleteModal";
-import {Link, useHistory} from "react-router-dom";
-import requestPatch from "../utils/requestPatch";
+import {useHistory} from "react-router-dom";
 
 export default function Details(props){
 
@@ -28,16 +27,14 @@ export default function Details(props){
     let poiCreator = poi.Creator;
     let [isEdit, setIsEdit] = useState(false);
     let [valueButtonEdit, setValueButtonEdit] = useState("Edit")
-
     let [newPOI, setNewPOI] = useState(null);
     let [isNew, setIsNew] = useState(true);
     let currentId = url.substring(url.lastIndexOf("/")+1);
     let [isClicked, setIsClicked] = useState(false);
-
     let [categories, setCategories] = useState([]);
     let [tags, setTags] = useState([]);
-
-    let[isPopupOpen, setIsPopupOpen] = useState(false);
+    let [isPopupOpen, setIsPopupOpen] = useState(false);
+    let [isChangeCategoriesTags, setIsChangeCategoriesTags] = useState(false);
 
     console.log(props.posClicked);
 
@@ -47,8 +44,9 @@ export default function Details(props){
             getTokenSilently,
             loginWithRedirect,
             setIsLoaded(true)
-        ).then(token => {setPoi(token)} );
-    }, []);
+        ).then(token => {setPoi(token)} )
+        setIsChangeCategoriesTags(false);
+    }, [isChangeCategoriesTags]);
 
     useEffect( () => {
 
@@ -123,6 +121,8 @@ export default function Details(props){
         fetchCategoriesAndTags();
     }, []);
 
+    let onChangeCategoriesTag = (value) => setIsChangeCategoriesTags(value);
+
     // get all the POI informations
     let fetchCategoriesAndTags = async () => {
 
@@ -169,13 +169,11 @@ export default function Details(props){
                 <br/>
                 {!isEdit && !isNew &&
                 <div>
-                    <BoxCategories thisPoi={poi} currentId={currentId} currentUser={currentUser} allCategories={categories}/>
-                    <BoxTags thisPoi={poi} currentUser={currentUser} currentUser={currentUser} allTags={tags} />
+                    <BoxCategories thisPoi={poi} currentId={currentId} currentUser={currentUser} allCategories={categories} onChangeC={onChangeCategoriesTag}/>
+                    <BoxTags thisPoi={poi} currentUser={currentUser} currentUser={currentUser} allTags={tags} onChangeT={onChangeCategoriesTag}/>
                 </div>}
 
             </div>
         );
-
-
 
 }
