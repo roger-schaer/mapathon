@@ -35,11 +35,10 @@ function POIForm(props){
     return(
         <div className='detail-div'>
             <div className='img-div'>
-                <img style={{maxHeight: "100%", maxWidth: "100%", float: "right"}} src={props.thisPoi.image} alt="POI image"/><br/>
+                <img style={{maxHeight: "100%", maxWidth: "100%", float: "left"}} src={props.thisPoi.image} alt="POI image"/><br/>
             </div>
 
             <div className='detail-content'>
-                <Link to='/' className='back-button'>Back</Link>
                 {props.newPoi &&
                 <Formik
                         initialValues={{    name: props.newPoi.name,

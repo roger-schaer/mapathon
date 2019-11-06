@@ -2,13 +2,16 @@ import React, {useState, useEffect, Dialog} from "react";
 import POIForm from "./POIForm";
 import BoxCategories from "./BoxCategories";
 import BoxTags from "./BoxTags";
+import {Button} from 'reactstrap';
 import {Argv as queryString} from "yargs";
 import {useAuth0} from "../react-auth0-spa";
 import request from "../utils/request";
 import endpoints from "../endpoints";
 import requestDelete from "../utils/requestDelete";
 import DeleteModal from "./DeleteModal";
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import PreviewMap from "./PreviewMap";
+import "./Details.css";
 
 export default function Details(props){
 
@@ -26,7 +29,7 @@ export default function Details(props){
     let currentUser = useAuth0().user;
     let poiCreator = poi.Creator;
     let [isEdit, setIsEdit] = useState(false);
-    let [valueButtonEdit, setValueButtonEdit] = useState("Edit")
+    let [valueButtonEdit, setValueButtonEdit] = useState("Edit");
     let [newPOI, setNewPOI] = useState(null);
     let [isNew, setIsNew] = useState(true);
     let currentId = url.substring(url.lastIndexOf("/")+1);
@@ -36,21 +39,19 @@ export default function Details(props){
     let [isPopupOpen, setIsPopupOpen] = useState(false);
     let [isChangeCategoriesTags, setIsChangeCategoriesTags] = useState(false);
 
-    console.log(props.posClicked);
-
     useEffect(() => {
         let myPoi = request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${'/'+param}`,
             getTokenSilently,
             loginWithRedirect,
             setIsLoaded(true)
-        ).then(token => {setPoi(token)} )
+        ).then(token => {setPoi(token)} );
         setIsChangeCategoriesTags(false);
     }, [isChangeCategoriesTags]);
 
     useEffect( () => {
 
-        if(props.posClicked != null){
+        if(props.posClicked != null && !isNaN(currentId)){
             setIsClicked(true);
             defaultPOI.lat = props.posClicked.lat;
             defaultPOI.lng = props.posClicked.lng;
@@ -66,7 +67,7 @@ export default function Details(props){
             setNewPOI(defaultPOI);
         }else if(isNaN(currentId)){
             //if not a number, it means new poi
-            console.log("NaN is returned")
+            console.log("NaN is returned");
             setIsNew(true);
             setNewPOI(defaultPOI);
         }else{
@@ -103,7 +104,7 @@ export default function Details(props){
             setIsEdit(true);
             setValueButtonEdit("Close edit mode")
         }
-    }
+    };
 
     //Delete the current poi (only avaliable if the user is the creator)
     let deletePoi = async () => {
@@ -115,7 +116,7 @@ export default function Details(props){
         console.log(response);
         currentId = 0;
         history.push("/home");
-    }
+    };
 
     useEffect(() => {
         fetchCategoriesAndTags();
@@ -153,8 +154,10 @@ export default function Details(props){
         return(
             <div>
                 {(poiCreator && currentUser.sub === poiCreator.id) &&
-                <div>
-                    <button onClick={onClickEditButton}>{valueButtonEdit}</button>
+                <div className='div-button'>
+                    <Link to='/' className='back-button' style={{verticalAlign: 'bottom'}}>Back</Link><span> </span>
+                    <Button onClick={onClickEditButton} style={{marginTop: '10px'}}>{valueButtonEdit}</Button>
+                    <span> </span>
                     {!isNew && poi.Creator &&
                     (currentUser.sub === poi.Creator.id) &&
                     <DeleteModal
@@ -166,11 +169,24 @@ export default function Details(props){
                 </div>}
                 <POIForm thisPoi={poi} isEdit={isEdit} setIsEdit={setIsEdit} newPoi={newPOI} currentId={currentId} isNew={isNew} isClicked={isClicked}
                          setValueButtonEdit={setValueButtonEdit}/>
-                <br/>
                 {!isEdit && !isNew &&
-                <div>
-                    <BoxCategories thisPoi={poi} currentId={currentId} currentUser={currentUser} allCategories={categories} onChangeC={onChangeCategoriesTag}/>
-                    <BoxTags thisPoi={poi} currentUser={currentUser} currentUser={currentUser} allTags={tags} onChangeT={onChangeCategoriesTag}/>
+                <div className="div-box-and-map">
+                    <div style={{textAlign: 'left'}}>
+                        <Link to='/' className='back-button' style={{verticalAlign: 'bottom', paddingLeft: '20px'}}>Back</Link>
+                    </div>
+                    <div className="div-box">
+                        <BoxCategories thisPoi={poi} currentId={currentId} currentUser={currentUser} allCategories={categories} onChangeC={onChangeCategoriesTag}/>
+                        <BoxTags thisPoi={poi} currentUser={currentUser} currentUser={currentUser} allTags={tags} onChangeT={onChangeCategoriesTag}/>
+                    </div>
+
+                    {/*Preview map*/}
+                    {poi.lat && poi.lng &&
+                    <div className="div-preview-map">
+                        <PreviewMap lat={poi.lat} lng={poi.lng}/>
+                    </div>
+
+                    }
+
                 </div>}
 
             </div>

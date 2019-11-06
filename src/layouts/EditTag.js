@@ -19,13 +19,14 @@ export default function EditTag(props){
     let currentId = url.substring(url.lastIndexOf("/")+1);
 
     let [isNew, setIsNew] = useState(true);
+    let [disableEdit, setDisable] = useState(true);
     let defaultTag = {
         name: '',
         image: '',
         group: 3,
         color: 'white',
         Creator: null
-    }
+    };
 
     useEffect( () => {
         console.log(currentId);
@@ -44,6 +45,22 @@ export default function EditTag(props){
             let resp = fetchAndSetTags();
         }
     }, [currentId]);
+
+    //Hook to check if the user owns the object
+    useEffect( () => {
+        if(user && tag && tag.Creator &&
+            user.sub === tag.Creator.id){
+            //if the object belongs to the user, edit is enabled
+            setDisable(false);
+        }else if(isNew){
+            //if the object is new or not created yet, edit is enabled
+            setDisable(false);
+        }
+        else{
+            //if object belongs to someone else, disable edit
+            setDisable(true);
+        }
+    }, [user, tag]);
 
     //fetch the tag and assign it to the state of the component
     let fetchAndSetTags = async () => {
@@ -66,6 +83,7 @@ export default function EditTag(props){
     function refreshPage() {
         history.push("/manage/tag/" + currentId)
     }
+
 
     //delete the current tag
     let deleteTag = async () => {
@@ -141,7 +159,7 @@ export default function EditTag(props){
                         <form onSubmit={handleSubmit}>
                             <span><h4>Name: </h4></span>
                             <input
-                                //disabled={props.isDisplayOnly} /*ReadOnly mod or not*/
+                                disabled={disableEdit} /*ReadOnly mod or not*/
                                 type="text"
                                 name="name"
                                 onChange={handleChange}
@@ -151,8 +169,7 @@ export default function EditTag(props){
                             {errors.name && touched.name && errors.name}
                             <span><h4>Image: </h4></span>
                             <input
-                                //disabled={props.isDisplayOnly}
-
+                                disabled={disableEdit} /*ReadOnly mod or not*/
                                 type="text"
                                 name="image"
                                 onChange={handleChange}
@@ -162,25 +179,39 @@ export default function EditTag(props){
                             {errors.image && touched.image && errors.image}
                             <span><h4>Color: </h4></span>
                             <select
+                                disabled={disableEdit} /*ReadOnly mod or not*/
                                 name="color"
                                 value={values.color}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             >
                                 <option value="white" label="Select a color" />
+                                <option value="white" label="White" style={{backgroundColor: 'White'}}/>
                                 <option value="red" label="Red" style={{backgroundColor: 'red'}}/>
-                                <option value="green" label="Green"/>
+                                <option value="green" label="Green" style={{backgroundColor: 'Green'}}/>
+                                <option value="Blue" label="Blue" style={{backgroundColor: 'Blue'}}/>
+                                <option value="Orange" label="Orange" style={{backgroundColor: 'Orange'}}/>
+                                <option value="Pink" label="Pink" style={{backgroundColor: 'Pink'}}/>
+                                <option value="Violet" label="Violet" style={{backgroundColor: 'Violet'}}/>
+                                <option value="Brown" label="Brown" style={{backgroundColor: 'Brown'}}/>
                                 <option value="Gold" label="Gold" style={{backgroundColor: 'Gold'}}/>
-                            </select>
+                                <option value="Silver" label="Silver" style={{backgroundColor: 'Silver'}}/>
+                            </select><span> </span>
+                            <div
+                                style={{backgroundColor: values.color, height: '14pt', width: '14pt',
+                                    radius: '10px', display: 'inline-block', borderRadius: '10px',
+                                    border: '1px solid black'
+                                }}
+                            />
                             {tag.Creator &&
                             <div>
                                 <div>
-                                    Created at <b>props.poi.createdAt</b> by <b>props.poi.Creator.name</b> (Group props.poi.group)
+                                    Created at <b>{tag.createdAt}</b> by <b>{tag.Creator.name}</b> (Group {tag.group})
                                 </div>
-                                <div>Updated at <b>props.poi.updatedAt</b></div>
+                                <div>Updated at <b>{tag.updatedAt}</b></div>
                             </div>
                             }
-                            {(isNew || (tag.Creator && user && user.sub === tag.Creator.id)) &&
+                            {(isNew || (!disableEdit)) &&
                             <Button style={{backgroundColor: 'darkgreen', display: "inline-block", marginTop: '10px'}}
                                     type="submit" disabled={isSubmitting}
                             >
@@ -188,7 +219,7 @@ export default function EditTag(props){
                             </Button>
                             }<span>  </span>
                             {!isNew && tag.Creator &&
-                            (user.sub === tag.Creator.id) &&
+                            (!disableEdit) &&
                             <DeleteModal
                                 buttonLabel={"tag"}
                                 currentName={tag.name}

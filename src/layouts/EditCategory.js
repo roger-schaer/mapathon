@@ -18,8 +18,8 @@ export default function EditCategory(props) {
     let url = window.location.href;
     let history = useHistory();
     let[category, setCategory] = useState(null);
-    let[newCategory, setNewCategory] = useState(null);
     let currentId = url.substring(url.lastIndexOf("/")+1);
+    let [disableEdit, setDisable] = useState(true);
 
     let [isNew, setIsNew] = useState(true);
     let defaultCategory = {
@@ -35,12 +35,10 @@ export default function EditCategory(props) {
         if(currentId === "") { //If no ID, then the object is new
             console.log("we got new one");
             setIsNew(true);
-            setNewCategory(defaultCategory);
             setCategory(defaultCategory);
         }else if(isNaN(currentId)){ //If not a number, ID is invalid, so create new
             console.log("is nan returned true");
             setIsNew(true);
-            setNewCategory(defaultCategory);
             setCategory(defaultCategory);
         }else{ //If ID exist, time to fetch it on the DB
             console.log("This poi Exists");
@@ -49,6 +47,22 @@ export default function EditCategory(props) {
             let resp = fetchAndSetCategory();
         }
     }, [currentId]);
+
+    //Hook to check if the user owns the object
+    useEffect( () => {
+        if(user && category && category.Creator &&
+            user.sub === category.Creator.id){
+            //if the object belongs to the user, edit is enabled
+            setDisable(false);
+        }else if(isNew){
+            //if the object is new or not created yet, edit is enabled
+            setDisable(false);
+        }
+        else{
+            //if object belongs to someone else, disable edit
+            setDisable(true);
+        }
+    }, [user, category]);
 
     //get category from the server
     let fetchAndSetCategory = async () => {
@@ -61,13 +75,11 @@ export default function EditCategory(props) {
         if (response && !response.error) {
             console.log(response);
             setCategory(response);
-            setNewCategory(response);
         }else{
             //if there's an error, we correct it by setting the state to new and default category
             console.log("the missing id has been caught, thus putting isNew to true");
             setIsNew(true);
             setCategory(defaultCategory);
-            setNewCategory(defaultCategory);
         }
     };
 
@@ -86,16 +98,17 @@ export default function EditCategory(props) {
         currentId = 0;
         history.push("/manage/");
     }
+
     //returns a form for category edition/creation/visualisation
     return(
         <div className='edit-wrapper'>
             <div className='div-edit'>
-                {newCategory &&
+                {category &&
                 <Formik
                     initialValues={{
-                        name: newCategory.name,
-                        image: newCategory.image,
-                        group: newCategory.group}}
+                        name: category.name,
+                        image: category.image,
+                        group: category.group}}
                     validate={values => {
                         let errors = {};
                         {/*Check required name*/}
@@ -128,10 +141,8 @@ export default function EditCategory(props) {
                                     values
                                 );
                             }
-                            refreshPage();
-
+                            refreshPage(); //redirects to the good url if needed
                         }, 400);
-
                     }}
                 >
                     {({
@@ -147,7 +158,7 @@ export default function EditCategory(props) {
                         <form onSubmit={handleSubmit}>
                             <span><h4>Name: </h4></span>
                             <input
-                                //disabled={props.isDisplayOnly} /*ReadOnly mod or not*/
+                                disabled={disableEdit} /*ReadOnly mod or not*/
                                 type="text"
                                 name="name"
                                 onChange={handleChange}
@@ -157,8 +168,7 @@ export default function EditCategory(props) {
                             {errors.name && touched.name && errors.name}
                             <span><h4>Image: </h4></span>
                             <input
-                                //disabled={props.isDisplayOnly}
-
+                                disabled={disableEdit} /*ReadOnly mod or not*/
                                 type="text"
                                 name="image"
                                 onChange={handleChange}
@@ -166,27 +176,27 @@ export default function EditCategory(props) {
                                 value={values.image}
                             />
                             {errors.image && touched.image && errors.image}
-                            {newCategory.Creator &&
+                            {category.Creator &&
                             <div>
                                 <div>
-                                    Created at <b>{newCategory.createdAt} </b>
-                                    by <b>{newCategory.Creator.name}</b> (Group {newCategory.group})
+                                    Created at <b>{category.createdAt} </b>
+                                    by <b>{category.Creator.name}</b> (Group {category.group})
                                 </div>
-                                <div>Updated at <b>{newCategory.updatedAt}</b></div>
+                                <div>Updated at <b>{category.updatedAt}</b></div>
                             </div>
                             }
-                            {(isNew || (newCategory.Creator && user && user.sub === newCategory.Creator.id)) &&
+                            {(isNew || (!disableEdit)) &&
                             <Button style={{backgroundColor: 'darkgreen', display: "inline-block", marginTop: '10px'}}
                                     type="submit" disabled={isSubmitting}
                             >
                                 Save changes
                             </Button>
                             }<span>  </span>
-                            {!isNew && newCategory.Creator &&
-                            (user.sub === newCategory.Creator.id) &&
+                            {!isNew && category.Creator &&
+                            (!disableEdit) &&
                             <DeleteModal
                                 buttonLabel={"category"}
-                                currentName={newCategory.name}
+                                currentName={category.name}
                                 className='delete-modal'
                                 deleteClicked={deleteCategory}
                             />
@@ -198,9 +208,9 @@ export default function EditCategory(props) {
                 <br/>
                 <Link className='back-button' to='/manage'>Back</Link>
             </div>
-            {newCategory &&
+            {category &&
             <div className='div-image'>
-                <img src={newCategory.image} style={{maxWidth: '100%'}}/>
+                <img src={category.image} style={{maxWidth: '100%'}}/>
             </div>
             }
         </div>
