@@ -63,8 +63,8 @@ class MyMarker extends React.Component{
         let gr1 = L.icon({
             iconUrl: require('../gr1.svg'),
             iconSize: [45,45],
-            iconAnchor: [45, 45],
-            popupAnchor: null,
+            iconAnchor: [23, 45],
+            popupAnchor:  [0,-40],
             shadowUrl: null,
             shadowSize: null,
             shadowAnchor: null});
@@ -72,8 +72,8 @@ class MyMarker extends React.Component{
         let gr2 = L.icon({
             iconUrl: require('../gr2.svg'),
             iconSize: [45,45],
-            iconAnchor: [45, 45],
-            popupAnchor: null,
+            iconAnchor: [23, 45],
+            popupAnchor:  [0,-40],
             shadowUrl: null,
             shadowSize: null,
             shadowAnchor: null});
@@ -81,8 +81,8 @@ class MyMarker extends React.Component{
         let gr3 = L.icon({
             iconUrl: require('../gr3.svg'),
             iconSize: [45,45],
-            iconAnchor: [45, 45],
-            popupAnchor: null,
+            iconAnchor: [23, 45],
+            popupAnchor:  [0,-40],
             shadowUrl: null,
             shadowSize: null,
             shadowAnchor: null});
@@ -90,8 +90,8 @@ class MyMarker extends React.Component{
         let gr4 = L.icon({
             iconUrl: require('../gr4.svg'),
             iconSize: [45,45],
-            iconAnchor: [45, 45],
-            popupAnchor: null,
+            iconAnchor: [23, 45],
+            popupAnchor:  [0,-40],
             shadowUrl: null,
             shadowSize: null,
             shadowAnchor: null});
@@ -112,7 +112,7 @@ class MyMarker extends React.Component{
         return (
         <>
             <Marker
-                /*icon= {icon}*/
+                icon= {icon}
                 ref={m => { this.leafletPopup = m; }}
                 position={[this.props.poi.lat, this.props.poi.lng]}
             >
