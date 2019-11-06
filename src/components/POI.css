@@ -1,5 +1,5 @@
 .poi {
-    border-bottom: 1px solid #61dafb;
+    border-bottom: 1px solid black;
     margin: 7px;
     padding: 3px;
 }
@@ -41,4 +41,9 @@
 
 .status{
     border-radius: 10px;
+}
+
+.App-link{
+    color: black !important;
+    text-decoration: none !important;
 }

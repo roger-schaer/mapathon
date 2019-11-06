@@ -24,6 +24,9 @@ export default function POIList(props){
     //returns the list of all POIs
     return (
         <header className="poi-list">
+            {props.pois.length == 0 && (
+                <p>Sorry, no POI's available</p>
+            )}
              {props.pois && props.pois.length > 0 && (
                 <ul className="POI-List">
                     {props.pois.map(poi => (
