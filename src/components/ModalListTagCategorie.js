@@ -28,6 +28,7 @@ export default function ModalListTagCategorie(props) {
             <Modal
                 isOpen={props.modal}
                 toggle={props.toggle}
+                style={{width:"400px"}}
             >
                 <ModalHeader toggle={props.toggle}>Add categories to {props.thisPoi.name}</ModalHeader>
                 <ModalBody>
@@ -46,20 +47,22 @@ export default function ModalListTagCategorie(props) {
                             }
                         })
                     }}/>
+                    <table style={{marginLeft : "auto", marginRight : "auto"}}>
                     {props.allItem && props.thisPoiItem && props.thisPoi &&
                     props.allItem.map((item, i) => {
                         for(var j=0; j < props.thisPoiItem.length; j++){
                             if(props.thisPoiItem[j].id === item.id){
                                 return(
-                                    <CheckBoxElement id={item.id} nameElement={item.name} isChecked={true}/>
+                                    <CheckBoxElement id={item.id} nameElement={item.name} isChecked={true} picture={item.image}/>
                                 )
                             }
                         }
                         return(
-                            <CheckBoxElement id={item.id} nameElement={item.name} isChecked={false}/>
+                            <CheckBoxElement id={item.id} nameElement={item.name} isChecked={false} picture={item.image}/>
                         )
                     })
                     }
+                    </table>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={toggleSubmit}>Submit</Button>{' '}
