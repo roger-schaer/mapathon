@@ -39,8 +39,6 @@ export default function Details(props){
     let [isPopupOpen, setIsPopupOpen] = useState(false);
     let [isChangeCategoriesTags, setIsChangeCategoriesTags] = useState(false);
 
-    console.log(props.posClicked);
-
     useEffect(() => {
         let myPoi = request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${'/'+param}`,
@@ -53,7 +51,7 @@ export default function Details(props){
 
     useEffect( () => {
 
-        if(props.posClicked != null){
+        if(props.posClicked != null && !isNaN(currentId)){
             setIsClicked(true);
             defaultPOI.lat = props.posClicked.lat;
             defaultPOI.lng = props.posClicked.lng;
