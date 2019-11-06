@@ -37,7 +37,7 @@
     .help-question {
         table-layout: revert;
         width: 80%;
-        margin-top: 50px;
+        margin-bottom: 50px;
         word-wrap: break-word;
         -webkit-hyphens: auto;
         -moz-hyphens: auto;
@@ -49,6 +49,11 @@
     {
         margin-left: 5px;
         margin-right: 5px;
+    }
+
+    .subtitle
+    {
+        margin-top: 50px;
     }
 }
 /*#endregion computer*/
@@ -93,7 +98,7 @@
         width: 90%;
         alignment: center;
         position: center;
-        margin-top: 50px;
+        margin-bottom: 50px;
         word-wrap: break-word;
         -webkit-hyphens: auto;
         -moz-hyphens: auto;
@@ -108,6 +113,11 @@
         font-size: 23px;
         margin-left: 5px;
         margin-right: 5px;
+    }
+
+    .subtitle
+    {
+        margin-top: 50px;
     }
 }
 

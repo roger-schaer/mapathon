@@ -2,8 +2,16 @@ import React from "react";
 import "./Help.css";
 
 export default class HelpPage extends React.Component{
+  constructor(props){
+    super(props);
 
-  //returns the help page of the application
+  }
+  componentDidMount() {
+  }
+
+  componentWillUnmount() {
+  }
+
   render(){
     return(
       <div className="help-div">
@@ -11,6 +19,9 @@ export default class HelpPage extends React.Component{
           <h1>Help page.</h1>
           <h3 className="help-text">Here you will find all the answers to your questions about using our web app.</h3>
         </div>
+
+        <h2 className="subtitle"> General questions </h2>
+
         <table className="help-question">
           <tr>
             <th colspan="2">&nbsp;
@@ -24,9 +35,8 @@ export default class HelpPage extends React.Component{
               <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
             </p>
               <p className="help-text">Each POI can be edited or deleted, except for the pre-recorded ones.</p>
-            </td>
-            <td>
-
+              <p className="help-text">You also have the possibility to add tags and categories to each of your POI's and to filter with
+                them the displayed points of interest.</p>
             </td>
           </tr>
         </table>
@@ -77,7 +87,7 @@ export default class HelpPage extends React.Component{
           </tr>
         </table>
 
-
+        <h2 className="subtitle"> Managing POIs  </h2>
 
         <table className="help-question">
           <tr>
@@ -89,19 +99,41 @@ export default class HelpPage extends React.Component{
             <td>
               <p className="help-text">
                 <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
-                Hacendosas el entranable levantaban victorioso la. Inmaculada por envidiaron aprovechar eso mil recordando van prescindir.
-                Amado donde que venta sol todos. Van ajenas exacta triste nos con horreo.
-                Cada al cuyo ti loca en lema nina sexo da. Ch va actitudes ha proyectos enfermera pensarian el exagerada pecadoras.
+                In order to create a POI, you must first click on the "add POI" button located on the right,
+                above the list of POIs created so far. Once clicked on this button, a popup will open with 3 buttons:
+                <ul>
+                  <li> Manually</li>
+                  <li> By Clicking</li>
+                  <li> Cancel</li>
+                </ul>
               </p>
             </td>
           </tr>
           <tr>
             <td>
-              <p className="help-text">Empenarse levantate negarselo gr olvidando oh no.
-                Naufrago sufrirla sin maternal sepulcro dio enterada mis director. Restaurar sonadores declaraba artistico su el.
-                Rey harian origen por italia por antojo dia callar. Presenciar chabacanos tristisimo ni excelentes de montaraces te lo.
-                Ahi mal contaduria partiquina cualquiera las. Iba las redor reino fin taner salio segun meras.
+              <p className="help-text">Let's start with manual addition: By clicking on the "Manually" button, a page of details will open,
+                with the possibility of entering all the information. The manual aspect is that it is up to the user to enter the latitude and
+                longitude of your POI so that it can be located on the map. Once this is done, a page summarizing your POI will appear, and by
+                clicking on "Mapathon" at the top left, you will return to the map and see your new POI in the list.
                 <img className="help-img-left" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text">As for the addition by clicking, the operation is identical, with the difference that when you click on
+                "by clicking" a cross-shaped cursor will appear, allowing you to select a point on the map. Once this is done, the same form as
+                for the manual version will appear, with the "Latitude" and "Longitude" fields already filled in. The rest of the process is exactly
+                the same as the manual addition.
+                <img className="help-img-left" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text">
+                If you are having trouble finding your POI after it has been created, you can click on "POIs of the user" to filter the information
+                and display only the POIs you have created.
               </p>
             </td>
           </tr>
@@ -117,8 +149,16 @@ export default class HelpPage extends React.Component{
           </tr>
           <tr>
             <td>
-              <p className="help-text" >When you have selected a POI on the MAP, a popup will open with the main information about it. By clicking on "more info",
-                the following page will open, offering the possibility to edit the different data of the chosen POI.
+              <p className="help-text" >When you click on your POI in the list, or directly on the marker on the map,
+                a popup opens above it with a summary of the POI information. Below is a "Details" button.
+                <img className="help-img-left" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text" >Once clicked on it, a page with information about your POI will appear, and
+                you can, by clicking on the "Edit" button at the top, modify the different fields.
                 <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
               </p>
             </td>
@@ -133,14 +173,133 @@ export default class HelpPage extends React.Component{
           </tr>
           <tr>
             <td>
-              <p className="help-text">The process is the same as for editing. Once the POI has been selected and the detailed information page opened, the Delete button is available.
-                Clicking on it will delete the POI and return you to the map page.
+              <p className="help-text" >When you click on your POI in the list, or directly on the marker on the map,
+                a popup opens above it with a summary of the POI information. Below is a "Details" button.
+                <img className="help-img-left" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text" >Once clicked on it, a page with information about your POI will appear, and
+                you can, by clicking on the "Delete" button at the top, delete the POI.
                 <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
               </p>
             </td>
           </tr>
         </table>
+
+        <h2 className="subtitle"> Managing categories  </h2>
+
+        <table className="help-question">
+          <tr>
+            <th colSpan="2">&nbsp;
+              <h2> How can I add a new category </h2></th>
+            <th>&nbsp; </th>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text">
+                <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+                In the navigation bar at the top is a button "Manage categories and tags". By clicking on it, you will
+                access the page allowing you to add or delete categories.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text">
+                <img className="help-img-left" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+                Then just click on "Add" and fill in the necessary fields, namely a name and url of a and
+                image in .logo or .png format.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+
+
+        <table className="help-question">
+          <tr>
+            <th colSpan="2">&nbsp;
+              <h2>How can I add or remove a category to my POI?</h2></th>
+            <th>&nbsp; </th>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text" >By clicking on a POI or on its marker, y a popup will be opened and you can
+                click on a "Details" button. (Exactly like for the POI edition).
+                <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text" >And so, you could click on "Manage categories"
+                to check or uncheck some tags.
+                <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <h2 className="subtitle"> Managing tags </h2>
+
+        <table className="help-question">
+          <tr>
+            <th colSpan="2">&nbsp;
+              <h2> How can I add a new tag </h2></th>
+            <th>&nbsp; </th>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text">
+                <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+                In the navigation bar at the top is a button "Manage categories and tags". By clicking on it, and
+                selecting the "tag" tab, you will access the page allowing you to add or delete tags.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text">
+                <img className="help-img-left" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+                Then just click on "Add" and fill in the necessary fields, namely a name and url of a and
+                image in .logo or .png format. You can also give a  color to your taf, defining if the POI is in progress (orange),
+                in activity (white), or no longer active.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+
+
+        <table className="help-question">
+          <tr>
+            <th colSpan="2">&nbsp;
+              <h2>How can I add or remove a tag to my POI?</h2></th>
+            <th>&nbsp; </th>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text" >By clicking on a POI or on its marker, y a popup will be opened and you can
+                click on a "Details" button. (Exactly like for the POI edition).
+                <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p className="help-text" >And so, you could click on "Manage tags"
+                to check or uncheck some tags.
+                <img className="help-img-right" src="https://www.ccfmarrakech.com/wp-content/uploads/2018/10/GATE_Mock-Test.jpg"/>
+              </p>
+            </td>
+          </tr>
+        </table>
+
       </div>
+
     );
   }
 }
