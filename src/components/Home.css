@@ -3,9 +3,14 @@
     border-top: 1px solid black;
 }
 
+.add-div{
+   margin: 1vh 0 1vh 0;
+}
+
 .filter-div{
     padding-top: 10px;
     border-bottom: 1px solid black;
+    border-top: 1px solid black;
 }
 
 .map-div {

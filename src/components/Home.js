@@ -9,6 +9,7 @@ import {useAuth0} from "../react-auth0-spa";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Switch from "react-switch";
 import {Link, useHistory} from "react-router-dom";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 export default function HomePage(props){
     let { loginWithRedirect, getTokenSilently } = useAuth0();
@@ -19,9 +20,21 @@ export default function HomePage(props){
     let usr = useAuth0();
     let history = useHistory();
 
+    //Filtering the list
     let [filtergroupe, setFilterGroupe] = useState(false);
     let [filterusr, setFilterUsr] = useState(false);
-    let [groupnr, setGroupnr] = useState(3);
+    let [groupnr, setGroupnr] = useState(1);
+
+    //Attributes for the groupe filtering
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [dropDownValue, setDropDownValue] = useState("Select a groupe");
+    const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
+
+    //Change the value of the dropdown
+    let changeValue = e => {
+        setDropDownValue(e.currentTarget.textContent)
+        setGroupnr(e.currentTarget.textContent.substr(7,1))
+    }
 
     //to save the filtered list of poi's
     let poisnew = pois;
@@ -35,11 +48,11 @@ export default function HomePage(props){
     };
 
     //Customizing the list of POIs
-    if (filtergroupe) {
+    if (filtergroupe && filterusr) {
+        poisnew = pois.filter(poi => poi.group == [groupnr] && poi.Creator.name == [usr.user.name]);
+    } else if (filtergroupe) {
         poisnew = pois.filter(poi => poi.group == [groupnr]);
-    }
-
-    if (filterusr) {
+    } else if (filterusr) {
         poisnew = pois.filter(poi => poi.Creator.name == [usr.user.name]);
     }
 
@@ -113,7 +126,7 @@ export default function HomePage(props){
         setModal(!modal);
     }
 
-    //End new modal
+    //end new modal
 
     // Returns the main div of the application containing the map and the poi list
     return(
@@ -139,8 +152,28 @@ export default function HomePage(props){
                     </Modal>
                 </div>
                 <div className="filter-div">
+                    <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+                        <DropdownToggle caret>
+                            {dropDownValue}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem>
+                                <div onClick={changeValue}>Gruppe 1</div>
+                            </DropdownItem>
+                            <DropdownItem>
+                                <div onClick={changeValue}>Gruppe 2</div>
+                            </DropdownItem>
+                            <DropdownItem>
+                                <div onClick={changeValue}>Gruppe 3</div>
+                            </DropdownItem>
+                            <DropdownItem>
+                                <div onClick={changeValue}>Gruppe 4</div>
+                            </DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+
                     <label htmlFor="normal-switch">
-                        POI's of the group ({groupnr}): &ensp;
+                        Activate Groupefilter &ensp;
                         <Switch
                             onChange={handleFilterGroupe}
                             checked={filtergroupe}
@@ -157,6 +190,7 @@ export default function HomePage(props){
                         />
                     </label>
                 </div>
+
                 {/*Give the POI list*/}
                 <POIList pois={poisnew} poisClick={handlePOIsClick} singlePoiClick={singlePoiClick}/>
             </div>
