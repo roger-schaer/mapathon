@@ -27,6 +27,8 @@ function POIForm(props){
     let newOrEditable = () => {
         if(props.isNew){
             return false;
+        }if(props.isEditMarker){
+            return(props.isEdit);
         }else{
             return !(props.isEdit);
         }
@@ -80,6 +82,7 @@ function POIForm(props){
                                 );
                                 props.setIsEdit(false);
                                 props.setValueButtonEdit("Edit");
+                                props.setIsEditMarker(false);
                            }
                             refreshPage();
 
@@ -162,7 +165,7 @@ function POIForm(props){
                                 <div>Updated at <b>{props.thisPoi.updatedAt}</b></div>
                             </div>
                             }
-                            {(props.isEdit || props.isNew) &&
+                            {(props.isEdit || props.isNew || props.isEditMarker) &&
                             <Button style={{backgroundColor: 'darkgreen', display: "inline-block", marginTop: '10px'}}
                                     type="submit" disabled={isSubmitting}
                             >

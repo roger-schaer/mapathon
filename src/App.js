@@ -20,6 +20,7 @@ import EditTag from "./layouts/EditTag";
 function App(props) {
 
     let [posClicked, setPosClicked] = useState(null);
+    let [isEditMarker, setIsEditMarker] = useState(null);
     let { loading } = useAuth0();
 
   if (loading) {
@@ -32,6 +33,10 @@ function App(props) {
         lngToPass = lng ;
         alert(latToPass.toString() + lngToPass.toString())*/
         setPosClicked({lng: lng, lat: lat});
+    }
+
+    let getEditMarkerState = (editMarkerState) => {
+      setIsEditMarker(editMarkerState) ;
     }
 
   // if the user is loged in
@@ -59,10 +64,10 @@ function App(props) {
                     <ManagePage/>
                 </Route>
                 <Route path="/details">
-                    <Details posClicked = {posClicked}/>
+                    <Details posClicked={posClicked} isEditMarker={isEditMarker} setIsEditMarker={setIsEditMarker}/>
                 </Route>
                 <Route path="/">
-                    <Home callbackHandleNewPoiClicking = {handleNewPoiClicking}/>
+                    <Home callbackHandleNewPoiClicking = {handleNewPoiClicking} callBackEditMarkerState={getEditMarkerState}/>
                 </Route>
             </Switch>
         </div>

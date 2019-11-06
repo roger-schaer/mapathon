@@ -71,6 +71,14 @@ export default class ReactMap extends Component<{}, State> {
         this.setState(state => ({isAdding: !state.isAdding}));
     }
 
+    getEditMarkerState = (editMarkerState) => {
+        this.sendEditMarkerState(editMarkerState)
+    }
+
+    sendEditMarkerState = (editMarkerState) => {
+        this.props.callBackEditMarkerState(editMarkerState);
+    }
+
     //returns a leaflet map with all markers
     render() {
         const position = [this.state.lat, this.state.lng];
@@ -100,7 +108,7 @@ export default class ReactMap extends Component<{}, State> {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                   {/*List of the markers defined by props*/}
-                    <MarkerList lastPoi={this.props.lastPoi} pois={this.props.pois} user={this.props.usr} />
+                    <MarkerList lastPoi={this.props.lastPoi} pois={this.props.pois} user={this.props.usr} callBackEditMarkerState={this.getEditMarkerState} />
                     <Marker position={this.state.currentLatLng} icon={myIcon}>
                         <Popup>You are here.</Popup>
                     </Marker>

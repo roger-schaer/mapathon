@@ -66,6 +66,14 @@ export default function HomePage(props){
         history.push("/details/");
     }
 
+    let getEditMarkerState = (editMarkerState) => {
+        sendEditMarkerState(editMarkerState)
+    }
+
+    let sendEditMarkerState = (editMarkerState) => {
+        props.callBackEditMarkerState(editMarkerState);
+    }
+
     //Send data to App Jonas
     let sendDataLatLng = (lat, lng) => {
         props.callbackHandleNewPoiClicking(lat, lng);
@@ -111,7 +119,7 @@ export default function HomePage(props){
     return(
         <div className="home-div">
             <div className="map-div">
-                <ReactMap pois={poisnew} lastPoi={lastPoiId} ref={mapRef} callbackHandleNewPoiClicking={handleNewPoiClicking} usr={usr}></ReactMap>
+                <ReactMap pois={poisnew} lastPoi={lastPoiId} ref={mapRef} callbackHandleNewPoiClicking={handleNewPoiClicking} callBackEditMarkerState={getEditMarkerState} usr={usr}></ReactMap>
             </div>
             <div className="poi-list-div">
                 <h2>Points of interests</h2>

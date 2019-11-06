@@ -9,6 +9,16 @@ export default function MarkerList(props){
 
     let pois = props.pois;
     //returns the list of all markers
+
+    let getEditMarkerState = (editMarkerState) => {
+        sendEditMarkerState(editMarkerState)
+    }
+
+    let sendEditMarkerState = (editMarkerState) => {
+        props.callBackEditMarkerState(editMarkerState);
+    }
+
+
     return(
         <>
             {/*for each POI we create a marker*/}
@@ -18,7 +28,8 @@ export default function MarkerList(props){
                         <MyMarker
                             usr={props.user}
                             key={poi.id}
-                            lastPoiId={props.lastPoi} poi={poi}/>
+                            lastPoiId={props.lastPoi} poi={poi}
+                            callBackEditMarkerState={getEditMarkerState}/>
                     ))}
                 </>
             )}
@@ -41,6 +52,11 @@ class MyMarker extends React.Component{
         if (this.props.poi.id === this.props.lastPoiId) {
             this.leafletPopup.leafletElement.openPopup();
         }
+    }
+
+    sendEditState = () => {
+        let editMarkerState = true;
+        this.props.callBackEditMarkerState(editMarkerState);
     }
 
     //Design the Popup, above the selected Marker
@@ -133,7 +149,9 @@ class MyMarker extends React.Component{
 
                     </Link>
                     {isHisPoi() &&
-                    <Button className="button-popup">Edit</Button>
+                    <Link className="link-popup" to={"details/"+this.props.poi.id}>
+                        <Button className="button-popup" onClick={this.sendEditState}>Edit</Button>
+                    </Link>
                     }
 
                 </Popup>
@@ -200,10 +218,11 @@ class MyMarker2 extends React.Component{
                             <Button className="button-popup" >
                                 Details
                             </Button>
-
                         </Link>
                         {isHisPoi() &&
-                        <Button className="button-popup">Edit</Button>
+                            <Link className="link-popup" to={"details/"+this.props.poi.id}>
+                                <Button className="button-popup">Edit</Button>
+                            </Link>
                         }
 
                     </Popup>

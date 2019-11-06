@@ -39,6 +39,7 @@ export default function Details(props){
     let [isPopupOpen, setIsPopupOpen] = useState(false);
     let [isChangeCategoriesTags, setIsChangeCategoriesTags] = useState(false);
 
+
     useEffect(() => {
         let myPoi = request(
             `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${'/'+param}`,
@@ -59,6 +60,10 @@ export default function Details(props){
             setIsClicked(false);
         }
 
+        if(props.isEditMarker === true){
+            setValueButtonEdit("Close edit mode")
+        }
+        
         console.log(currentId);
         if(currentId === ""){
             //No id means new Poi
@@ -97,8 +102,9 @@ export default function Details(props){
     }
 
     let onClickEditButton = () => {
-        if(isEdit){
+        if(isEdit || props.isEditMarker){
             setIsEdit(false);
+            props.setIsEditMarker(false);
             setValueButtonEdit("Edit")
         }else{
             setIsEdit(true);
@@ -168,7 +174,7 @@ export default function Details(props){
                     }
                 </div>}
                 <POIForm thisPoi={poi} isEdit={isEdit} setIsEdit={setIsEdit} newPoi={newPOI} currentId={currentId} isNew={isNew} isClicked={isClicked}
-                         setValueButtonEdit={setValueButtonEdit}/>
+                         setValueButtonEdit={setValueButtonEdit} isEditMarker={props.isEditMarker} setIsEditMarker={props.setIsEditMarker}/>
                 {!isEdit && !isNew &&
                 <div className="div-box-and-map">
                     <div style={{textAlign: 'left'}}>
