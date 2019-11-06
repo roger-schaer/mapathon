@@ -11,8 +11,6 @@ const ModalCategories  = (props) => {
         modalTitle,
     } = props;
 
-    const buttonText = "Remove Category";
-
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
@@ -20,7 +18,7 @@ const ModalCategories  = (props) => {
     //returns a modal with the name of the category and its image
     return (
         <>
-            <Button color="primary" onClick={toggle}>{categoryTitle}</Button>
+            <Button color="primary" onClick={toggle} style={{marginRight: '5px'}}>{categoryTitle}</Button>
             <Modal
                 isOpen={modal}
                 toggle={toggle}
@@ -32,7 +30,6 @@ const ModalCategories  = (props) => {
                     <img style={{maxHeight: "30vh", maxWidth: "100%"}} src={props.imageCategorie} alt="POI image"/>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={toggle}>{buttonText}</Button>{' '}
                     <Button color="secondary" onClick={toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>

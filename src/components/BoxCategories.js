@@ -2,39 +2,21 @@ import React, {useState, useEffect} from 'react';
 import ModalCategories from "./ModalCategories";
 import "./Box.css"
 import addLogo from "../assets/add-sign.png"
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import {CheckBoxElement} from "./CheckBoxElement";
+import ModalListTagCategorie from "./ModalListTagCategorie";
 import requestPatch from "../utils/requestPatch";
 import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
-import {useHistory} from "react-router-dom";
 
 export default function BoxCategories(props){
 
     let poiCategories = props.thisPoi.Categories;
-    const [modal, setModal] = useState(false);
     let [arrayCategories, setArrayCategories] = useState([]);
+    const [modal, setModal] = useState(false);
     let { loginWithRedirect, getTokenSilently } = useAuth0();
 
-    //function to toggle modals
-    const toggle = () => setModal(!modal);
+    const toggle = () => setModal(!modal)
 
-    //Control which checkbox are checked and create an array to send to the server.
-    let toggleSubmit = () => {
-        { props.allCategories &&
-            props.allCategories.map((categorie, i) => {
-                let cb = document.getElementById(categorie.id);
-                if (cb != null) {
-                    if (cb.checked === true) {
-                        setArrayCategories(arrayCategories.push(categorie.id))
-                    }
-                }
-            })
-            props.onChangeC(true);
-            saveChangeCategories();
-            toggle();
-        }
-    }
+    let setArrayC = (value) => setArrayCategories(value);
 
     let saveChangeCategories = async () => {
         let response = requestPatch(
@@ -65,37 +47,9 @@ export default function BoxCategories(props){
                 })
             }
 
-            <>
-                {props.thisPoi &&
-                <Modal
-                    isOpen={modal}
-                    toggle={toggle}
-                >
-                    <ModalHeader toggle={toggle}>Add categories to {props.thisPoi.name}</ModalHeader>
-                    <ModalBody>
-                        {props.allCategories && poiCategories && props.thisPoi &&
-                            props.allCategories.map((categorie, i) => {
-                                for(var j=0; j < poiCategories.length; j++){
-                                    if(poiCategories[j].id === categorie.id){
-                                        return(
-                                            <CheckBoxElement id={categorie.id} nameElement={categorie.name} isChecked={true}/>
-                                        )
-                                    }
-                                }
-                                return(
-                                    <CheckBoxElement id={categorie.id} nameElement={categorie.name} isChecked={false}/>
-                                )
-                            })
-                        }
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={toggleSubmit}>Submit</Button>{' '}
-                        <Button color="secondary" onClick={toggle}>Cancel</Button>
-                    </ModalFooter>
-                </Modal>
-                }
-
-            </>
+            <ModalListTagCategorie allItem={props.allCategories} setArrayItem={setArrayC} arrayItem={arrayCategories}
+                                   thisPoiItem={poiCategories} onChangeTC={props.onChangeC} modal={modal} setModal={setModal}
+                                   toggle={toggle} thisPoi={props.thisPoi} saveChange={saveChangeCategories}/>
 
         </div>
 

@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
 import addLogo from "../assets/add-sign.png";
 import Tag from "./Tag";
-import ModalCategories from "./ModalCategories";
 import {useAuth0} from "../react-auth0-spa";
-import {Link, useHistory} from "react-router-dom";
-import {CheckBoxElement} from "./CheckBoxElement";
 import requestPatch from "../utils/requestPatch";
 import endpoints from "../endpoints";
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import ModalListTagCategorie from "./ModalListTagCategorie";
 
 export default function BoxTags(props) {
 
@@ -19,20 +16,7 @@ export default function BoxTags(props) {
     //function to toggle modals
     const toggle = () => setModal(!modal);
 
-    //Control which checkbox are checked and create an array to send to the server.
-    let toggleSubmit = () => {
-        props.allTags.map((tag, i) => {
-            let cb = document.getElementById(tag.id);
-            if (cb != null) {
-                if (cb.checked === true) {
-                    setArrayTags(arrayTags.push(tag.id))
-                }
-            }
-        })
-        props.onChangeT(true);
-        saveChangeTags();
-        toggle();
-    }
+    let setArrayT = (value) => setArrayTags(value);
 
     let saveChangeTags = async () => {
         let response = requestPatch(
@@ -57,7 +41,6 @@ export default function BoxTags(props) {
 
             {
                 poiTags && poiTags.map(function(item, i){
-                    console.log(item)
                     return <Tag
                         tagToDisplay = {item}
                         key={i}
@@ -65,37 +48,9 @@ export default function BoxTags(props) {
                 })
             }
 
-            <>
-                {props.thisPoi &&
-                <Modal
-                    isOpen={modal}
-                    toggle={toggle}
-                >
-                    <ModalHeader toggle={toggle}>Add tags to {props.thisPoi.name}</ModalHeader>
-                    <ModalBody>
-                        {props.allTags && poiTags && props.thisPoi &&
-                        props.allTags.map((tag, i) => {
-                            for(var j=0; j < poiTags.length; j++){
-                                if(poiTags[j].id === tag.id){
-                                    return(
-                                        <CheckBoxElement id={tag.id} nameElement={tag.name} isChecked={true}/>
-                                    )
-                                }
-                            }
-                            return(
-                                <CheckBoxElement id={tag.id} nameElement={tag.name} isChecked={false}/>
-                            )
-                        })
-                        }
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={toggleSubmit}>Submit</Button>{' '}
-                        <Button color="secondary" onClick={toggle}>Cancel</Button>
-                    </ModalFooter>
-                </Modal>
-                }
-
-            </>
+            <ModalListTagCategorie allItem={props.allTags} setArrayItem={setArrayT} arrayItem={arrayTags}
+                                   thisPoiItem={poiTags} onChangeTC={props.onChangeT} modal={modal} setModal={setModal} toggle={toggle} thisPoi={props.thisPoi}
+                                   saveChange={saveChangeTags}/>
 
         </div>
     );
