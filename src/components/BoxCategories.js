@@ -38,7 +38,7 @@ export default function BoxCategories(props){
             </div>
 
             {
-                poiCategories && poiCategories.map(function(item, i){
+                poiCategories && poiCategories.sort((a, b) => (a.name > b.name) ? 1 : -1).map(function(item, i){
                     return <ModalCategories
                         imageCategorie = {item.image}
                         key={i}
@@ -47,7 +47,7 @@ export default function BoxCategories(props){
                 })
             }
 
-            <ModalListTagCategorie allItem={props.allCategories} setArrayItem={setArrayC} arrayItem={arrayCategories}
+            <ModalListTagCategorie allItem={props.allCategories.sort((a, b) => (a.name > b.name) ? 1 : -1)} setArrayItem={setArrayC} arrayItem={arrayCategories}
                                    thisPoiItem={poiCategories} onChangeTC={props.onChangeC} modal={modal} setModal={setModal}
                                    toggle={toggle} thisPoi={props.thisPoi} saveChange={saveChangeCategories}/>
 

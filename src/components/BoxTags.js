@@ -40,7 +40,7 @@ export default function BoxTags(props) {
             </div>
 
             {
-                poiTags && poiTags.map(function(item, i){
+                poiTags && poiTags.sort((a, b) => (a.name > b.name) ? 1 : -1).map(function(item, i){
                     return <Tag
                         tagToDisplay = {item}
                         key={i}
@@ -48,7 +48,7 @@ export default function BoxTags(props) {
                 })
             }
 
-            <ModalListTagCategorie allItem={props.allTags} setArrayItem={setArrayT} arrayItem={arrayTags}
+            <ModalListTagCategorie allItem={props.allTags.sort((a, b) => (a.name > b.name) ? 1 : -1)} setArrayItem={setArrayT} arrayItem={arrayTags}
                                    thisPoiItem={poiTags} onChangeTC={props.onChangeT} modal={modal} setModal={setModal} toggle={toggle} thisPoi={props.thisPoi}
                                    saveChange={saveChangeTags}/>
 

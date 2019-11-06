@@ -15,9 +15,10 @@ export function CheckBoxElement(props) {
     }
 
     return(
-        <div style={{display:"block"}}>
-            <input type="checkbox" id={props.id} name={props.nameElement} onChange={manageChange} checked={isChecked}/>
-            <label htmlFor={props.nameCategorie}>{props.nameElement}</label>
+        <div id={"divCb"} id={props.id+"div"}>
+            <label htmlFor={props.id} id={"label"}>
+                {props.nameElement}<input type="checkbox" id={props.id} name={props.nameElement} onChange={manageChange} checked={isChecked}/>
+            </label>
             <hr color="black"/>
         </div>
     )
