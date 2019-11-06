@@ -63,7 +63,7 @@ export default function Details(props){
         if(props.isEditMarker === true){
             setValueButtonEdit("Close edit mode")
         }
-        
+
         console.log(currentId);
         if(currentId === ""){
             //No id means new Poi
