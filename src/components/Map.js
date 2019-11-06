@@ -41,9 +41,9 @@ export default class ReactMap extends Component<{}, State> {
                 }
             )
         } else {
-            console.log("Error")
+            console.log("Error");
         }
-    }
+    };
 
     componentDidMount(): void {
         this.getGeoLocation();
@@ -73,12 +73,12 @@ export default class ReactMap extends Component<{}, State> {
 
     //returns a leaflet map with all markers
     render() {
-        const position = [this.state.lat, this.state.lng]
+        const position = [this.state.lat, this.state.lng];
 
         const myIcon = L.icon({
             iconUrl: require('../userMarker.svg'),
             iconSize: [58,58],
-            iconAnchor: [58, 58],
+            iconAnchor: [29, 58],
             popupAnchor: null,
             shadowUrl: null,
             shadowSize: null,

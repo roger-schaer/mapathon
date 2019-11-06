@@ -1,0 +1,22 @@
+.div-box-and-map{
+    box-sizing: border-box;
+    height: 320px;
+}
+
+.div-box{
+    float: left;
+    padding-left: 15px;
+}
+
+.div-preview-map{
+    float: right;
+    height: 100%;
+    max-height: 100%;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+.div-button{
+    text-align: left;
+    padding-left: 20px;
+}
