@@ -27,6 +27,8 @@ function POIForm(props){
     let newOrEditable = () => {
         if(props.isNew){
             return false;
+        }if(props.isEditMarker){
+            return(props.isEdit);
         }else{
             return !(props.isEdit);
         }
@@ -39,9 +41,9 @@ function POIForm(props){
           </div>
 
           <div className='detail-content'>
-              <Link to='/' className='back-button'>Back</Link>
               {props.newPoi &&
               <Formik
+                  enableReinitialize
                 initialValues={{    name: props.newPoi.name,
                     description: props.newPoi.description,
                     lat: props.newPoi.lat,
@@ -62,27 +64,21 @@ function POIForm(props){
                         alert(JSON.stringify(values, null, 2));
                         setSubmitting(false);
 
-                        if(props.isNew){
-                            let response = await RequestPost(`${process.env.REACT_APP_SERVER_URL}${endpoints.pois}`,
-                              getTokenSilently,
-                              loginWithRedirect,
-                              values
-                            );
-                            alert(response);
-                            console.log(response);
-                            console.log(response.id);
-                            currentId = response.id ;
-                        }else{
-                            let response = await requestPatch(
-                              `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${currentId}`,
-                              getTokenSilently,
-                              loginWithRedirect,
-                              values
-                            );
-                            props.setIsEdit(false);
-                            props.setValueButtonEdit("Edit");
-                        }
-                        refreshPage();
+                            if(props.isNew){
+                                let response = await RequestPost(`${process.env.REACT_APP_SERVER_URL}${endpoints.pois}`,
+                                    getTokenSilently,
+                                    loginWithRedirect,
+                                    values
+                                );
+                                alert(response);
+                                console.log(response);
+                                console.log(response.id);
+                                currentId = response.id ;
+                            }else{
+                                props.editPoi(values) ;
+                                props.setValueButtonEdit("Edit");
+                           }
+                            /*refreshPage();*/
 
                     }, 400);
                 }}
