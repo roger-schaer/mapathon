@@ -2,5 +2,7 @@
   "pois": "/poi/",
   "categories": "/category/",
   "tags": "/tag/",
-  "status": "/status"
+  "status": "/status",
+  "like": "/like",
+  "unlike": "/unlike"
 }

@@ -3,7 +3,6 @@ import POIForm from "./POIForm";
 import BoxCategories from "./BoxCategories";
 import BoxTags from "./BoxTags";
 import {Button} from 'reactstrap';
-import {Argv as queryString} from "yargs";
 import {useAuth0} from "../react-auth0-spa";
 import request from "../utils/request";
 import endpoints from "../endpoints";
@@ -13,6 +12,7 @@ import {Link, useHistory} from "react-router-dom";
 import PreviewMap from "./PreviewMap";
 import "./Details.css";
 import requestPatch from "../utils/requestPatch";
+import LikesBox from "./LikesBox";
 
 export default function Details(props){
 
@@ -24,9 +24,6 @@ export default function Details(props){
     let [poi, setPoi] = useState(0)
     let { loginWithRedirect, getTokenSilently } = useAuth0();
     let [isLoaded, setIsLoaded] = useState(false);
-
-    let [isGoodUser, setIsGoodUser] = useState(false);
-
     let currentUser = useAuth0().user;
     let poiCreator = poi.Creator;
     let [isEdit, setIsEdit] = useState(false);
@@ -40,6 +37,8 @@ export default function Details(props){
     let [isPosEdited, setIsPosEdited] = useState(false);
     let [isPopupOpen, setIsPopupOpen] = useState(false);
     let [isChangeCategoriesTags, setIsChangeCategoriesTags] = useState(false);
+    let [isChangeLike, setIsChangeLike] = useState(false)
+    let [isLiked, setIsLiked] = useState(false);
 
     //Status
     let [status, setStatus] = useState([]);
@@ -148,6 +147,7 @@ export default function Details(props){
     }, []);
 
     let onChangeCategoriesTag = (value) => setIsChangeCategoriesTags(value);
+    let onChangeLike = (value) => setIsChangeLike(value);
 
     // get all the POI informations
     let fetchCategoriesAndTags = async () => {
@@ -189,6 +189,9 @@ export default function Details(props){
 
         return(
             <div>
+
+                <LikesBox thisPoi={poi} onChangeLike={onChangeLike}/>
+
                 {(poiCreator && currentUser.sub === poiCreator.id) &&
                 <div className='div-button'>
                     <Link to='/' className='back-button' style={{verticalAlign: 'bottom'}}>Back</Link><span> </span>
