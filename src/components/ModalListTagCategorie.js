@@ -1,7 +1,6 @@
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {CheckBoxElement} from "./CheckBoxElement";
 import React, {useState, useEffect} from "react";
-import "./ModalListTagCategorie.css"
 
 export default function ModalListTagCategorie(props) {
 
