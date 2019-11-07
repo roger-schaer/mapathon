@@ -10,6 +10,7 @@ import endpoints from "../endpoints";
 import {useAuth0} from "../react-auth0-spa";
 import addLogo from "../assets/add-sign.png";
 import {Link} from "react-router-dom";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 const ManagePage = (props) => {
 
@@ -19,32 +20,48 @@ const ManagePage = (props) => {
 
     //Filtering
     let usr = useAuth0();
-    let [filtergroupe, setFilterGroupe] = useState(false);
     let [filterusr, setFilterUsr] = useState(false);
     let [groupnr, setGroupnr] = useState(3);
     let categoriesnew = categories;
     let tagsnew = tags;
 
+    //Attribute Dropdown
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [dropDownValue, setDropDownValue] = useState("All");
+    const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
+
+
     useEffect(() => {
         fetchCategoriesAndTags();
     }, []);
 
-    let handleFilterGroupe = e => {
-        setFilterGroupe(!filtergroupe);
-    };
+    //Change the value of the dropdown
+    let changeValue = e => {
+        setDropDownValue(e.currentTarget.textContent)
+        if(e.currentTarget.textContent == "All"){
+            setGroupnr(10)
+        } else {
+            setGroupnr(e.currentTarget.textContent.substr(6,1))
+        }
+    }
+
 
     let handleFilterUser = e => {
         setFilterUsr(!filterusr);
     };
 
-    if (filtergroupe) {
-        categoriesnew = categories.filter(categorie => categorie.group == [groupnr]);
-        tagsnew = tags.filter(tag => tag.group == [groupnr]);
-    }
-
-    if (filterusr) {
+    if(groupnr == 10 && filterusr){
         categoriesnew = categories.filter(categorie => categorie.Creator.name == [usr.user.name]);
         tagsnew = tags.filter(tag => tag.Creator.name == [usr.user.name]);
+    } else if(groupnr == 10){
+        tagsnew = tags;
+        categoriesnew = categories;
+    } else if(groupnr != 10 && filterusr){
+        tagsnew = tags.filter(tag => tag.Creator.name == [usr.user.name]) && tags.filter(tag => tag.group == [groupnr]);
+        categoriesnew = categories.filter(categorie => categorie.Creator.name == [usr.user.name]) && categories.filter(categorie => categorie.group == [groupnr]);
+    } else if (groupnr != 10 ){
+        categoriesnew = categories.filter(categorie => categorie.group == [groupnr]);
+        tagsnew = tags.filter(tag => tag.group == [groupnr]);
     }
 
     // get all the POI informations
@@ -86,17 +103,30 @@ const ManagePage = (props) => {
     return(
         <div className='div-manage'>
             <div className="filter-div">
+                <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+                    <DropdownToggle caret>
+                        {dropDownValue}
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <div onClick={changeValue}>All</div>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <div onClick={changeValue}>Group 1</div>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <div onClick={changeValue}>Group 2</div>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <div onClick={changeValue}>Group 3</div>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <div onClick={changeValue}>Group 4</div>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
                 <label htmlFor="normal-switch">
-                    POI's of the group ({groupnr}): &ensp;
-                    <Switch
-                        onChange={handleFilterGroupe}
-                        checked={filtergroupe}
-                        id="normal-switch"
-                    />
-                </label>
-                <br/>
-                <label htmlFor="normal-switch">
-                    POI's of the user: &ensp;
+                    POI's of the user &ensp;
                     <Switch
                         onChange={handleFilterUser}
                         checked={filterusr}
