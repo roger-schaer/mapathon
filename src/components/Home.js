@@ -16,7 +16,8 @@ export default function HomePage(props){
     let [pois, setPois] = useState([]); //Only one POI list (for the state)
     let [lastPoiId, setLastPoi] = useState(0);
     let mapRef = React.createRef();
-    let [latToPass, lngToPass] = useState(0);
+    let [latToPass, setLatToPass] = useState(0);
+    let [lngToPass, setLngToPass] = useState(0);
     let usr = useAuth0();
     let history = useHistory();
 
@@ -73,19 +74,19 @@ export default function HomePage(props){
 
     //Callback function to get lat and lng Jonas
     let handleNewPoiClicking = (lat, lng) => {
-        latToPass = lat;
-        lngToPass = lng;
+        setLatToPass(lat);
+        setLngToPass(lng);
         sendDataLatLng(latToPass, lngToPass);
         history.push("/details/");
     }
 
     let getEditMarkerState = (editMarkerState) => {
         sendEditMarkerState(editMarkerState)
-    }
+    };
 
     let sendEditMarkerState = (editMarkerState) => {
         props.callBackEditMarkerState(editMarkerState);
-    }
+    };
 
     //Send data to App Jonas
     let sendDataLatLng = (lat, lng) => {

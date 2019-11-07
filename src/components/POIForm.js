@@ -27,8 +27,6 @@ function POIForm(props){
     let newOrEditable = () => {
         if(props.isNew){
             return false;
-        }if(props.isEditMarker){
-            return(props.isEdit);
         }else{
             return !(props.isEdit);
         }
@@ -43,6 +41,7 @@ function POIForm(props){
             <div className='detail-content'>
                 {props.newPoi &&
                 <Formik
+                    enableReinitialize
                         initialValues={{    name: props.newPoi.name,
                                             description: props.newPoi.description,
                                             lat: props.newPoi.lat,
@@ -60,7 +59,7 @@ function POIForm(props){
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         setTimeout(async() => {
-                            alert(JSON.stringify(values, null, 2));
+                           alert(JSON.stringify(values, null, 2));
                             setSubmitting(false);
 
                             if(props.isNew){
@@ -74,17 +73,10 @@ function POIForm(props){
                                 console.log(response.id);
                                 currentId = response.id ;
                             }else{
-                                let response = await requestPatch(
-                                    `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${currentId}`,
-                                    getTokenSilently,
-                                    loginWithRedirect,
-                                    values
-                                );
-                                props.setIsEdit(false);
+                                props.editPoi(values) ;
                                 props.setValueButtonEdit("Edit");
-                                props.setIsEditMarker(false);
                            }
-                            refreshPage();
+                            /*refreshPage();*/
 
                         }, 400);
                     }}
@@ -165,7 +157,7 @@ function POIForm(props){
                                 <div>Updated at <b>{props.thisPoi.updatedAt}</b></div>
                             </div>
                             }
-                            {(props.isEdit || props.isNew || props.isEditMarker) &&
+                            {(props.isEdit || props.isNew ) &&
                             <Button style={{backgroundColor: 'darkgreen', display: "inline-block", marginTop: '10px'}}
                                     type="submit" disabled={isSubmitting}
                             >

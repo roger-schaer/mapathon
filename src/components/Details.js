@@ -12,6 +12,7 @@ import DeleteModal from "./DeleteModal";
 import {Link, useHistory} from "react-router-dom";
 import PreviewMap from "./PreviewMap";
 import "./Details.css";
+import requestPatch from "../utils/requestPatch";
 
 export default function Details(props){
 
@@ -36,6 +37,7 @@ export default function Details(props){
     let [isClicked, setIsClicked] = useState(false);
     let [categories, setCategories] = useState([]);
     let [tags, setTags] = useState([]);
+    let [isPosEdited, setIsPosEdited] = useState(false);
     let [isPopupOpen, setIsPopupOpen] = useState(false);
     let [isChangeCategoriesTags, setIsChangeCategoriesTags] = useState(false);
 
@@ -48,7 +50,7 @@ export default function Details(props){
             setIsLoaded(true)
         ).then(token => {setPoi(token)} );
         setIsChangeCategoriesTags(false);
-    }, [isChangeCategoriesTags]);
+    }, [isChangeCategoriesTags, isPosEdited]);
 
     useEffect( () => {
 
@@ -60,8 +62,10 @@ export default function Details(props){
             setIsClicked(false);
         }
 
-        if(props.isEditMarker === true){
-            setValueButtonEdit("Close edit mode")
+        if(props.isEditMarker !== null){
+            setIsEdit(props.isEditMarker);
+            props.setIsEditMarker(null);
+            setValueButtonEdit("Close edit mode");
         }
 
         console.log(currentId);
@@ -102,9 +106,8 @@ export default function Details(props){
     }
 
     let onClickEditButton = () => {
-        if(isEdit || props.isEditMarker){
+        if(isEdit){
             setIsEdit(false);
-            props.setIsEditMarker(false);
             setValueButtonEdit("Edit")
         }else{
             setIsEdit(true);
@@ -122,6 +125,19 @@ export default function Details(props){
         console.log(response);
         currentId = 0;
         history.push("/home");
+    };
+
+    let editPoi = async (values) => {
+        let response = await requestPatch(
+            `${process.env.REACT_APP_SERVER_URL}${endpoints.pois}${currentId}`,
+            getTokenSilently,
+            loginWithRedirect,
+            values
+        );
+        if(response){
+            setIsPosEdited(!isPosEdited);
+        }
+        setIsEdit(false);
     };
 
     useEffect(() => {
@@ -157,7 +173,7 @@ export default function Details(props){
         return;
     };
 
-        return(
+    return(
             <div>
                 {(poiCreator && currentUser.sub === poiCreator.id) &&
                 <div className='div-button'>
@@ -174,7 +190,7 @@ export default function Details(props){
                     }
                 </div>}
                 <POIForm thisPoi={poi} isEdit={isEdit} setIsEdit={setIsEdit} newPoi={newPOI} currentId={currentId} isNew={isNew} isClicked={isClicked}
-                         setValueButtonEdit={setValueButtonEdit} isEditMarker={props.isEditMarker} setIsEditMarker={props.setIsEditMarker}/>
+                         setValueButtonEdit={setValueButtonEdit} editPoi={editPoi}/>
                 {!isEdit && !isNew &&
                 <div className="div-box-and-map">
                     <div style={{textAlign: 'left'}}>
@@ -188,9 +204,8 @@ export default function Details(props){
                     {/*Preview map*/}
                     {poi.lat && poi.lng &&
                     <div className="div-preview-map">
-                        <PreviewMap lat={poi.lat} lng={poi.lng}/>
+                        <PreviewMap lat={poi.lat} lng={poi.lng} editPoi={editPoi}/>
                     </div>
-
                     }
 
                 </div>}
