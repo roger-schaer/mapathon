@@ -6,7 +6,7 @@ import NavLink from "reactstrap/lib/NavLink";
 export default function LogoutButton(){
     let usr = useAuth0();
     if(usr.isAuthenticated){
-        return <NavLink onClick={usr.logout} href="#">Change User</NavLink>
+        return <NavLink onClick={usr.logout} href="/">Change User</NavLink>
     }
     return <NavLink></NavLink>
 }
