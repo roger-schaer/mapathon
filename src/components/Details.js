@@ -39,6 +39,9 @@ export default function Details(props){
     let [isPopupOpen, setIsPopupOpen] = useState(false);
     let [isChangeCategoriesTags, setIsChangeCategoriesTags] = useState(false);
 
+    //Status
+    let [status, setStatus] = useState([]);
+    let [test, setTest] = useState(1);
 
     useEffect(() => {
         let myPoi = request(
@@ -154,6 +157,17 @@ export default function Details(props){
         if (responseTag && responseTag.length > 0) {
             setTags(responseTag);
         }
+
+        let responseStat = await request(
+            `${process.env.REACT_APP_SERVER_URL}${endpoints.status}`,
+            getTokenSilently,
+            loginWithRedirect
+        );
+
+        if (responseStat && responseStat.length > 0) {
+            setStatus(responseStat);
+        }
+
         return;
     };
 
@@ -173,8 +187,19 @@ export default function Details(props){
                         deleteClicked={deletePoi}/>
                     }
                 </div>}
+
+                <div>
+                    {test}
+                    {status && (
+                        <span className="status">
+                            <small>{status.name}</small>
+                        </span>
+                    )}
+                </div>
+
                 <POIForm thisPoi={poi} isEdit={isEdit} setIsEdit={setIsEdit} newPoi={newPOI} currentId={currentId} isNew={isNew} isClicked={isClicked}
                          setValueButtonEdit={setValueButtonEdit} isEditMarker={props.isEditMarker} setIsEditMarker={props.setIsEditMarker}/>
+
                 {!isEdit && !isNew &&
                 <div className="div-box-and-map">
                     <div style={{textAlign: 'left'}}>
@@ -184,7 +209,6 @@ export default function Details(props){
                         <BoxCategories thisPoi={poi} currentId={currentId} currentUser={currentUser} allCategories={categories} onChangeC={onChangeCategoriesTag}/>
                         <BoxTags thisPoi={poi} currentUser={currentUser} currentUser={currentUser} allTags={tags} onChangeT={onChangeCategoriesTag}/>
                     </div>
-
                     {/*Preview map*/}
                     {poi.lat && poi.lng &&
                     <div className="div-preview-map">

@@ -10,6 +10,8 @@ import requestPatch from "../utils/requestPatch";
 
 function POIForm(props){
 
+    const { Categories, Tags, User, Status } = props;
+
     let { loginWithRedirect, getTokenSilently } = useAuth0();
     let url = window.location.href;
     let history = useHistory();

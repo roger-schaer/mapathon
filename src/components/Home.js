@@ -27,13 +27,13 @@ export default function HomePage(props){
 
     //Attributes for the groupe filtering
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [dropDownValue, setDropDownValue] = useState("Select a groupe");
+    const [dropDownValue, setDropDownValue] = useState("Select a group");
     const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 
     //Change the value of the dropdown
     let changeValue = e => {
         setDropDownValue(e.currentTarget.textContent)
-        setGroupnr(e.currentTarget.textContent.substr(7,1))
+        setGroupnr(e.currentTarget.textContent.substr(6,1))
     }
 
     //to save the filtered list of poi's
@@ -135,7 +135,7 @@ export default function HomePage(props){
                 <ReactMap pois={poisnew} lastPoi={lastPoiId} ref={mapRef} callbackHandleNewPoiClicking={handleNewPoiClicking} callBackEditMarkerState={getEditMarkerState} usr={usr}></ReactMap>
             </div>
             <div className="poi-list-div">
-                <h2>Points of interests</h2>
+                <h3>Points of interests</h3>
                 <div className="add-div">
                     <Button onClick={toggle} className="Button-addPoi">{buttonLabel}</Button>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
@@ -158,22 +158,22 @@ export default function HomePage(props){
                         </DropdownToggle>
                         <DropdownMenu>
                             <DropdownItem>
-                                <div onClick={changeValue}>Gruppe 1</div>
+                                <div onClick={changeValue}>Group 1</div>
                             </DropdownItem>
                             <DropdownItem>
-                                <div onClick={changeValue}>Gruppe 2</div>
+                                <div onClick={changeValue}>Group 2</div>
                             </DropdownItem>
                             <DropdownItem>
-                                <div onClick={changeValue}>Gruppe 3</div>
+                                <div onClick={changeValue}>Group 3</div>
                             </DropdownItem>
                             <DropdownItem>
-                                <div onClick={changeValue}>Gruppe 4</div>
+                                <div onClick={changeValue}>Group 4</div>
                             </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
 
                     <label htmlFor="normal-switch">
-                        Activate Groupefilter &ensp;
+                        Activate filter by Groupe &ensp;
                         <Switch
                             onChange={handleFilterGroupe}
                             checked={filtergroupe}
@@ -193,9 +193,6 @@ export default function HomePage(props){
 
                 {/*Give the POI list*/}
                 <POIList pois={poisnew} poisClick={handlePOIsClick} singlePoiClick={singlePoiClick}/>
-            </div>
-            <div>
-                <Footer/>
             </div>
         </div>
     );
