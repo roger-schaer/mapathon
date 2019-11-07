@@ -10,11 +10,15 @@ export default function LikesBox(props){
     let [valueBtn, setValueBtn] = useState("Bug to correct");
 
     let initializeButton = () => {
-        console.log("SolveBug")
+        if(poi.liked){
+            setValueBtn("POI Liké")
+        }else{
+            setValueBtn("POI non liké")
+        }
     }
 
     let onClickButton = () => {
-        if(props.thisPoi.liked){
+        if(poi.liked){
             saveUnlike();
         }else{
             saveLike();
@@ -39,12 +43,20 @@ export default function LikesBox(props){
         ).then((token) => (console.log(token)));
     }
 
+    let button;
+
+    if(poi.likes){
+        button = <button onClick={onClickButton} id={"btnLike"}>Poi liké</button>
+    }else{
+        button = <button onClick={onClickButton} id={"btnLike"}>Poi non liké</button>
+    }
+
     return(
         <div>
-            { props.thisPoi &&
+            {props.thisPoi &&
                 <div>
                     <label>Likes : {poi.likes}</label>
-                    <button onClick={onClickButton} id={"btnLike"}>POI non liké</button>
+                    {button}
                 </div>
             }
         </div>

@@ -37,8 +37,7 @@ export default function Details(props){
     let [isPosEdited, setIsPosEdited] = useState(false);
     let [isPopupOpen, setIsPopupOpen] = useState(false);
     let [isChangeCategoriesTags, setIsChangeCategoriesTags] = useState(false);
-    let [isChangeLike, setIsChangeLike] = useState(false)
-    let [isLiked, setIsLiked] = useState(false);
+    let [isChangeLike, setIsChangeLike] = useState(false);
 
     //Status
     let [status, setStatus] = useState([]);
@@ -52,7 +51,8 @@ export default function Details(props){
             setIsLoaded(true)
         ).then(token => {setPoi(token)} );
         setIsChangeCategoriesTags(false);
-    }, [isChangeCategoriesTags, isPosEdited]);
+        setIsChangeLike(false);
+    }, [isChangeCategoriesTags, isPosEdited, isChangeLike]);
 
     useEffect( () => {
 
