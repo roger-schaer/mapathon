@@ -1,5 +1,6 @@
 {
   "pois": "/poi/",
   "categories": "/category/",
-  "tags": "/tag/"
+  "tags": "/tag/",
+  "status": "/status"
 }

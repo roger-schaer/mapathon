@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Marker, Popup} from "react-leaflet";
 import Button from "reactstrap/es/Button";
 import './Popup.css';
+import './POI.css';
 import {Link, useHistory} from "react-router-dom";
 import L from "leaflet";
 
@@ -44,6 +45,7 @@ class MyMarker extends React.Component{
         super(props);
         this.hRef = React.createRef(); //the reference of the marker
     }
+
 
     componentDidUpdate(): void {
         //if the marker id is the same as the last poi clicked,
@@ -134,6 +136,18 @@ class MyMarker extends React.Component{
             >
                 <Popup className="popup">
                     <div className="informations-popup">
+                        {this.props.poi.Categories && this.props.poi.Categories.length > 0 && (
+                            <div className="categories">
+                                {this.props.poi.Categories.map(category => (
+                                    <span className="category" key={category.id}>
+                        {category.image && (
+                            <img className="category-image" src={category.image} />
+                        )}
+                                        <small> {category.name}</small>
+                    </span>
+                                ))}
+                            </div>
+                        )}
                         <h3>
                            {this.props.poi.name}
                         </h3>

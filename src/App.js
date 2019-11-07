@@ -70,6 +70,7 @@ function App(props) {
                     <Home callbackHandleNewPoiClicking = {handleNewPoiClicking} callBackEditMarkerState={getEditMarkerState}/>
                 </Route>
             </Switch>
+            <FooterSection/>
         </div>
       </Router>
 
