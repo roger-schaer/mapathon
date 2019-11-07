@@ -41,7 +41,6 @@ function POIForm(props){
           </div>
 
           <div className='detail-content'>
-              <Link to='/' className='back-button'>Back</Link>
               {props.newPoi &&
               <Formik
                   enableReinitialize
