@@ -25,11 +25,11 @@ export function CheckBoxElement(props) {
     }
 
     return(
-        <tr id={props.id+"div"} style={styleTab}>
-            <td><input type="checkbox" id={props.id} name={props.nameElement} onChange={manageChange} checked={isChecked} style={styleCb}/></td>
-            <td style={styleLigne}><label htmlFor={props.id} id={"label"}>{props.nameElement}</label></td>
-            <td><img src={isImageExists()} style={styleImg}/></td>
-        </tr>
+      <tr id={props.id+"div"} style={styleTab}>
+          <td style ={styleCheckBox}><input type="checkbox" id={props.id} name={props.nameElement} onChange={manageChange} checked={isChecked} style={styleCb}/></td>
+          <td style={styleLigne}><label htmlFor={props.id} id={"label"}>{props.nameElement}</label></td>
+          <td><img src={isImageExists()} style={styleImg}/></td>
+      </tr>
     )
 }
 
@@ -49,3 +49,8 @@ const styleTab = {
 const styleLigne = {
     paddingRight : "180px"
 }
+
+const styleCheckBox = {
+    padding: "10px"
+}
+
