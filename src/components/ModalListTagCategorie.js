@@ -52,12 +52,12 @@ export default function ModalListTagCategorie(props) {
                         for(var j=0; j < props.thisPoiItem.length; j++){
                             if(props.thisPoiItem[j].id === item.id){
                                 return(
-                                    <CheckBoxElement id={item.id} nameElement={item.name} isChecked={true} picture={item.image}/>
+                                    <CheckBoxElement id={item.id} nameElement={item.name} isChecked={true} picture={item.image} key={item.id}/>
                                 )
                             }
                         }
                         return(
-                            <CheckBoxElement id={item.id} nameElement={item.name} isChecked={false} picture={item.image}/>
+                            <CheckBoxElement id={item.id} nameElement={item.name} isChecked={false} picture={item.image} key={item.id}/>
                         )
                     })
                     }
