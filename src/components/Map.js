@@ -3,7 +3,6 @@ import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import L from 'leaflet';
 import "./Map.css";
 import MarkerList from "./MarkerList";
-import {Button} from 'reactstrap';
 
 type State = {
     lat: number,
@@ -76,10 +75,6 @@ export default class ReactMap extends Component<{}, State> {
         this.sendEditMarkerState(editMarkerState)
     }
 
-    addPoiOnUserPos = () => {
-        this.sendDataLatLng(this.state.currentLatLng.lat, this.state.currentLatLng.lng);
-    }
-
     sendEditMarkerState = (editMarkerState) => {
         this.props.callBackEditMarkerState(editMarkerState);
     }
@@ -92,7 +87,7 @@ export default class ReactMap extends Component<{}, State> {
             iconUrl: require('../userMarker.svg'),
             iconSize: [58,58],
             iconAnchor: [29, 58],
-            popupAnchor: [0, -58],
+            popupAnchor: null,
             shadowUrl: null,
             shadowSize: null,
             shadowAnchor: null});
@@ -115,9 +110,7 @@ export default class ReactMap extends Component<{}, State> {
                   {/*List of the markers defined by props*/}
                     <MarkerList lastPoi={this.props.lastPoi} pois={this.props.pois} user={this.props.usr} callBackEditMarkerState={this.getEditMarkerState} />
                     <Marker position={this.state.currentLatLng} icon={myIcon}>
-                        <Popup>
-                            <Button className='add-button-marker' onClick={this.addPoiOnUserPos}>Add POI here</Button>
-                        </Popup>
+                        <Popup>You are here.</Popup>
                     </Marker>
                 </Map>
         )
