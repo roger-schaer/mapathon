@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/POIDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/POIDetails.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +37,7 @@
   <component name="PropertiesComponent">
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -110,6 +109,9 @@
       <workItem from="1570786655962" duration="2554000" />
       <workItem from="1570796390873" duration="261000" />
       <workItem from="1571390025456" duration="1007000" />
+      <workItem from="1572427912529" duration="6000" />
+      <workItem from="1572508545057" duration="494000" />
+      <workItem from="1573811357338" duration="625000" />
     </task>
     <servers />
   </component>
