@@ -30,7 +30,7 @@ export default function POIDetails({ match }) {
 
   return (
     <div>
-      {poi ? <POI {...poi} /> : "Loading details..."}
+      {poi ? <POI {...poi} /> : <p>Loading details...</p>}
       <Link className="App-link" to="/">
         Back
       </Link>

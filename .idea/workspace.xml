@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth_config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth_config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/POI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/POI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/endpoints.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/POIDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/POIDetails.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +99,7 @@
       <workItem from="1572427912529" duration="6000" />
       <workItem from="1572508545057" duration="494000" />
       <workItem from="1573811357338" duration="625000" />
-      <workItem from="1589182794381" duration="5593000" />
+      <workItem from="1589182794381" duration="6292000" />
     </task>
     <servers />
   </component>
@@ -135,9 +129,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="558" y="276" width="620" height="522" key="find.popup" timestamp="1589192179253">
+    <state x="558" y="276" width="620" height="522" key="find.popup" timestamp="1589205673385">
       <screen x="57" y="27" width="1623" height="1023" />
     </state>
-    <state x="558" y="276" width="620" height="522" key="find.popup/57.27.1623.1023@57.27.1623.1023" timestamp="1589192179253" />
+    <state x="558" y="276" width="620" height="522" key="find.popup/57.27.1623.1023@57.27.1623.1023" timestamp="1589205673385" />
   </component>
 </project>
