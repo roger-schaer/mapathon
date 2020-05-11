@@ -34,6 +34,10 @@ function App() {
 
   let handleLogoutClick = async (e) => {
     e.preventDefault();
+    /*
+    returnTo parameter is necessary because multiple
+    apps use the same authentication backend
+    */
     logout({ returnTo: process.env.REACT_APP_BASE_URL });
   };
 
