@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth_config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth_config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/POI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/POI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/endpoints.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/endpoints.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +37,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -99,11 +105,12 @@
       <workItem from="1572427912529" duration="6000" />
       <workItem from="1572508545057" duration="494000" />
       <workItem from="1573811357338" duration="625000" />
+      <workItem from="1589182794381" duration="5593000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -120,59 +127,17 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="601" y="286" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1569391972949">
+    <state x="558" y="276" width="620" height="522" key="find.popup" timestamp="1589192179253">
       <screen x="57" y="27" width="1623" height="1023" />
     </state>
-    <state x="601" y="286" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/57.27.1623.1023/1680.0.1680.1050@57.27.1623.1023" timestamp="1569391972949" />
-    <state x="416" y="282" key="EditFileWatcherDialog" timestamp="1569391944487" />
-    <state x="416" y="282" key="EditFileWatcherDialog/1680.1050/1680.1050" timestamp="1569391944488" />
-    <state x="614" y="312" key="FileChooserDialogImpl" timestamp="1569391944488" />
-    <state x="614" y="312" key="FileChooserDialogImpl/1680.1050/1680.1050" timestamp="1569391944488" />
-    <state width="1657" height="277" key="GridCell.Tab.0.bottom" timestamp="1569850367766">
-      <screen x="1680" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1600" height="268" key="GridCell.Tab.0.bottom/1680.1050/1680.1050" timestamp="1569391944488" />
-    <state width="1657" height="277" key="GridCell.Tab.0.bottom/57.27.1623.1023/1680.0.1680.1050@1680.0.1680.1050" timestamp="1569850367766" />
-    <state width="1657" height="277" key="GridCell.Tab.0.center" timestamp="1569850367765">
-      <screen x="1680" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1600" height="268" key="GridCell.Tab.0.center/1680.1050/1680.1050" timestamp="1569391944488" />
-    <state width="1657" height="277" key="GridCell.Tab.0.center/57.27.1623.1023/1680.0.1680.1050@1680.0.1680.1050" timestamp="1569850367765" />
-    <state width="1657" height="277" key="GridCell.Tab.0.left" timestamp="1569850367765">
-      <screen x="1680" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1600" height="268" key="GridCell.Tab.0.left/1680.1050/1680.1050" timestamp="1569391944488" />
-    <state width="1657" height="277" key="GridCell.Tab.0.left/57.27.1623.1023/1680.0.1680.1050@1680.0.1680.1050" timestamp="1569850367765" />
-    <state width="1657" height="277" key="GridCell.Tab.0.right" timestamp="1569850367765">
-      <screen x="1680" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1600" height="268" key="GridCell.Tab.0.right/1680.1050/1680.1050" timestamp="1569391944488" />
-    <state width="1657" height="277" key="GridCell.Tab.0.right/57.27.1623.1023/1680.0.1680.1050@1680.0.1680.1050" timestamp="1569850367765" />
-    <state x="347" y="181" key="SettingsEditor" timestamp="1569840755495">
-      <screen x="57" y="27" width="1623" height="1023" />
-    </state>
-    <state x="347" y="181" key="SettingsEditor/1680.1050/1680.1050" timestamp="1569391944488" />
-    <state x="347" y="181" key="SettingsEditor/57.27.1623.1023/1680.0.1680.1050@1680.0.1680.1050" timestamp="1569840755495" />
-    <state x="175" y="150" width="1434" height="807" key="find.popup" timestamp="1570087363592">
-      <screen x="57" y="27" width="1623" height="1023" />
-    </state>
-    <state x="175" y="150" width="1434" height="807" key="find.popup/1680.1050/1680.1050" timestamp="1569391944488" />
-    <state x="175" y="150" width="1434" height="807" key="find.popup/57.27.1623.1023/1680.0.1680.1050@57.27.1623.1023" timestamp="1569563433524" />
-    <state x="175" y="150" width="1434" height="807" key="find.popup/57.27.1623.1023@57.27.1623.1023" timestamp="1570087363592" />
-    <state width="600" height="424" key="javadoc.popup" timestamp="1570095684846">
-      <screen x="1680" y="0" width="1680" height="1050" />
-    </state>
-    <state width="600" height="424" key="javadoc.popup/57.27.1623.1023/1680.0.1680.1050@1680.0.1680.1050" timestamp="1570095684846" />
-    <state x="531" y="250" width="672" height="678" key="search.everywhere.popup" timestamp="1569391944488" />
-    <state x="531" y="250" width="672" height="678" key="search.everywhere.popup/1680.1050/1680.1050" timestamp="1569391944488" />
+    <state x="558" y="276" width="620" height="522" key="find.popup/57.27.1623.1023@57.27.1623.1023" timestamp="1589192179253" />
   </component>
 </project>

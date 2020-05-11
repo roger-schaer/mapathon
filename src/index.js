@@ -9,7 +9,7 @@ import { createBrowserHistory } from "history";
 
 let history = createBrowserHistory();
 
-const onRedirectCallback = appState => {
+const onRedirectCallback = (appState) => {
   history.push(
     appState && appState.targetUrl
       ? appState.targetUrl
@@ -24,6 +24,7 @@ ReactDOM.render(
     redirect_uri={window.location.origin}
     audience={auth_config.audience}
     onRedirectCallback={onRedirectCallback}
+    useRefreshTokens={true}
   >
     <App />
   </Auth0Provider>,

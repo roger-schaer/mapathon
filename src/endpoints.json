@@ -1,3 +1,4 @@
 {
-  "pois": "/poi"
+  "pois": "/poi",
+  "users": "/user"
 }
