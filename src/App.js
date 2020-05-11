@@ -34,7 +34,7 @@ function App() {
 
   let handleLogoutClick = async (e) => {
     e.preventDefault();
-    logout({ redirectTo: process.env.REACT_APP_BASE_URL });
+    logout({ returnTo: process.env.REACT_APP_BASE_URL });
   };
 
   if (loading) {
