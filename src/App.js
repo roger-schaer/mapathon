@@ -10,7 +10,13 @@ import POIDetails from "./pages/POIDetails";
 function App() {
   let [pois, setPois] = useState([]);
   let [users, setUsers] = useState([]);
-  let { loading, loginWithRedirect, getTokenSilently } = useAuth0();
+  let {
+    loading,
+    loginWithRedirect,
+    logout,
+    getTokenSilently,
+    isAuthenticated,
+  } = useAuth0();
 
   let handlePOIsClick = async (e) => {
     e.preventDefault();
@@ -26,18 +32,9 @@ function App() {
     }
   };
 
-  let handleUsersClick = async (e) => {
+  let handleLogoutClick = async (e) => {
     e.preventDefault();
-    let users = await request(
-      `${process.env.REACT_APP_SERVER_URL}${endpoints.users}`,
-      getTokenSilently,
-      loginWithRedirect
-    );
-
-    if (users && users.length > 0) {
-      console.log(users);
-      setUsers(users);
-    }
+    logout({ redirectTo: "/" });
   };
 
   if (loading) {
@@ -47,6 +44,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        {isAuthenticated && (
+          <a
+            className="App-link Logout-link"
+            href="#"
+            onClick={handleLogoutClick}
+          >
+            Logout
+          </a>
+        )}
         <h1>Mapathon</h1>
         <br />
         <BrowserRouter>
@@ -59,9 +65,6 @@ function App() {
                   <a className="App-link" href="#" onClick={handlePOIsClick}>
                     Get POIs
                   </a>
-                  <a className="App-link" href="#" onClick={handleUsersClick}>
-                    Get Users
-                  </a>
                   {pois && pois.length > 0 && (
                     <ul className="POI-List">
                       {pois.map((poi) => (
@@ -70,13 +73,6 @@ function App() {
                             {poi.name}
                           </Link>
                         </li>
-                      ))}
-                    </ul>
-                  )}
-                  {users && users.length > 0 && (
-                    <ul className="User-List">
-                      {users.map((user) => (
-                        <li key={user.id}>{user.name}</li>
                       ))}
                     </ul>
                   )}
