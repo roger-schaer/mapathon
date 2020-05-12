@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="" />
+    <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,6 +100,8 @@
       <workItem from="1572508545057" duration="494000" />
       <workItem from="1573811357338" duration="625000" />
       <workItem from="1589182794381" duration="10406000" />
+      <workItem from="1589210113928" duration="354000" />
+      <workItem from="1589262036112" duration="452000" />
     </task>
     <servers />
   </component>
@@ -126,6 +131,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="601" y="286" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589210229391">
+      <screen x="57" y="27" width="1623" height="1023" />
+    </state>
+    <state x="601" y="286" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/57.27.1623.1023@57.27.1623.1023" timestamp="1589210229391" />
     <state x="558" y="276" width="620" height="522" key="find.popup" timestamp="1589205673385">
       <screen x="57" y="27" width="1623" height="1023" />
     </state>
