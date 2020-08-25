@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9d99ef1f-6be9-48ac-88ce-0e79a9308b07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +36,7 @@
   <component name="PropertiesComponent">
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../quickpick/quickpick-admin" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -65,6 +65,7 @@
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -101,12 +102,17 @@
       <workItem from="1573811357338" duration="625000" />
       <workItem from="1589182794381" duration="10406000" />
       <workItem from="1589210113928" duration="354000" />
-      <workItem from="1589262036112" duration="452000" />
+      <workItem from="1589262036112" duration="508000" />
+      <workItem from="1589262616564" duration="6000" />
+      <workItem from="1594125050219" duration="4172000" />
+      <workItem from="1594199450791" duration="623000" />
+      <workItem from="1594212355087" duration="950000" />
+      <workItem from="1598344869505" duration="93000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -135,9 +141,14 @@
       <screen x="57" y="27" width="1623" height="1023" />
     </state>
     <state x="601" y="286" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/57.27.1623.1023@57.27.1623.1023" timestamp="1589210229391" />
-    <state x="558" y="276" width="620" height="522" key="find.popup" timestamp="1589205673385">
+    <state x="651" y="295" width="424" height="484" key="FileChooserDialogImpl" timestamp="1594135010626">
       <screen x="57" y="27" width="1623" height="1023" />
     </state>
+    <state x="651" y="295" width="424" height="484" key="FileChooserDialogImpl/57.27.1623.1023/1680.0.1680.1050@57.27.1623.1023" timestamp="1594135010626" />
+    <state x="558" y="276" width="620" height="522" key="find.popup" timestamp="1594199462209">
+      <screen x="57" y="27" width="1623" height="1023" />
+    </state>
+    <state x="558" y="276" width="620" height="522" key="find.popup/57.27.1623.1023/1680.0.1680.1050@57.27.1623.1023" timestamp="1594199462209" />
     <state x="558" y="276" width="620" height="522" key="find.popup/57.27.1623.1023@57.27.1623.1023" timestamp="1589205673385" />
   </component>
 </project>
